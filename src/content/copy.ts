@@ -114,6 +114,13 @@ const DICTS = {
       cta: "Donate",
     },
 
+    gallery: {
+      title: "What comes out of the room",
+      lead: "Work by our students. Every piece in the store is one of these.",
+      byLabel: "by",
+      cta: "See the store",
+    },
+
     store: {
       title: "The store",
       lead: "Original pieces, made by our students.",
@@ -247,6 +254,13 @@ const DICTS = {
       followTitle: "Mira dónde cae.",
       follow: "Publicamos el trabajo a medida que pasa.",
       cta: "Donar",
+    },
+
+    gallery: {
+      title: "Lo que sale del salón",
+      lead: "Obra de nuestros estudiantes. Cada pieza de la tienda es una de estas.",
+      byLabel: "de",
+      cta: "Ver la tienda",
     },
 
     store: {

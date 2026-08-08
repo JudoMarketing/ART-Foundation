@@ -6,46 +6,14 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
 
 ---
 
-## 🔴 Contradicción con el encargo original — bloquea la fase 4
-
-El prompt inicial (`docs/BRIEF.md`) dice, textual:
-
-> Los costos tomalos del website original. **Las clases son subscripciones
-> que se pagan semanal.**
-
-Y el sitio hoy cobra **$100 al mes**. Las dos cosas juntas no cierran:
-
-| Lectura | Sale | Al mes |
-|---|---|---|
-| $100 **mensual** (lo que publica el sitio actual, y lo que está en el código) | $100 | $100 |
-| $100 **semanal** (la cadencia del encargo) | $100 × 4.33 | **$433** |
-
-Cuatro veces más. Y el mismo encargo pide que las clases sean *«por muy bajo
-costo»*, así que $433 al mes por una clase de una hora los sábados va en
-contra de lo que se pidió.
-
-**Mi lectura:** el precio ($100, sacado del sitio actual) es el correcto y la
-palabra «semanal» se arrastró de los otros sitios de Judo, donde sí se cobra
-así. Pero no es mío decidirlo — es dinero de familias.
-
-Hoy no rompe nada porque todavía no se cobra: `priceCents: 10_000` está en el
-código y la fase 4 (Stripe para clases) no empezó. **Se decide antes de
-conectar Stripe, no después.**
-
-Lo mismo, más chico, con el horario. El encargo decía Arte 10–11, Teatro
-12–1, Guitarra 1–2. Lo que está en el código — Arte 9:30–11:00, Teatro
-11:30–13:00, Guitarra 13:00–14:00, todo los sábados — se confirmó después y
-es lo que vale. Lo dejo anotado para que la diferencia no parezca un error.
-
----
-
 ## ✅ Resuelto
 
 | Tema | Decisión |
 |---|---|
-| Precio | **$100** la primera clase, materiales incluidos. Como lo publica el sitio actual. ⚠️ La cadencia (mensual o semanal) está en disputa, arriba. |
+| Precio | **$100 al MES** la primera clase, materiales incluidos. Confirmado por el dueño. El encargo original decía «se pagan semanal» (`docs/BRIEF.md`) y fue un error suyo: a $100 semanales serían $433 al mes por una clase de una hora los sábados, contra un encargo que pide «muy bajo costo». Queda cerrado: **mensual**. |
 | Combos | Cada clase que se suma va a **mitad de precio**: 1 → $100, 2 → $150, 3 → $200. El descuento se aplica solo en la portada, sin cupón. |
-| Horario | **Sábados**: Arte 9:30–11:00, Teatro 11:30–1:00, Guitarra 1:00–2:00. Reemplaza al horario del encargo original. |
+| Horario | **Sábados**: Arte 9:30–11:00, Teatro 11:30–1:00, Guitarra 1:00–2:00. Reemplaza al horario del encargo original (que decía Arte 10–11, Teatro 12–1, Guitarra 1–2). |
+| Obra en el sitio | Sacada del WordPress actual. Solo **obra**, no fotos de estudiantes. Crédito con iniciales. |
 | Guitarra | Va, aunque no exista en el sitio actual. |
 | Métricas | El sitio **no** reporta al panel de Judo. Solo apagar y prender. |
 | Barra de idiomas | Con banderas: EE. UU. e España, las mismas del sitio actual. |
@@ -58,18 +26,34 @@ es lo que vale. Lo dejo anotado para que la diferencia no parezca un error.
 1. ~~**Que el repositorio me quede visible.**~~ ✅ Resuelto. El código está en
    `JudoMarketing/ART-Foundation` y lo alcanzo. Para leer los despliegues de
    Vercel falta un token: ver `docs/VERCEL.md`.
-2. **El PDF de la carta de recomendación.** El encargo dice «un documento que
-   te voy a subir, que ya esta preparado y ya tiene los campos para firma».
-   No llegó al repositorio. Sin él no se puede construir la firma digital de
-   la fase 5.
-3. **Fotos.** Es lo que más levanta el sitio. Obra de los estudiantes y fotos
-   de las clases. Hoy la portada tiene un dibujo de círculos de color porque
-   no hay imágenes — y en el sitio de una fundación de arte eso se nota.
-4. **Logo en vectorial** (SVG o AI). Hoy solo existe como imagen.
-5. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
+2. ~~**Obra de los estudiantes.**~~ ✅ Resuelto, y no hizo falta pedirla:
+   estaba en el WordPress actual. Nueve piezas en `public/obra/`, sacadas de
+   la biblioteca de medios (`/wp-json/wp/v2/media`, que está abierta) y
+   reducidas de 4000 px a 1000 px en WebP — las nueve juntas pesan menos que
+   uno solo de los originales. Ver `src/content/obra.ts`.
+
+3. **Fotos de las clases.** Esto sí sigue faltando, y es distinto de la obra.
+   En el WordPress hay **una sola** foto de clase (dos niñas en el escenario
+   del teatro) y un volante de campamento con la cara de un niño.
+
+   **No las usé, a propósito.** Son menores identificables, y el sitio nuevo
+   pregunta el consentimiento de imagen en cada inscripción justamente porque
+   esto importa. Publicar la cara de un menor porque estaba en el sitio viejo
+   no es consentimiento: es haberla encontrado.
+
+   Lo que hace falta: fotos de las clases **con el consentimiento firmado de
+   cada familia que aparezca**, o fotos donde no se reconozca a nadie — manos
+   trabajando, pinceles, el salón, la obra a medio hacer. Las de manos son
+   las que mejor funcionan en un sitio así, y no necesitan permiso de nadie.
+
+4. **El PDF de la carta de recomendación.** Pospuesto por el dueño para más
+   adelante. Bloquea solo la firma digital de la fase 5, que está lejos.
+5. **Logo en vectorial** (SVG o AI). Hoy solo existe como imagen.
+6. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
    los deduje del nombre; hay que verificarlos antes de publicar.
-6. **Acceso al WordPress actual** (administrador), para sacar las imágenes,
-   las galerías y los artículos del blog sin volver a escribirlos.
+7. ~~**Acceso al WordPress actual.**~~ No hace falta credencial: la API de
+   medios está abierta y por ahí salió la obra. Para los **artículos del
+   blog** sirve igual (`/wp-json/wp/v2/posts`), cuando toque la fase 5.
 
 ---
 

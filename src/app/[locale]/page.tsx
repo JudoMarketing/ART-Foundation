@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Locale } from "@/lib/i18n";
 import { t } from "@/content/copy";
 import { CLASSES, CLASS_DAY, ORG } from "@/content/site";
+import { OBRA, OBRA_TIENDA } from "@/content/obra";
 import {
   CLASS_ICONS,
   IconBlog,
@@ -12,7 +14,6 @@ import {
   IconCoinHand,
   IconCostume,
   IconFacebook,
-  IconFramedArt,
   IconGuitarBody,
   IconHands,
   IconHeart,
@@ -216,6 +217,68 @@ export default async function HomePage({
         </div>
       </section>
 
+      {/* ══ La obra ══════════════════════════════════════════════════════
+          Va justo acá, entre "cuánto sale" y "danos dinero", porque es la
+          prueba de las dos cosas. Ninguna frase que yo escriba convence
+          tanto como seis cuadros hechos por los estudiantes.
+
+          Son las mismas que estaban en el WordPress viejo, en 4000 píxeles,
+          enterradas en páginas que nadie visita. */}
+      <section className="paper-grain bg-paper">
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+          <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
+            <div>
+              <h2 className="max-w-3xl text-4xl font-bold sm:text-5xl">
+                {c.gallery.title}
+              </h2>
+              <p className="mt-5 max-w-2xl text-lg text-ink-soft">
+                {c.gallery.lead}
+              </p>
+            </div>
+            <Link
+              href={localePath(locale, "/store")}
+              className="underline-grow text-lg font-bold text-brand-ink"
+            >
+              {c.gallery.cta} →
+            </Link>
+          </div>
+
+          <ul className="mt-14 grid grid-cols-2 gap-5 sm:gap-6 md:grid-cols-3">
+            {OBRA.slice(0, 6).map((p) => (
+              <li key={p.slug}>
+                <figure className="card-lift">
+                  {/* Proporción fija para todas. Las piezas vienen en
+                      tamaños distintos —hay una apaisada entre ocho
+                      verticales— y en una rejilla eso deja huecos. Acá se
+                      recortan parejas; la pieza entera se ve en la tienda. */}
+                  <div className="aspect-[4/5] overflow-hidden rounded-[--radius-card] border-2 border-line bg-paper-warm">
+                    <Image
+                      src={`/obra/${p.slug}.webp`}
+                      alt={p.alt[locale]}
+                      width={p.w}
+                      height={p.h}
+                      sizes="(min-width: 768px) 33vw, 50vw"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <figcaption className="mt-3 text-sm text-ink-soft">
+                    {p.credito && (
+                      <>
+                        <span className="font-bold text-ink">
+                          {c.gallery.byLabel} {p.credito}
+                        </span>
+                        {" · "}
+                      </>
+                    )}
+                    {p.tecnica[locale]}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* ══ Donaciones ═══════════════════════════════════════════════════
           Las tres tarjetas ya no explican con párrafos: muestran las cosas.
           Pinceles, pomos, una guitarra y un traje dicen "materiales" más
@@ -342,11 +405,32 @@ export default async function HomePage({
       <section className="paper-grain bg-paper-warm">
         <div className="mx-auto grid max-w-6xl gap-6 px-4 py-24 sm:px-6 md:grid-cols-2">
           <article className="card card-lift overflow-hidden rounded-[--radius-card] border-2 border-sun bg-paper">
-            {/* La pared de la galería. */}
-            <div className="gallery-wall flex items-end justify-center gap-4 px-8 pb-8 pt-10" aria-hidden="true">
-              <IconFramedArt art={0} className="h-24 w-24 -rotate-3 sm:h-28 sm:w-28" />
-              <IconFramedArt art={1} className="h-28 w-28 sm:h-36 sm:w-36" />
-              <IconFramedArt art={2} className="h-24 w-24 rotate-3 sm:h-28 sm:w-28" />
+            {/* La pared de la galería. Antes eran tres marcos dibujados;
+                ahora son tres cuadros de verdad. Van con `aria-hidden`
+                porque la galería de arriba ya los describe uno por uno: que
+                un lector de pantalla lea la misma obra dos veces es ruido,
+                no accesibilidad. */}
+            <div className="gallery-wall flex items-center justify-center gap-3 px-8 pb-8 pt-10 sm:gap-4" aria-hidden="true">
+              {OBRA_TIENDA.map((slug, i) => {
+                const p = OBRA.find((x) => x.slug === slug)!;
+                const tilt = ["-rotate-3", "", "rotate-3"][i];
+                const size = i === 1 ? "w-32 sm:w-40" : "w-24 sm:w-28";
+                return (
+                  <span
+                    key={slug}
+                    className={`${tilt} ${size} block overflow-hidden rounded-lg border-4 border-paper shadow-lg`}
+                  >
+                    <Image
+                      src={`/obra/${p.slug}.webp`}
+                      alt=""
+                      width={p.w}
+                      height={p.h}
+                      sizes="200px"
+                      className="h-full w-full object-cover"
+                    />
+                  </span>
+                );
+              })}
             </div>
 
             <div className="p-10 pt-8">
