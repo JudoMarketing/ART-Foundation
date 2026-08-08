@@ -28,7 +28,10 @@ const nextConfig: NextConfig = {
       { source: "/shop", destination: "/store", permanent: true },
 
       // — Español —
-      { source: "/es/contact", destination: "/es/contact", permanent: true },
+      // Ojo: /es/contact NO lleva regla. La dirección vieja y la nueva son la
+      // misma, y una redirección de una dirección hacia sí misma es un bucle
+      // infinito: el navegador corta con ERR_TOO_MANY_REDIRECTS y la página
+      // deja de existir. Si no cambia, no se redirige.
       { source: "/es/apoyo", destination: "/es/donate", permanent: true },
       { source: "/es/programas-de-artes", destination: "/es/classes", permanent: true },
       { source: "/es/clases-de-arte-2026", destination: "/es/classes/art", permanent: true },
