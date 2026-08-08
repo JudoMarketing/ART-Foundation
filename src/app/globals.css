@@ -1,0 +1,289 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   ARTxpwd — sistema de marca
+   ----------------------------------------------------------------------------
+   La paleta sale del sitio actual (tema Betheme). Se midió el contraste de cada
+   color y se corrigió lo que no pasa WCAG 2.2 AA. Nada de esto es decorativo:
+   este sitio lo van a usar personas con baja visión y con lectores de pantalla.
+
+   Medición del magenta de marca #eb008b:
+     · sobre blanco          → 4.28:1   FALLA texto normal (pide 4.5)
+     · sobre tinta #161922   → 4.10:1   FALLA texto normal
+     · blanco encima de él   → 4.28:1   FALLA texto normal
+   Conclusión: #eb008b sirve como RELLENO y como borde/icono (pide 3:1, y pasa),
+   pero NUNCA para texto pequeño. Para texto y botones sólidos se usa --brand-ink
+   (#b3006b → 6.71:1 sobre blanco), que es el mismo tono, solo más oscuro.
+   ========================================================================== */
+
+@theme {
+  /* — Marca ————————————————————————————————————————————————— */
+  --color-brand: #eb008b;        /* relleno, bordes, iconos. NO texto pequeño */
+  --color-brand-solid: #e30086;  /* superficie con texto blanco   → 4.55:1 ✓ */
+  --color-brand-ink: #b3006b;    /* texto, enlaces, botón sólido  → 6.71:1 ✓ */
+  --color-brand-deep: #85004e;   /* hover del botón sólido        → 9.97:1 ✓ */
+  --color-brand-soft: #fce2f2;   /* fondo de sección, muy claro              */
+
+  /* — Acentos (del sitio actual) ——————————————————————————————————————————
+     Los colores van a SATURACIÓN COMPLETA. La versión pastel no era más
+     accesible, era más tímida: un celeste lavado con texto gris encima
+     contrasta peor que el celeste pleno con texto negro.
+
+     Cada color tiene tres formas y cada una tiene un trabajo:
+       ·        el color pleno  → superficie grande. Encima va TINTA, no
+                                  blanco (cian 6.84:1, verde 9.52:1,
+                                  naranja 8.45:1 — todos holgados).
+       · -deep  el oscurecido   → superficie que lleva texto BLANCO (≥4.5:1)
+       · -ink   el legible      → texto de ese color sobre fondo claro
+       · -soft  el tinte        → solo fondos muy sutiles */
+  --color-sky: #00adeb;
+  --color-sky-deep: #007eab;     /* blanco encima → 4.59:1 ✓ */
+  --color-sky-ink: #00607f;      /* legible sobre blanco → 7.05:1 ✓ */
+  --color-sky-soft: #dff5fd;
+  --color-leaf: #a5cd39;
+  --color-leaf-deep: #647e20;    /* blanco encima → 4.62:1 ✓ */
+  --color-leaf-ink: #4a5f14;     /* legible sobre blanco → 7.15:1 ✓ */
+  --color-leaf-soft: #ecf4d4;
+  --color-sun: #f0a44a;
+  --color-sun-deep: #ac640e;     /* blanco encima → 4.58:1 ✓ */
+  --color-sun-ink: #7a4a10;      /* legible sobre blanco → 7.46:1 ✓ */
+  --color-sun-soft: #fdf6ed;
+
+  /* — Neutros ——————————————————————————————————————————————— */
+  --color-ink: #161922;          /* texto principal   → 17.55:1 sobre blanco */
+  --color-ink-soft: #4b5163;     /* texto secundario  →  7.91:1              */
+  --color-line: #d9dce4;         /* separadores: decorativos, 1.37:1         */
+  --color-paper: #ffffff;
+  --color-paper-warm: #faf7f2;
+
+  /* — Tipografía ——————————————————————————————————————————— */
+  /* Domine es la del sitio actual: serif, con carácter, legible en títulos.
+     Para el cuerpo va una sans de sistema — más legible en pantalla, cero
+     descarga, y menos fatiga para quien lee despacio. */
+  --font-display: Domine, Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+
+  /* — Ritmo ————————————————————————————————————————————————— */
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
+}
+
+/* ============================================================================
+   Accesibilidad — reglas base, no opcionales
+   ========================================================================== */
+
+/* Foco visible SIEMPRE, en todo lo que se pueda enfocar. El anillo es de dos
+   capas (oscuro + blanco) para que se vea tanto sobre fondo claro como oscuro. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 2px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 6px var(--color-paper);
+}
+
+/* Quien pidió menos movimiento, recibe menos movimiento. Sin excepciones:
+   para una persona con trastorno vestibular una animación no es un adorno,
+   es un mareo. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* El zoom del navegador nunca se bloquea y el texto siempre puede crecer. */
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 6rem; /* que el encabezado fijo no tape el destino */
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  /* 1.6 de interlineado: WCAG 1.4.12 pide que el texto aguante 1.5 sin romperse */
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+/* Los enlaces dentro de texto van subrayados. Sin subrayado, quien no
+   distingue colores no sabe que hay un enlace (WCAG 1.4.1). */
+.prose a,
+a.link {
+  color: var(--color-brand-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.08em;
+}
+.prose a:hover,
+a.link:hover {
+  color: var(--color-brand-deep);
+  text-decoration-thickness: 0.16em;
+}
+
+/* Salto al contenido: primer elemento enfocable de la página. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 0.75rem 0.75rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Área táctil mínima de 24×24 CSS px (WCAG 2.2 · 2.5.8 Target Size).
+   Se aplica a controles sueltos; los botones ya son más grandes. */
+.tap {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Sólo para lectores de pantalla. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* En modo de alto contraste de Windows, los rellenos de color desaparecen.
+   Estos bordes mantienen la forma de los botones y tarjetas visible. */
+@media (forced-colors: active) {
+  .btn,
+  .card {
+    border: 1px solid CanvasText;
+  }
+}
+
+/* ============================================================================
+   Movimiento e interacción
+   ----------------------------------------------------------------------------
+   Todo lo de aquí abajo está dentro de `prefers-reduced-motion: no-preference`
+   o usa transiciones que el bloque de arriba ya neutraliza. Nada se mueve
+   para quien pidió que no se moviera.
+   ========================================================================== */
+
+/* — Fondo de la portada: manchas de pintura que respiran ——————————— */
+/* Las manchas van a intensidad casi plena. Se puede: el velo oscuro de
+   encima deja el blanco del texto en 6.8:1 como mínimo, medido contra las
+   cuatro manchas a tope (ver docs/MARCA.md). Diluirlas no protegía a nadie,
+   solo apagaba la portada. */
+.hero-blobs {
+  background:
+    radial-gradient(42rem 34rem at 10% 20%, color-mix(in oklab, var(--color-brand) 95%, transparent), transparent 65%),
+    radial-gradient(38rem 32rem at 84% 26%, color-mix(in oklab, var(--color-sky) 92%, transparent), transparent 65%),
+    radial-gradient(34rem 30rem at 66% 84%, color-mix(in oklab, var(--color-leaf) 88%, transparent), transparent 65%),
+    radial-gradient(28rem 26rem at 26% 90%, color-mix(in oklab, var(--color-sun) 88%, transparent), transparent 65%);
+  filter: saturate(1.2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-blobs {
+    animation: respirar 22s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes respirar {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to   { transform: scale(1.12) translate3d(-1.5%, -1.5%, 0); }
+}
+
+/* — Papel: una textura muy leve para que el blanco no se vea plano ——— */
+.paper-grain {
+  background-image:
+    radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--color-ink) 7%, transparent) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+/* — Tarjetas que responden ————————————————————————————————————————
+   El levantamiento es de 4px y la sombra crece: suficiente para que se
+   sienta, poco para que no maree. Y el borde se tiñe del color de la
+   tarjeta, que es la señal que de verdad se lee. */
+.card-lift {
+  transition:
+    transform 0.22s cubic-bezier(0.2, 0.8, 0.3, 1),
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+.card-lift:hover,
+.card-lift:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px -12px color-mix(in oklab, var(--color-ink) 40%, transparent);
+}
+
+/* — Los vectores cobran vida al pasar por encima ————————————————— */
+.icon-play .squiggle {
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1), opacity 0.3s ease;
+  transform-origin: center;
+}
+.icon-play:hover .squiggle,
+.icon-play:focus-within .squiggle {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .icon-play:hover .squiggle:first-of-type,
+  .icon-play:focus-within .squiggle:first-of-type {
+    transform: translateY(-3px);
+  }
+  .icon-play:hover .squiggle:last-of-type,
+  .icon-play:focus-within .squiggle:last-of-type {
+    transform: translateY(3px);
+  }
+  .icon-play svg {
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+  .icon-play:hover svg,
+  .icon-play:focus-within svg {
+    transform: rotate(-4deg) scale(1.06);
+  }
+}
+
+/* — El subrayado que se dibuja solo ——————————————————————————————— */
+.underline-grow {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease;
+  text-decoration: none;
+}
+.underline-grow:hover,
+.underline-grow:focus-visible {
+  background-size: 100% 2px;
+}
+
+/* — Borde recortado, como papel rasgado ——————————————————————————— */
+.torn-top {
+  clip-path: polygon(
+    0 12px, 6% 4px, 14% 14px, 23% 2px, 33% 12px, 44% 3px, 55% 13px,
+    66% 4px, 76% 14px, 86% 3px, 94% 12px, 100% 5px, 100% 100%, 0 100%
+  );
+}
