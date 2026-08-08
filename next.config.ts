@@ -13,6 +13,41 @@ const nextConfig: NextConfig = {
    * de Páginas de Search Console, que es el único lugar donde aparecen las
    * direcciones que Google conoce y el sitemap no lista.
    */
+  /**
+   * Cacheo de lo que pesa.
+   *
+   * Por defecto Vercel sirve todo lo de `public/` con
+   * `max-age=0, must-revalidate`: el navegador vuelve a preguntar por cada
+   * archivo en cada visita. Para un video de varios megas y nueve cuadros,
+   * eso es una conversación entera antes de que se vea nada.
+   *
+   * La obra se cachea un año y en firme: cada pieza tiene su nombre propio y
+   * no se reemplaza en el sitio — si entra una nueva, entra con otro nombre.
+   *
+   * El video va a una semana con `stale-while-revalidate`: si algún día se
+   * reemplaza `hero.mp4` por una versión más liviana, el cambio llega solo
+   * dentro de la semana, y mientras tanto nadie espera por él.
+   */
+  async headers() {
+    return [
+      {
+        source: "/obra/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/video/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, stale-while-revalidate=2592000",
+          },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       // — Inglés —
