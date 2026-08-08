@@ -43,7 +43,8 @@ es lo que vale. Lo dejo anotado para que la diferencia no parezca un error.
 
 | Tema | Decisión |
 |---|---|
-| Precio | **$100** por clase, materiales incluidos. Como lo publica el sitio actual. ⚠️ La cadencia (mensual o semanal) está en disputa, arriba. |
+| Precio | **$100** la primera clase, materiales incluidos. Como lo publica el sitio actual. ⚠️ La cadencia (mensual o semanal) está en disputa, arriba. |
+| Combos | Cada clase que se suma va a **mitad de precio**: 1 → $100, 2 → $150, 3 → $200. El descuento se aplica solo en la portada, sin cupón. |
 | Horario | **Sábados**: Arte 9:30–11:00, Teatro 11:30–1:00, Guitarra 1:00–2:00. Reemplaza al horario del encargo original. |
 | Guitarra | Va, aunque no exista en el sitio actual. |
 | Métricas | El sitio **no** reporta al panel de Judo. Solo apagar y prender. |
@@ -101,9 +102,8 @@ y cuándo — sin eso, dentro de un año no hay forma de probar qué aceptaron.
 
 No bloquean nada hoy. Las dejo escritas para no olvidarlas.
 
-1. **Descuento por tomar dos o tres clases.** Como van seguidas el mismo
-   sábado, muchas familias van a tomar más de una. ¿$300 por las tres o hay
-   precio combinado?
+1. ~~**Descuento por tomar dos o tres clases.**~~ ✅ Resuelto: mitad de precio
+   por cada clase que se suma. Está arriba, en la tabla.
 2. **Edad mínima.** Teatro dice "de 7 años a adultos". ¿Arte y guitarra
    también?
 3. **Cupos por clase.** El sitio actual dice "Space is limited". Si hay tope,
