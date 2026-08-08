@@ -6,12 +6,45 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
 
 ---
 
+## 🔴 Contradicción con el encargo original — bloquea la fase 4
+
+El prompt inicial (`docs/BRIEF.md`) dice, textual:
+
+> Los costos tomalos del website original. **Las clases son subscripciones
+> que se pagan semanal.**
+
+Y el sitio hoy cobra **$100 al mes**. Las dos cosas juntas no cierran:
+
+| Lectura | Sale | Al mes |
+|---|---|---|
+| $100 **mensual** (lo que publica el sitio actual, y lo que está en el código) | $100 | $100 |
+| $100 **semanal** (la cadencia del encargo) | $100 × 4.33 | **$433** |
+
+Cuatro veces más. Y el mismo encargo pide que las clases sean *«por muy bajo
+costo»*, así que $433 al mes por una clase de una hora los sábados va en
+contra de lo que se pidió.
+
+**Mi lectura:** el precio ($100, sacado del sitio actual) es el correcto y la
+palabra «semanal» se arrastró de los otros sitios de Judo, donde sí se cobra
+así. Pero no es mío decidirlo — es dinero de familias.
+
+Hoy no rompe nada porque todavía no se cobra: `priceCents: 10_000` está en el
+código y la fase 4 (Stripe para clases) no empezó. **Se decide antes de
+conectar Stripe, no después.**
+
+Lo mismo, más chico, con el horario. El encargo decía Arte 10–11, Teatro
+12–1, Guitarra 1–2. Lo que está en el código — Arte 9:30–11:00, Teatro
+11:30–13:00, Guitarra 13:00–14:00, todo los sábados — se confirmó después y
+es lo que vale. Lo dejo anotado para que la diferencia no parezca un error.
+
+---
+
 ## ✅ Resuelto
 
 | Tema | Decisión |
 |---|---|
-| Precio | **$100 al mes** por clase, materiales incluidos. Como lo publica el sitio actual. |
-| Horario | **Sábados**: Arte 9:30–11:00, Teatro 11:30–1:00, Guitarra 1:00–2:00. |
+| Precio | **$100** por clase, materiales incluidos. Como lo publica el sitio actual. ⚠️ La cadencia (mensual o semanal) está en disputa, arriba. |
+| Horario | **Sábados**: Arte 9:30–11:00, Teatro 11:30–1:00, Guitarra 1:00–2:00. Reemplaza al horario del encargo original. |
 | Guitarra | Va, aunque no exista en el sitio actual. |
 | Métricas | El sitio **no** reporta al panel de Judo. Solo apagar y prender. |
 | Barra de idiomas | Con banderas: EE. UU. e España, las mismas del sitio actual. |
@@ -21,18 +54,20 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
 
 ## 🔴 Para seguir con lo visual (fase 1)
 
-1. **Que el repositorio me quede visible.** Lo creaste, pero mi credencial de
-   GitHub no lo alcanza todavía — probablemente la app de Claude está
-   instalada con "solo repositorios seleccionados" y hay que agregar
-   `ART-Foundation` a esa lista. Hasta entonces el código vive solo en esta
-   sesión.
-2. **Fotos.** Es lo que más levanta el sitio. Obra de los estudiantes y fotos
+1. ~~**Que el repositorio me quede visible.**~~ ✅ Resuelto. El código está en
+   `JudoMarketing/ART-Foundation` y lo alcanzo. Para leer los despliegues de
+   Vercel falta un token: ver `docs/VERCEL.md`.
+2. **El PDF de la carta de recomendación.** El encargo dice «un documento que
+   te voy a subir, que ya esta preparado y ya tiene los campos para firma».
+   No llegó al repositorio. Sin él no se puede construir la firma digital de
+   la fase 5.
+3. **Fotos.** Es lo que más levanta el sitio. Obra de los estudiantes y fotos
    de las clases. Hoy la portada tiene un dibujo de círculos de color porque
    no hay imágenes — y en el sitio de una fundación de arte eso se nota.
-3. **Logo en vectorial** (SVG o AI). Hoy solo existe como imagen.
-4. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
+4. **Logo en vectorial** (SVG o AI). Hoy solo existe como imagen.
+5. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
    los deduje del nombre; hay que verificarlos antes de publicar.
-5. **Acceso al WordPress actual** (administrador), para sacar las imágenes,
+6. **Acceso al WordPress actual** (administrador), para sacar las imágenes,
    las galerías y los artículos del blog sin volver a escribirlos.
 
 ---
