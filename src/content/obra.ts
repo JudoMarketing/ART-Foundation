@@ -136,5 +136,20 @@ export const OBRA: Pieza[] = [
   },
 ];
 
-/** Las tres que se muestran en la tarjeta de la tienda. */
+/** Las tres que se muestran en la tarjeta de la tienda de la portada. */
 export const OBRA_TIENDA = ["kandinsky-ko", "naturaleza-05", "noche-estrellada-gi"] as const;
+
+/**
+ * El porcentaje de cada venta que va al estudiante.
+ *
+ * ⚠️ **Este número es un marcador de posición.** La fundación todavía no lo
+ * decidió, y en la fase 6 se configura por pieza desde el panel del
+ * administrador — el encargo pide justamente eso.
+ *
+ * Está acá, en un solo lugar y con este cartel encima, para que la tienda se
+ * pueda ver como se va a ver. Vive en una constante y no repartido por las
+ * plantillas: el día que haya un número real se cambia una vez, no diez.
+ *
+ * Mientras sea un marcador, **no se publica la tienda con precios**.
+ */
+export const PORCENTAJE_ESTUDIANTE_PROVISIONAL = 40;

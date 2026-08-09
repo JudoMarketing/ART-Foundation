@@ -48,12 +48,34 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
 
 4. **El PDF de la carta de recomendación.** Pospuesto por el dueño para más
    adelante. Bloquea solo la firma digital de la fase 5, que está lejos.
-5. **Logo en vectorial** (SVG o AI). Hoy solo existe como imagen.
-6. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
+5. **Logo en vectorial** (SVG o AI). Lo que hay en el sitio es una
+   **reconstrucción** (`src/components/SiteLogo.tsx`): el marco de esquinas
+   está a medida y es exacto, pero las letras se dibujan con la tipografía
+   del sistema y no son las del logo original. Se ve bien y escala, pero no
+   es el archivo. Cuando llegue el SVG bueno se reemplaza ese componente y
+   nada más — el resto del sitio ya lo usa y no sabe cómo está hecho.
+
+6. **El sello de Candid.** El *Gold Transparency 2025* está dibujado a mano
+   en el pie porque se lo ganaron y tiene que verse. Pero el sello oficial lo
+   entrega Candid con su propio código de inserción, y ese lleva al perfil de
+   la organización. **Falta ese código** (o la dirección del perfil): hoy el
+   sello va sin enlace, porque una dirección de perfil no me la puedo
+   inventar.
+
+7. **El porcentaje que va al estudiante.** La tienda muestra hoy un **40% de
+   marcador de posición** (`PORCENTAJE_ESTUDIANTE_PROVISIONAL` en
+   `src/content/obra.ts`). El encargo pide que sea configurable por pieza
+   desde el panel, y eso es la fase 6 — pero el número que se muestre
+   mientras tanto tiene que ser uno real. **La tienda no se publica con
+   precios hasta que ese número esté decidido.**
+8. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
    los deduje del nombre; hay que verificarlos antes de publicar.
-7. ~~**Acceso al WordPress actual.**~~ No hace falta credencial: la API de
-   medios está abierta y por ahí salió la obra. Para los **artículos del
-   blog** sirve igual (`/wp-json/wp/v2/posts`), cuando toque la fase 5.
+9. **Acceso al WordPress actual.** La API de medios estaba abierta y por ahí
+   salió la obra. **Ya no:** el sitio devuelve una pantalla de "One moment,
+   please…" a los pedidos automáticos. Por eso el logo, el sello y el fondo
+   del pie —que son archivos del tema, no de la biblioteca— hubo que
+   rehacerlos. Para los artículos del blog de la fase 5 va a hacer falta
+   acceso de verdad.
 
 ---
 
@@ -102,12 +124,25 @@ No bloquean nada hoy. Las dejo escritas para no olvidarlas.
 
 ---
 
-## Autocrítica del diseño (sigue en pie)
+## Autocrítica del diseño
 
-1. **La ilustración de la portada son cuatro círculos de color.** Es relleno.
-   Ahí va obra de los estudiantes. Depende de la foto (punto 2 de arriba).
-2. **Casi todo son tarjetas.** Cinco secciones de seis son rejillas
-   parecidas. Las tres clases, que son lo más importante, merecen verse como
-   una secuencia de horarios de un sábado y no como tres cajas iguales.
-3. **La sección del blog está vacía.** Hasta que haya artículos, mejor
-   quitarla que decir "vienen en camino".
+Las tres de la ronda anterior están resueltas:
+
+1. ~~Los cuatro círculos de la portada.~~ Ahora hay video en la portada y una
+   galería con seis piezas de estudiantes.
+2. ~~Casi todo eran tarjetas.~~ Las tres clases pasaron a ser un mostrador con
+   precios que cambian, y el sábado se ve como una línea de tiempo.
+3. ~~El blog vacío decía "vienen en camino".~~ Ahora dice que no hay nada
+   publicado, que es la verdad, y muestra obra mientras tanto.
+
+**Lo que sigue en pie:**
+
+4. **El sitio sigue sin una sola foto de gente.** La obra levantó mucho, pero
+   una fundación que enseña a personas es, al final, personas. Hoy no hay una
+   sola cara ni una sola mano. Es el punto 3 de arriba y es lo que más falta.
+
+5. **Ocho páginas terminan en un teléfono.** Donar, inscribirse, comprar y
+   ser voluntario dicen todas "llámanos". Está bien dicho y es honesto, pero
+   es el mismo callejón cuatro veces: sin Stripe y sin formularios, el sitio
+   informa pero no cobra ni inscribe. Es exactamente lo que desbloquean las
+   fases 2 a 4.

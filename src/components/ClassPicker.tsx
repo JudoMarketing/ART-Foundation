@@ -142,17 +142,28 @@ export default function ClassPicker({
                 {k.schedule}
               </p>
 
-              {/* El precio. Cuando baja, el número viejo queda tachado al
-                  lado del nuevo: ver de dónde viene el descuento es lo que
-                  lo hace creíble. */}
-              <p className="mt-4 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+              {/* El precio. Cuando baja, el viejo se queda tachado en rojo al
+                  lado del nuevo en verde: ver de dónde viene el descuento es
+                  lo que lo hace creíble.
+
+                  La `key` cambia cuando cambia el estado, y eso es lo que
+                  obliga a React a montar de nuevo el bloque. Sin eso la
+                  animación corre una sola vez en la vida de la tarjeta: se
+                  agrega una clase, se quita, se vuelve a agregar, y la
+                  segunda vez el precio cambia de golpe. */}
+              <p
+                key={discounted ? "rebajado" : "entero"}
+                className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1"
+              >
                 {discounted && (
-                  <s className="text-xl font-bold text-ink-soft/70 decoration-2">
+                  <s className="precio-antes text-2xl font-bold">
                     <span className="sr-only">{labels.regular}: </span>
                     {full}
                   </s>
                 )}
-                <span className="text-3xl font-bold">
+                <span
+                  className={`text-4xl font-bold ${discounted ? "precio-ahora" : ""}`}
+                >
                   {discounted && <span className="sr-only">{labels.now}: </span>}
                   {discounted ? half : full}
                 </span>
@@ -162,7 +173,9 @@ export default function ClassPicker({
               </p>
 
               {discounted && (
-                <p className={`mt-2 text-sm font-bold ${s.ink}`}>{labels.halfOff}</p>
+                <p className="precio-ahora mt-2 text-sm font-bold">
+                  {labels.halfOff}
+                </p>
               )}
 
               <p className="mt-4 flex-1 text-ink-soft">{k.blurb}</p>

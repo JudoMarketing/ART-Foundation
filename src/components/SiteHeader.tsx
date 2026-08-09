@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { localePath, type Locale } from "@/lib/i18n";
 import { t } from "@/content/copy";
 import LanguageBar from "./LanguageBar";
+import SiteLogo from "./SiteLogo";
 
 /**
  * Encabezado del sitio.
@@ -50,12 +51,24 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 sm:px-6">
+        {/* El logo y, al lado, el nombre en dos líneas — como lo usa el sitio
+            actual. El nombre no es adorno: "ARTxpwd" solo no le dice nada a
+            quien entra por primera vez. */}
         <Link
           href={localePath(locale, "/")}
-          className="mr-auto flex items-baseline gap-2 font-[family-name:var(--font-display)] text-lg font-bold text-ink"
+          className="tap mr-auto flex items-center gap-3 text-ink"
         >
-          ART
-          <span className="text-brand-ink">xpwd</span>
+          <SiteLogo className="h-11 w-11 shrink-0" />
+          <span className="hidden leading-tight sm:block">
+            <span className="block text-sm font-bold uppercase tracking-wide">
+              Art Foundation
+            </span>
+            <span className="block text-xs text-ink-soft">
+              {locale === "es"
+                ? "para personas con discapacidad"
+                : "for people with disabilities"}
+            </span>
+          </span>
         </Link>
 
         <nav

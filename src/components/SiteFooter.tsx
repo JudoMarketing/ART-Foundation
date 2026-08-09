@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { localePath, type Locale } from "@/lib/i18n";
 import { t } from "@/content/copy";
+import SiteLogo, { CandidSeal } from "./SiteLogo";
 import { ORG, FL_DISCLOSURE } from "@/content/site";
 import JudoFooter from "./JudoFooter";
 
@@ -23,8 +24,41 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
   return (
     <footer>
       {/* ── Bloque de la fundación ─────────────────────────────────────── */}
-      <div className="border-t border-line bg-paper-warm">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3">
+      {/* El fondo de garabatos va acá, como en el sitio actual: llena el pie
+          sin competir con nada, porque en el pie no hay texto largo que leer.
+          `isolate` y `relative` son para que la capa quede detrás del
+          contenido y no encima de los enlaces. */}
+      <div className="relative isolate overflow-hidden border-t border-line bg-brand-soft">
+        <div aria-hidden="true" className="doodles text-paper" />
+
+        <div className="relative mx-auto max-w-6xl px-4 pt-14 sm:px-6">
+          <div className="flex flex-wrap items-center justify-between gap-8">
+            <div className="flex items-center gap-4">
+              <SiteLogo className="h-20 w-20 shrink-0" />
+              <p className="leading-tight">
+                <span className="block font-[family-name:var(--font-display)] text-xl font-bold">
+                  Art Foundation
+                </span>
+                <span className="block text-sm text-ink-soft">
+                  {es
+                    ? "para personas con discapacidad"
+                    : "for people with disabilities"}
+                </span>
+              </p>
+            </div>
+
+            {/* El sello. Se lo ganaron: va donde se vea, no escondido.
+                Va SIN enlace a propósito: el sello oficial de Candid lleva al
+                perfil de la organización, y ese enlace no me lo puedo
+                inventar. Cuando el dueño pase el código de inserción de su
+                perfil, el sello se vuelve enlace. */}
+            <span className="shrink-0">
+              <CandidSeal className="h-28 w-auto" />
+            </span>
+          </div>
+        </div>
+
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3">
           <div>
             <h2 className="font-[family-name:var(--font-display)] text-lg font-bold">
               {c.footer.contactTitle}

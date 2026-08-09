@@ -56,10 +56,10 @@ const nextConfig: NextConfig = {
       { source: "/art-in-action-522", destination: "/about", permanent: true },
       { source: "/support", destination: "/donate", permanent: true },
       { source: "/arts-programs", destination: "/classes", permanent: true },
-      { source: "/creative-arts-2026", destination: "/classes/art", permanent: true },
-      { source: "/theatre-classes-2026", destination: "/classes/theatre", permanent: true },
+      { source: "/creative-arts-2026", destination: "/classes", permanent: true },
+      { source: "/theatre-classes-2026", destination: "/classes", permanent: true },
       { source: "/volunteer-opportunities", destination: "/volunteer", permanent: true },
-      { source: "/internship-opportunities", destination: "/volunteer/internships", permanent: true },
+      { source: "/internship-opportunities", destination: "/volunteer", permanent: true },
       { source: "/shop", destination: "/store", permanent: true },
 
       // — Español —
@@ -69,10 +69,10 @@ const nextConfig: NextConfig = {
       // deja de existir. Si no cambia, no se redirige.
       { source: "/es/apoyo", destination: "/es/donate", permanent: true },
       { source: "/es/programas-de-artes", destination: "/es/classes", permanent: true },
-      { source: "/es/clases-de-arte-2026", destination: "/es/classes/art", permanent: true },
-      { source: "/es/clases-de-teatro-2026", destination: "/es/classes/theatre", permanent: true },
+      { source: "/es/clases-de-arte-2026", destination: "/es/classes", permanent: true },
+      { source: "/es/clases-de-teatro-2026", destination: "/es/classes", permanent: true },
       { source: "/es/oportunidades-de-voluntariado", destination: "/es/volunteer", permanent: true },
-      { source: "/es/oportunidades-de-pasantias", destination: "/es/volunteer/internships", permanent: true },
+      { source: "/es/oportunidades-de-pasantias", destination: "/es/volunteer", permanent: true },
       { source: "/es/shop-2", destination: "/es/store", permanent: true },
 
       // — Ruido del tema de WordPress: no se migra —

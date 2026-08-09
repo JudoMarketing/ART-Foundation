@@ -36,7 +36,7 @@ const DICTS = {
       secondary: "Donate",
       playVideo: "Play",
       pauseVideo: "Pause",
-      disciplines: ["Painting", "Theatre", "Music", "Rhythm"],
+      disciplines: ["Art", "Theatre", "Music"],
     },
 
     audience: {
@@ -178,7 +178,7 @@ const DICTS = {
       secondary: "Donar",
       playVideo: "Reproducir",
       pauseVideo: "Pausar",
-      disciplines: ["Pintura", "Teatro", "Música", "Ritmo"],
+      disciplines: ["Arte", "Teatro", "Música"],
     },
 
     audience: {
