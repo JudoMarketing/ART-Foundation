@@ -7,6 +7,9 @@ demás las apoya.
 Cada fase se entrega funcionando. No hay fase que dependa de una futura para
 servir de algo.
 
+El encargo original, con las palabras del dueño, está en `docs/BRIEF.md`.
+Todo lo de acá sale de ahí.
+
 ---
 
 ## Fase 0 · Esqueleto ✅ HECHO
@@ -49,13 +52,21 @@ Las páginas que hoy son solo enlaces en el menú.
 | Clases | Las tres clases con su detalle, horario, lugar y precio |
 | Donar | Formulario de donación, a dónde va el dinero, lista de materiales |
 | Tienda | Catálogo (todavía sin cobrar) |
-| Voluntariado | Qué se hace, y el formulario de postulación |
-| Pasantías | La convocatoria |
+| Voluntariado | Qué se hace, el formulario de postulación, y el aviso de seguimiento |
+| Pasantías | La convocatoria, con el mismo aviso |
 | Blog | Listado y página de artículo (todavía sin panel) |
 | Contacto | Formulario, mapa, las dos direcciones |
 | Accesibilidad | Declaración de accesibilidad — obligatoria en un sitio así |
 | Términos | ✅ borrador listo en `/terms`. Falta revisión legal. |
 | Privacidad | La que hay que aceptar al inscribirse |
+
+**El aviso de seguimiento va en la página pública, no en el portal.** El
+encargo pide avisarle al voluntario que todo lo que haga con la fundación
+queda registrado. Ese registro es lo que después permite la carta de
+recomendación con horas firmadas — o sea que es a favor del voluntario, no en
+su contra, y así hay que escribirlo. Pero se dice **antes** de que se postule,
+en la misma página donde está el formulario. Enterarse después de que te
+estaban midiendo es otra cosa.
 
 Se migra el contenido del WordPress actual quitando lo repetido. El sitio de
 hoy repite el mismo bloque de "Support" y "Contact us" en cada página; eso

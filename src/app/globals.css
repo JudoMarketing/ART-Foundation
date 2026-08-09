@@ -280,6 +280,61 @@ a.link:hover {
   background-size: 100% 2px;
 }
 
+/* — El dinero, moviéndose ————————————————————————————————————————————
+   Cinco monedas cruzando una línea de puntos, en la sección de donaciones.
+
+   La regla de siempre: si el visitante pidió menos movimiento, las monedas
+   no se mueven. Se quedan repartidas a lo largo de la línea, en las
+   posiciones que trae cada una escritas en su atributo `style`, y la idea
+   —el dinero va de acá para allá— se lee igual de bien quietas.
+
+   La animación va sobre `left` y no sobre `transform` a propósito: la
+   posición de reposo también es `left`, así que cuando la animación no
+   corre no hay que deshacer nada. */
+.coin-flow {
+  position: relative;
+  height: 3.5rem;
+  overflow: hidden;
+}
+.coin-flow::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  border-top: 3px dashed color-mix(in srgb, var(--color-paper) 30%, transparent);
+}
+.coin-flow .coin {
+  position: absolute;
+  top: 50%;
+  translate: -50% -50%;
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .coin-flow .coin {
+    animation: moneda 7s linear infinite;
+  }
+  @keyframes moneda {
+    from {
+      left: -4%;
+    }
+    to {
+      left: 104%;
+    }
+  }
+}
+
+/* — La pared de la galería de la tienda ——————————————————————————— */
+.gallery-wall {
+  background:
+    radial-gradient(
+      120% 80% at 50% 0%,
+      color-mix(in srgb, var(--color-sun) 22%, transparent),
+      transparent 70%
+    ),
+    var(--color-sun-soft);
+}
+
 /* — Borde recortado, como papel rasgado ——————————————————————————— */
 .torn-top {
   clip-path: polygon(

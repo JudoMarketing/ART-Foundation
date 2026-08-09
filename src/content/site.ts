@@ -124,6 +124,36 @@ export const CLASSES = [
 
 export type ClassId = (typeof CLASSES)[number]["id"];
 
+/**
+ * Combos.
+ *
+ * La primera clase vale $100. Cada clase que se suma después vale la mitad.
+ * Como las tres van una detrás de otra el mismo sábado, la familia ya está
+ * ahí: sumar la segunda no le cuesta otro viaje, y no debería costarle otro
+ * precio entero.
+ *
+ *   1 clase  → $100
+ *   2 clases → $150   (100 + 50)
+ *   3 clases → $200   (100 + 50 + 50)
+ *
+ * El descuento se aplica solo, sin cupón ni letra chica. Un formulario que
+ * exige acordarse de un código deja plata afuera y hace sentir tonta a la
+ * gente que no lo vio.
+ */
+export const FIRST_CLASS_CENTS = 10_000;
+export const EXTRA_CLASS_CENTS = 5_000;
+
+/** Lo que cuesta un carrito de n clases. n=0 → 0. */
+export function bundleCents(n: number): number {
+  if (n <= 0) return 0;
+  return FIRST_CLASS_CENTS + (n - 1) * EXTRA_CLASS_CENTS;
+}
+
+/** Lo que se ahorra frente a pagar cada clase por separado. */
+export function savingsCents(n: number): number {
+  return Math.max(0, n * FIRST_CLASS_CENTS - bundleCents(n));
+}
+
 /** Todas las clases son el mismo día. */
 export const CLASS_DAY = { en: "Saturdays", es: "Sábados" } as const;
 

@@ -10,8 +10,10 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
 
 | Tema | Decisión |
 |---|---|
-| Precio | **$100 al mes** por clase, materiales incluidos. Como lo publica el sitio actual. |
-| Horario | **Sábados**: Arte 9:30–11:00, Teatro 11:30–1:00, Guitarra 1:00–2:00. |
+| Precio | **$100 al MES** la primera clase, materiales incluidos. Confirmado por el dueño. El encargo original decía «se pagan semanal» (`docs/BRIEF.md`) y fue un error suyo: a $100 semanales serían $433 al mes por una clase de una hora los sábados, contra un encargo que pide «muy bajo costo». Queda cerrado: **mensual**. |
+| Combos | Cada clase que se suma va a **mitad de precio**: 1 → $100, 2 → $150, 3 → $200. El descuento se aplica solo en la portada, sin cupón. |
+| Horario | **Sábados**: Arte 9:30–11:00, Teatro 11:30–1:00, Guitarra 1:00–2:00. Reemplaza al horario del encargo original (que decía Arte 10–11, Teatro 12–1, Guitarra 1–2). |
+| Obra en el sitio | Sacada del WordPress actual. Solo **obra**, no fotos de estudiantes. Crédito con iniciales. |
 | Guitarra | Va, aunque no exista en el sitio actual. |
 | Métricas | El sitio **no** reporta al panel de Judo. Solo apagar y prender. |
 | Barra de idiomas | Con banderas: EE. UU. e España, las mismas del sitio actual. |
@@ -21,19 +23,37 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
 
 ## 🔴 Para seguir con lo visual (fase 1)
 
-1. **Que el repositorio me quede visible.** Lo creaste, pero mi credencial de
-   GitHub no lo alcanza todavía — probablemente la app de Claude está
-   instalada con "solo repositorios seleccionados" y hay que agregar
-   `ART-Foundation` a esa lista. Hasta entonces el código vive solo en esta
-   sesión.
-2. **Fotos.** Es lo que más levanta el sitio. Obra de los estudiantes y fotos
-   de las clases. Hoy la portada tiene un dibujo de círculos de color porque
-   no hay imágenes — y en el sitio de una fundación de arte eso se nota.
-3. **Logo en vectorial** (SVG o AI). Hoy solo existe como imagen.
-4. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
+1. ~~**Que el repositorio me quede visible.**~~ ✅ Resuelto. El código está en
+   `JudoMarketing/ART-Foundation` y lo alcanzo. Para leer los despliegues de
+   Vercel falta un token: ver `docs/VERCEL.md`.
+2. ~~**Obra de los estudiantes.**~~ ✅ Resuelto, y no hizo falta pedirla:
+   estaba en el WordPress actual. Nueve piezas en `public/obra/`, sacadas de
+   la biblioteca de medios (`/wp-json/wp/v2/media`, que está abierta) y
+   reducidas de 4000 px a 1000 px en WebP — las nueve juntas pesan menos que
+   uno solo de los originales. Ver `src/content/obra.ts`.
+
+3. **Fotos de las clases.** Esto sí sigue faltando, y es distinto de la obra.
+   En el WordPress hay **una sola** foto de clase (dos niñas en el escenario
+   del teatro) y un volante de campamento con la cara de un niño.
+
+   **No las usé, a propósito.** Son menores identificables, y el sitio nuevo
+   pregunta el consentimiento de imagen en cada inscripción justamente porque
+   esto importa. Publicar la cara de un menor porque estaba en el sitio viejo
+   no es consentimiento: es haberla encontrado.
+
+   Lo que hace falta: fotos de las clases **con el consentimiento firmado de
+   cada familia que aparezca**, o fotos donde no se reconozca a nadie — manos
+   trabajando, pinceles, el salón, la obra a medio hacer. Las de manos son
+   las que mejor funcionan en un sitio así, y no necesitan permiso de nadie.
+
+4. **El PDF de la carta de recomendación.** Pospuesto por el dueño para más
+   adelante. Bloquea solo la firma digital de la fase 5, que está lejos.
+5. **Logo en vectorial** (SVG o AI). Hoy solo existe como imagen.
+6. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
    los deduje del nombre; hay que verificarlos antes de publicar.
-5. **Acceso al WordPress actual** (administrador), para sacar las imágenes,
-   las galerías y los artículos del blog sin volver a escribirlos.
+7. ~~**Acceso al WordPress actual.**~~ No hace falta credencial: la API de
+   medios está abierta y por ahí salió la obra. Para los **artículos del
+   blog** sirve igual (`/wp-json/wp/v2/posts`), cuando toque la fase 5.
 
 ---
 
@@ -66,9 +86,8 @@ y cuándo — sin eso, dentro de un año no hay forma de probar qué aceptaron.
 
 No bloquean nada hoy. Las dejo escritas para no olvidarlas.
 
-1. **Descuento por tomar dos o tres clases.** Como van seguidas el mismo
-   sábado, muchas familias van a tomar más de una. ¿$300 por las tres o hay
-   precio combinado?
+1. ~~**Descuento por tomar dos o tres clases.**~~ ✅ Resuelto: mitad de precio
+   por cada clase que se suma. Está arriba, en la tabla.
 2. **Edad mínima.** Teatro dice "de 7 años a adultos". ¿Arte y guitarra
    también?
 3. **Cupos por clase.** El sitio actual dice "Space is limited". Si hay tope,

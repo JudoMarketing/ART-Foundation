@@ -46,7 +46,7 @@ const DICTS = {
         {
           title: "Students with disabilities",
           body:
-            "If a student needs a one-on-one therapist, we provide one at no extra cost. You ask for it on the registration form and that is the whole process.",
+            "If a student needs one-on-one attention, our volunteers and students provide it at no extra cost. You ask for it on the registration form and that is the whole process.",
         },
         {
           title: "Students without disabilities",
@@ -64,52 +64,74 @@ const DICTS = {
     classes: {
       title: "Three classes, every Saturday",
       lead:
-        "They run back to back, so a family can stay for one, two or all three without a second trip.",
-      pick: "Students can take one class, two, or all three.",
-      support: "Need a one-on-one therapist? We provide one at no cost.",
+        "They run back to back, so a family can stay for one, two or all three without a second trip. Add a second class and it is half price.",
+      support:
+        "We have volunteers and students who provide one-on-one attention when a student needs it.",
       cta: "Register",
+      add: "Add",
+      added: "Added",
+      removeHint: "Press again to remove it.",
+      regular: "Regular price",
+      now: "Now",
+      halfOff: "Half price when you add it",
+      bundleTitle: "Your Saturday",
+      bundleEmpty: "Nothing picked yet.",
+      bundleHint: "Pick one class. The next one is half price.",
+      total: "Total",
+      save: "You save {amount} a month.",
+      goRegister: "Continue to register",
+      oneClass: "1 class",
+      manyClasses: "{n} classes",
       scheduleLabel: "Schedule",
       whereLabel: "Where",
       perMonth: "per month",
-      included: "Materials included.",
+      included: "Materials included. Cancel any time.",
     },
 
     donate: {
       title: "Where your donation goes",
       lead: "Every dollar has a destination. These are the three:",
+      flowLabel: "Your dollar, on its way",
       uses: [
         {
           title: "Materials",
-          body: "Paint, canvas, instruments and everything the classes consume.",
+          body: "Paint, brushes, canvas, instruments and costumes.",
         },
         {
           title: "Field trips",
-          body: "Outings and visits that take the work outside the classroom.",
+          body: "Outings, parks and visits that take the work outside the classroom.",
         },
         {
           title: "Scholarships",
           body:
-            "Students whose families cannot cover the fee. Nobody is turned away for money.",
+            "A paid seat for students whose families cannot cover the fee. Nobody is turned away for money.",
         },
       ],
       receipt:
         "We are a registered 501(c)(3). When you donate, we email you a receipt you can use on your taxes.",
-      follow:
-        "Want to see where the money lands? Follow us on Instagram and Facebook, or read the blog. We post the work.",
+      followTitle: "See where it lands.",
+      follow: "We post the work as it happens.",
       cta: "Donate",
+    },
+
+    gallery: {
+      title: "What comes out of the room",
+      lead: "Work by our students. Every piece in the store is one of these.",
+      byLabel: "by",
+      cta: "See the store",
     },
 
     store: {
       title: "The store",
-      lead:
-        "Original pieces made by our students. Part of every sale goes straight to the student who made it.",
+      lead: "Original pieces, made by our students.",
+      note: "Part of every sale goes straight to the student who made it.",
       cta: "Visit the store",
     },
 
     volunteer: {
       title: "Volunteer and internships",
-      lead:
-        "Your hours are recorded from the first day. When you finish, we sign a letter that states exactly how many hours you gave and why we recommend you.",
+      lead: "Come help. We keep the record.",
+      points: ["Hours logged from day one", "A signed letter when you finish", "Real work, with real students"],
       cta: "Apply to volunteer",
     },
 
@@ -166,7 +188,7 @@ const DICTS = {
         {
           title: "Estudiantes con discapacidad",
           body:
-            "Si un estudiante necesita terapeuta uno a uno, se lo damos sin costo adicional. Se pide en el formulario de inscripción y ya está.",
+            "Si un estudiante necesita atención uno a uno, nuestros voluntarios y estudiantes se la dan sin costo adicional. Se pide en el formulario de inscripción y ya está.",
         },
         {
           title: "Estudiantes sin discapacidad",
@@ -184,52 +206,74 @@ const DICTS = {
     classes: {
       title: "Tres clases, todos los sábados",
       lead:
-        "Van una detrás de otra, así que una familia puede quedarse para una, dos o las tres sin hacer otro viaje.",
-      pick: "El estudiante puede tomar una clase, dos o las tres.",
-      support: "¿Necesita terapeuta uno a uno? Se lo damos sin costo.",
+        "Van una detrás de otra, así que una familia puede quedarse para una, dos o las tres sin hacer otro viaje. Si sumas una segunda clase, va a mitad de precio.",
+      support:
+        "Tenemos voluntarios y estudiantes que dan atención uno a uno cuando el estudiante la necesita.",
       cta: "Inscribirse",
+      add: "Agregar",
+      added: "Agregada",
+      removeHint: "Toca otra vez para quitarla.",
+      regular: "Precio normal",
+      now: "Ahora",
+      halfOff: "Mitad de precio al agregarla",
+      bundleTitle: "Tu sábado",
+      bundleEmpty: "Todavía no elegiste nada.",
+      bundleHint: "Elige una clase. La siguiente va a mitad de precio.",
+      total: "Total",
+      save: "Ahorras {amount} al mes.",
+      goRegister: "Seguir con la inscripción",
+      oneClass: "1 clase",
+      manyClasses: "{n} clases",
       scheduleLabel: "Horario",
       whereLabel: "Dónde",
       perMonth: "al mes",
-      included: "Materiales incluidos.",
+      included: "Materiales incluidos. Se puede cancelar cuando quieras.",
     },
 
     donate: {
       title: "A dónde va tu donación",
       lead: "Cada dólar tiene un destino. Son estos tres:",
+      flowLabel: "Tu dólar, en camino",
       uses: [
         {
           title: "Materiales",
-          body: "Pintura, lienzos, instrumentos y todo lo que consumen las clases.",
+          body: "Pintura, pinceles, lienzos, instrumentos y trajes.",
         },
         {
           title: "Paseos",
-          body: "Salidas y visitas que sacan el trabajo fuera del salón.",
+          body: "Salidas, parques y visitas que sacan el trabajo fuera del salón.",
         },
         {
           title: "Becas",
           body:
-            "Estudiantes cuyas familias no pueden pagar la cuota. A nadie se le dice que no por dinero.",
+            "Un lugar pagado para estudiantes cuyas familias no pueden cubrir la cuota. A nadie se le dice que no por dinero.",
         },
       ],
       receipt:
         "Somos una organización 501(c)(3) registrada. Cuando donas, te enviamos por correo un recibo que puedes usar en tus impuestos.",
-      follow:
-        "¿Quieres ver dónde cae ese dinero? Síguenos en Instagram y Facebook, o lee el blog. Ahí publicamos el trabajo.",
+      followTitle: "Mira dónde cae.",
+      follow: "Publicamos el trabajo a medida que pasa.",
       cta: "Donar",
+    },
+
+    gallery: {
+      title: "Lo que sale del salón",
+      lead: "Obra de nuestros estudiantes. Cada pieza de la tienda es una de estas.",
+      byLabel: "de",
+      cta: "Ver la tienda",
     },
 
     store: {
       title: "La tienda",
-      lead:
-        "Piezas originales hechas por nuestros estudiantes. Parte de cada venta va directo al estudiante que la hizo.",
+      lead: "Piezas originales, hechas por nuestros estudiantes.",
+      note: "Parte de cada venta va directo al estudiante que la hizo.",
       cta: "Ver la tienda",
     },
 
     volunteer: {
       title: "Voluntariado y pasantías",
-      lead:
-        "Tus horas quedan registradas desde el primer día. Al terminar, firmamos una carta que dice exactamente cuántas horas diste y por qué te recomendamos.",
+      lead: "Ven a ayudar. Nosotros llevamos el registro.",
+      points: ["Horas registradas desde el primer día", "Una carta firmada al terminar", "Trabajo real, con estudiantes reales"],
       cta: "Postularme como voluntario",
     },
 
