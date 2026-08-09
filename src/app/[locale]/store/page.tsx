@@ -2,10 +2,16 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { type Locale } from "@/lib/i18n";
 import { p } from "@/content/pages";
-import { OBRA, PORCENTAJE_ESTUDIANTE_PROVISIONAL } from "@/content/obra";
+import {
+  OBRA,
+  PORCENTAJE_ESTUDIANTE_PROVISIONAL,
+  disponibles,
+  vendidas,
+} from "@/content/obra";
 import { ORG } from "@/content/site";
 import { IconBrushes, IconTag, IconTicket, IconVan } from "@/components/ArtIcons";
 import PageHero from "@/components/PageHero";
+import SoldSticker from "@/components/SoldSticker";
 
 export async function generateMetadata({
   params,
@@ -25,60 +31,103 @@ export default async function StorePage({
   const { locale: raw } = await params;
   const locale = raw as Locale;
   const c = p(locale).store;
+  const aLaVenta = disponibles(OBRA);
+  const yaVendidas = vendidas(OBRA);
+
+  /** Una pieza. La misma tarjeta sirve para las dos categorías. */
+  const tarjeta = (pieza: (typeof OBRA)[number]) => (
+    <figure
+      className={`card card-lift overflow-hidden rounded-[--radius-card] border-2 bg-paper ${
+        pieza.vendida ? "pieza-vendida border-line/60" : "border-line"
+      }`}
+    >
+      <div className="relative aspect-[4/5] overflow-hidden bg-paper-warm [container-type:inline-size]">
+        {pieza.vendida && <SoldSticker label={c.sold} />}
+        <Image
+          src={`/obra/${pieza.slug}.webp`}
+          alt={pieza.alt[locale]}
+          width={pieza.w}
+          height={pieza.h}
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="h-full w-full object-cover"
+        />
+      </div>
+
+      <figcaption className="p-6">
+        <p className="font-display text-lg font-bold">
+          {pieza.credito ? `${c.byLabel} ${pieza.credito}` : pieza.tecnica[locale]}
+        </p>
+        {pieza.credito && <p className="text-ink-soft">{pieza.tecnica[locale]}</p>}
+
+        {/* El estado, en texto: el sello es para el ojo, esto para quien no
+            lo ve. */}
+        {pieza.vendida ? (
+          <p className="mt-4 font-bold text-[var(--color-was)]">
+            {c.sold}
+            {pieza.vendidaEl && (
+              <span className="block font-normal text-ink-soft">
+                {c.soldOnLabel} {pieza.vendidaEl}
+              </span>
+            )}
+          </p>
+        ) : (
+          <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-sun-soft px-4 py-2 font-bold text-sun-ink">
+            <span aria-hidden="true">
+              <IconTag className="h-6 w-6" />
+            </span>
+            {PORCENTAJE_ESTUDIANTE_PROVISIONAL}% {c.shareLabel}
+          </p>
+        )}
+      </figcaption>
+    </figure>
+  );
 
   return (
     <>
       <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="sun" />
 
-      {/* La pared entera. Es una tienda de arte: lo que tiene que ocupar la
-          pantalla son los cuadros, no las palabras.
+      {/* Dos categorías: las que están a la venta y las que ya se
+          vendieron, con su cuenta.
 
-          Cada uno lleva su porcentaje visible, que es lo que convierte
-          "apoya a la fundación" en "esta parte va a esta persona". */}
+          Las vendidas NO se borran cuando se venden. Se quedan al menos
+          treinta días (`DIAS_MINIMOS_EN_VITRINA` en `content/obra.ts`), y
+          después es el panel el que decide. La razón está escrita ahí: si la
+          pieza desaparece el mismo día que se vende, nadie ve nunca que en
+          esta tienda se venden cuadros — y el estudiante que la hizo pierde
+          el único registro público de que su obra encontró comprador. */}
       <section className="paper-grain bg-paper">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-          <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {OBRA.map((pieza) => (
-              <li key={pieza.slug}>
-                <figure className="card card-lift overflow-hidden rounded-[--radius-card] border-2 border-line bg-paper">
-                  <div className="aspect-[4/5] overflow-hidden bg-paper-warm">
-                    <Image
-                      src={`/obra/${pieza.slug}.webp`}
-                      alt={pieza.alt[locale]}
-                      width={pieza.w}
-                      height={pieza.h}
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-
-                  <figcaption className="p-6">
-                    <p className="font-display text-lg font-bold">
-                      {pieza.credito ? (
-                        <>
-                          {c.byLabel} {pieza.credito}
-                        </>
-                      ) : (
-                        pieza.tecnica[locale]
-                      )}
-                    </p>
-                    {pieza.credito && (
-                      <p className="text-ink-soft">{pieza.tecnica[locale]}</p>
-                    )}
-
-                    <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-sun-soft px-4 py-2 font-bold text-sun-ink">
-                      <span aria-hidden="true">
-                        <IconTag className="h-6 w-6" />
-                      </span>
-                      {PORCENTAJE_ESTUDIANTE_PROVISIONAL}% {c.shareLabel}
-                    </p>
-                  </figcaption>
-                </figure>
-              </li>
+          <h2 className="text-3xl font-bold sm:text-4xl">{c.availableTitle}</h2>
+          <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {aLaVenta.map((pieza) => (
+              <li key={pieza.slug}>{tarjeta(pieza)}</li>
             ))}
           </ul>
         </div>
       </section>
+
+      {yaVendidas.length > 0 && (
+        <section className="border-t border-line bg-paper-warm">
+          <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+            <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+              <h2 className="text-3xl font-bold sm:text-4xl">{c.soldTitle}</h2>
+              {/* La cuenta. Es la prueba de que la tienda funciona, y por eso
+                  va grande y al lado del título, no escondida abajo. */}
+              <p className="rounded-full bg-[var(--color-was)] px-5 py-2 text-lg font-bold text-paper">
+                {yaVendidas.length === 1
+                  ? c.soldOne
+                  : c.soldCount.replace("{n}", String(yaVendidas.length))}
+              </p>
+            </div>
+
+            <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {yaVendidas.map((pieza) => (
+                <li key={pieza.slug}>{tarjeta(pieza)}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* Todavía no se cobra. Decirlo, y dar la salida que sí existe. */}
       <section className="bg-ink">

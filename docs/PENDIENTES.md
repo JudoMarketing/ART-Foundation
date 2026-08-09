@@ -62,15 +62,22 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
    sello va sin enlace, porque una dirección de perfil no me la puedo
    inventar.
 
-7. **El porcentaje que va al estudiante.** La tienda muestra hoy un **40% de
+7. **Confirmar la regla de los 30 días.** Una pieza vendida no se puede
+   retirar del sitio hasta 30 días después de la venta, y pasa a la categoría
+   "Ya vendidas" con la cuenta a la vista. Está montado
+   (`DIAS_MINIMOS_EN_VITRINA` en `src/content/obra.ts`) y hoy no hay ninguna
+   pieza marcada como vendida — marcarlo a mano sería decir que la obra de un
+   estudiante se vendió cuando no. Lo escribirá la compra en la fase 6.
+
+8. **El porcentaje que va al estudiante.** La tienda muestra hoy un **40% de
    marcador de posición** (`PORCENTAJE_ESTUDIANTE_PROVISIONAL` en
    `src/content/obra.ts`). El encargo pide que sea configurable por pieza
    desde el panel, y eso es la fase 6 — pero el número que se muestre
    mientras tanto tiene que ser uno real. **La tienda no se publica con
    precios hasta que ese número esté decidido.**
-8. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
+9. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
    los deduje del nombre; hay que verificarlos antes de publicar.
-9. **Acceso al WordPress actual.** La API de medios estaba abierta y por ahí
+10. **Acceso al WordPress actual.** La API de medios estaba abierta y por ahí
    salió la obra. **Ya no:** el sitio devuelve una pantalla de "One moment,
    please…" a los pedidos automáticos. Por eso el logo, el sello y el fondo
    del pie —que son archivos del tema, no de la biblioteca— hubo que

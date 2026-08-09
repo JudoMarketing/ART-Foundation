@@ -32,6 +32,7 @@ import {
 } from "@/components/ArtIcons";
 import ClassPicker from "@/components/ClassPicker";
 import HeroVideo from "@/components/HeroVideo";
+import SoldSticker from "@/components/SoldSticker";
 
 /** 13:00 → "1:00 PM" / "1:00 p. m." según el idioma. */
 function hour(hhmm: string, locale: Locale) {

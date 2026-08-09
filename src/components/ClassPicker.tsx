@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { CLASS_ICONS } from "@/components/ArtIcons";
 import {
@@ -85,6 +86,14 @@ export default function ClassPicker({
 }) {
   const [picked, setPicked] = useState<ClassId[]>([]);
 
+  // La barra flotante se dibuja en el <body> por medio de un portal, no acá
+  // dentro. Motivo: la sección de las clases lleva `clip-path` para el borde
+  // rasgado, y un elemento con clip-path se convierte en el marco de
+  // referencia de todo `position: fixed` que tenga dentro. La barra quedaba
+  // anclada a la sección y recortada por el mismo borde — invisible.
+  const [montado, setMontado] = useState(false);
+  useEffect(() => setMontado(true), []);
+
   function toggle(id: ClassId) {
     setPicked((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
@@ -103,6 +112,10 @@ export default function ClassPicker({
 
   const full = formatPrice(FIRST_CLASS_CENTS, locale);
   const half = formatPrice(EXTRA_CLASS_CENTS, locale);
+
+  /** Las clases elegidas viajan en la dirección, para no perderlas al saltar. */
+  const destino =
+    count > 0 ? `${registerHref}?class=${picked.join(",")}` : registerHref;
 
   return (
     <div>
@@ -252,15 +265,53 @@ export default function ClassPicker({
           </div>
 
           <Link
-            href={
-              count > 0 ? `${registerHref}?class=${picked.join(",")}` : registerHref
-            }
+            href={destino}
             className="btn tap inline-flex items-center rounded-full bg-ink px-8 py-4 text-base font-bold text-paper transition-transform hover:scale-[1.03]"
           >
             {labels.goRegister}
           </Link>
         </div>
       </div>
+
+      {montado &&
+        count > 0 &&
+        createPortal(
+          /* ── La barra que te sigue, solo en teléfono ────────────────────
+             En una pantalla chica la cuenta queda arriba y el dedo sigue
+             bajando: para cuando alguien decide, el botón de seguir está tres
+             pantallas atrás y hay que salir a buscarlo. Esta barra lo lleva
+             consigo.
+
+             Aparece solo cuando hay algo elegido — una barra fija que está
+             siempre roba la parte de abajo de la pantalla, que en un teléfono
+             es justo donde llega el pulgar. */
+          <div className="fixed inset-x-0 bottom-0 z-40 border-t border-ink/10 bg-paper/95 p-3 shadow-[0_-8px_24px_rgb(0_0_0/0.12)] backdrop-blur lg:hidden">
+            <div className="mx-auto flex max-w-6xl items-center gap-4 px-1">
+              <p className="min-w-0 flex-1">
+                <span className="block text-2xl font-bold leading-none">
+                  {formatPrice(total, locale)}
+                </span>
+                <span className="block text-xs leading-tight text-ink-soft">
+                  {labels.perMonth} ·{" "}
+                  {count === 1
+                    ? labels.oneClass
+                    : labels.manyClasses.replace("{n}", String(count))}
+                </span>
+              </p>
+              <Link
+                href={destino}
+                className="btn tap inline-flex shrink-0 items-center rounded-full bg-ink px-6 py-3.5 text-base font-bold text-paper"
+              >
+                {labels.cta}
+              </Link>
+            </div>
+          </div>,
+          document.body,
+        )}
+
+      {/* El colchón que evita que la barra tape lo último de la página. Sin
+          esto, el pie queda debajo de la barra y no se puede leer ni tocar. */}
+      {count > 0 && <div aria-hidden="true" className="h-24 lg:hidden" />}
     </div>
   );
 }
