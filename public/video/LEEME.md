@@ -30,20 +30,37 @@ Blob o a un CDN y se pone la dirección completa en la variable.
 
 ## El archivo que hay hoy
 
-`hero.mp4` — **6.4 MB, con pista de audio**. Es H.264 con AAC, así que se ve
-en cualquier navegador, pero incumple dos de las cuatro reglas de la tabla:
-pesa más del doble de lo que debería y trae sonido que nadie va a oír (la
-portada lo reproduce en silencio, es la única forma de que un navegador deje
-que un video arranque solo).
+`hero.mp4` — 0.87 MB, H.264, sin audio, 1280×720, 8 segundos. Cumple la
+tabla. Son manos tocando la guitarra: sin caras, que es exactamente lo que
+conviene (ver `docs/VIDEO-PORTADA.md`).
 
-Comprimirlo y quitarle el audio lo dejaría cerca de 1.5 MB sin que se note la
-diferencia en pantalla:
+## El códec: esto es lo que hay que revisar antes de subir otro
+
+**El video tiene que ser H.264 (`avc1`).** No es un detalle técnico menor.
+
+La versión que estuvo subida un rato venía en **H.265 / HEVC**, que es lo que
+exportan por defecto los iPhone y varios editores. Se ve perfecto en Safari y
+en un Mac — y **no se ve en Firefox, ni en Chrome en Linux, ni en buena parte
+de los Android**. O sea: se prueba en el teléfono de uno, funciona, y está
+roto para media internet sin que nadie se entere.
+
+Cómo comprobar qué códec trae un archivo:
 
 ```
-ffmpeg -i hero.mp4 -an -vf scale=1600:-2 -c:v libx264 -crf 28 -preset slow hero-web.mp4
+ffprobe -v error -select_streams v -show_entries stream=codec_name hero.mp4
 ```
 
-Vale la pena: es lo primero que carga la página, y quien entra desde un
-teléfono con datos lo paga.
+Si dice `hevc` en vez de `h264`, hay que convertirlo:
+
+```
+ffmpeg -i entrada.mp4 -an -c:v libx264 -profile:v high -pix_fmt yuv420p \
+       -crf 26 -preset slow -movflags +faststart hero.mp4
+```
+
+Ese comando hace las cuatro cosas de una: pasa a H.264, quita el audio
+(`-an`), comprime, y mueve el índice al principio del archivo
+(`+faststart`) para que empiece a verse antes de terminar de descargarse.
+Convirtiendo así, la versión de 3.5 MB en H.265 quedó en 0.87 MB sin
+diferencia visible en pantalla.
 
 Ver `docs/VIDEO-PORTADA.md` para el detalle.
