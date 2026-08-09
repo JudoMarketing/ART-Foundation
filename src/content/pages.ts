@@ -216,10 +216,11 @@ const DICTS = {
           body: "Whether we can photograph the student in class. Saying no keeps them in everything else.",
         },
       ],
-      soonTitle: "The form is being built.",
-      soonBody:
-        "Until it is live, registration goes by phone and it takes two minutes. Pick your classes first so you know what you are asking for.",
-      pickCta: "See the classes",
+      formTitle: "Six short steps.",
+      formBody:
+        "Fill it in once and the foundation takes it from there. No payment on this form — we confirm the seat first, then tell you how to pay.",
+      startCta: "Start the registration",
+      pickCta: "See the classes first",
       callCta: "Call to register",
       termsNote: "Registering means accepting the terms and conditions.",
       termsCta: "Read the terms",
@@ -425,10 +426,11 @@ const DICTS = {
           body: "Si podemos fotografiar al estudiante en clase. Decir que no lo deja dentro de todo lo demás.",
         },
       ],
-      soonTitle: "El formulario se está construyendo.",
-      soonBody:
-        "Hasta que esté, la inscripción va por teléfono y toma dos minutos. Elige tus clases primero para saber qué vas a pedir.",
-      pickCta: "Ver las clases",
+      formTitle: "Seis pasos cortos.",
+      formBody:
+        "Se llena una vez y la fundación sigue desde ahí. En este formulario no se paga nada — primero confirmamos el lugar y después te decimos cómo pagar.",
+      startCta: "Empezar la inscripción",
+      pickCta: "Ver las clases primero",
       callCta: "Llamar para inscribirse",
       termsNote: "Inscribirse implica aceptar los términos y condiciones.",
       termsCta: "Leer los términos",

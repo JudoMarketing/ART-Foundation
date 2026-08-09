@@ -84,13 +84,19 @@ export default async function RegisterPage({
             <span aria-hidden="true" className="block">
               <IconTicket className="h-16 w-16" />
             </span>
-            <h2 className="mt-5 text-3xl font-bold sm:text-4xl">{c.soonTitle}</h2>
-            <p className="mt-4 max-w-2xl text-lg text-ink-soft">{c.soonBody}</p>
+            <h2 className="mt-5 text-3xl font-bold sm:text-4xl">{c.formTitle}</h2>
+            <p className="mt-4 max-w-2xl text-lg text-ink-soft">{c.formBody}</p>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
+                href={localePath(locale, "/register/apply")}
+                className="btn tap inline-flex items-center rounded-full bg-brand-solid px-8 py-4 text-lg font-bold text-paper transition-transform hover:scale-[1.03]"
+              >
+                {c.startCta}
+              </Link>
+              <Link
                 href={`${localePath(locale, "/classes")}#clases`}
-                className="btn tap inline-flex items-center rounded-full bg-brand-solid px-8 py-4 text-base font-bold text-paper transition-transform hover:scale-[1.03]"
+                className="btn tap inline-flex items-center rounded-full border-2 border-ink px-7 py-4 text-base font-bold text-ink transition-transform hover:scale-[1.03]"
               >
                 {c.pickCta}
               </Link>
