@@ -6,7 +6,7 @@ import { CLASSES } from "@/content/site";
  *
  * Separados del resto porque un formulario es casi todo texto: etiqueta,
  * ayuda, error. Y porque lo que se escribe acá lo lee alguien que está
- * llenando campos — cansado, con prisa, o con un lector de pantalla leyéndole
+ * llenando campos, cansado, con prisa, o con un lector de pantalla leyéndole
  * cada palabra.
  *
  * Tres reglas que se respetan en todos los mensajes de error:
@@ -93,7 +93,7 @@ const DICTS = {
 
     okTitle: "Got it.",
     okBody:
-      "Your application is with the foundation. Somebody reads it and gets back to you — and if there is a queue, we email you your place in it.",
+      "Your application is with the foundation. Somebody reads it and gets back to you, and if there is a queue, we email you your place in it.",
     okAgain: "Back to volunteering",
 
     /* Errores */
@@ -109,8 +109,11 @@ const DICTS = {
     errConsent: "We need this to process the application.",
     errSend:
       "It did not go through. Call the foundation at {phone} and we will take it by phone.",
-    errSummaryOne: "One thing to fix before this can be sent.",
-    errSummary: "{n} things to fix before this can be sent.",
+    back: "Back",
+    next: "Next",
+    stepOf: "Step {n} of {total}",
+    errSummaryOne: "One thing to fix on this step.",
+    errSummary: "{n} things to fix on this step.",
   },
 
   es: {
@@ -172,7 +175,7 @@ const DICTS = {
 
     okTitle: "Recibido.",
     okBody:
-      "Tu postulación está con la fundación. Alguien la lee y te responde — y si hay cola, te avisamos por correo qué lugar tienes.",
+      "Tu postulación está con la fundación. Alguien la lee y te responde, y si hay cola, te avisamos por correo qué lugar tienes.",
     okAgain: "Volver a voluntariado",
 
     errRequired: "Este hace falta.",
@@ -187,8 +190,11 @@ const DICTS = {
     errConsent: "Lo necesitamos para poder procesar la postulación.",
     errSend:
       "No salió. Llama a la fundación al {phone} y la tomamos por teléfono.",
-    errSummaryOne: "Falta una cosa para poder enviar.",
-    errSummary: "Faltan {n} cosas para poder enviar.",
+    back: "Atrás",
+    next: "Siguiente",
+    stepOf: "Paso {n} de {total}",
+    errSummaryOne: "Falta una cosa en este paso.",
+    errSummary: "Faltan {n} cosas en este paso.",
   },
 };
 
@@ -204,3 +210,288 @@ export const TIPOS_ARCHIVO = ["application/pdf", "image/jpeg", "image/png"];
 
 /** Vigencia del chequeo policial, en meses. */
 export const MESES_VIGENCIA_CHEQUEO = 6;
+
+/* ══════════════════════════════════════════════════════════════════════════
+   La inscripción: el formulario de los padres
+   ══════════════════════════════════════════════════════════════════════════
+
+   Se llena ANTES de pagar. Es a propósito: la fundación necesita saber a
+   quién va a recibir antes de cobrarle nada, y una familia que ya pagó y
+   después descubre que el horario no le sirve es una devolución y una mala
+   tarde para todos.
+
+   El orden de las preguntas también es a propósito. Primero para quién es,
+   porque de eso depende todo lo demás; el precio va casi al final, cuando ya
+   se sabe qué se está comprando. */
+
+const INTAKE_DICTS = {
+  en: {
+    metaTitle: "Register",
+    metaDesc:
+      "Register yourself or someone in your care for art, theatre or guitar classes in Miami.",
+    eyebrow: "Art, theatre, guitar",
+    title: "Let's get you a seat.",
+    lead: "Six short steps. It remembers where you left off.",
+
+    stepWho: "Who is this for?",
+    stepCaregiver: "About you",
+    stepStudent: "About the student",
+    stepSupport: "Support and health",
+    stepPhotos: "Photos and video",
+    stepReview: "Check and send",
+
+    /* Paso 1 */
+    whoQuestion: "Who are you registering?",
+    whoSelf: "Myself",
+    whoSelfHelp: "I am the student.",
+    whoChild: "Someone in my care",
+    whoChildHelp: "A child, or an adult I care for.",
+
+    /* Cuidador */
+    caregiverIntro: "So we know who to call.",
+    relationship: "Your relationship to the student",
+    relationshipHelp: "Mother, father, guardian, carer…",
+
+    /* Estudiante */
+    studentIntro: "The person who comes to class.",
+    studentFirst: "Student's first name",
+    studentLast: "Student's last name",
+    studentBirth: "Student's date of birth",
+    studentAge: "Age",
+
+    /* Clases */
+    classesTotal: "Your Saturday",
+    changeClasses: "Change the classes",
+    noClassesTitle: "Pick your classes first.",
+    noClassesBody:
+      "The registration needs to know what you are signing up for. It takes a minute: pick one, two or all three, and the form opens with them already in.",
+    noClassesCta: "Go to the classes",
+
+    /* Apoyo y salud */
+    supportQuestion: "Does the student need one-on-one attention?",
+    supportYes: "Yes, please",
+    supportNo: "No, thank you",
+    supportNote:
+      "It costs nothing extra, and it changes nothing else: same class, same teachers, same room, same price.",
+    diagnosis: "Anything we should know to support them well?",
+    diagnosisHelp:
+      "Diagnosis, triggers, what calms them, how they communicate. Only what you want to share. You can also tell us in person.",
+    allergies: "Allergies or medication",
+    allergiesHelp: "Including anything we would need in an emergency.",
+    healthPrivacy:
+      "Who sees this: the staff and instructors who work with the student, and the administrator who assigns support. Nobody else.",
+
+    /* Fotos */
+    photoQuestion: "May we photograph or film the student in class?",
+    photoYes: "Yes, that is fine",
+    photoNo: "No, please do not",
+    photoNoNote:
+      "Understood: no photos in class. One thing you should know: the foundation also runs public events and shows, and those are filmed. When one comes up we will ask you separately, in writing. Saying no here does not keep the student out of anything.",
+    photoYesNote:
+      "Thank you. We use them to show the work, never with the student's full name.",
+
+    /* Revisión */
+    reviewIntro: "Have a look before it goes.",
+    termsAccept:
+      "I confirm the information is true and I accept the terms and conditions.",
+    termsLink: "Read the terms",
+    paymentNote:
+      "No payment yet. The foundation reads this, confirms the seat, and then tells you how to pay.",
+
+    submit: "Send registration",
+    sending: "Sending…",
+    okTitle: "You are on the list.",
+    okBody:
+      "The foundation has your registration. Somebody confirms the seat and gets back to you about payment.",
+    okBack: "Back to classes",
+
+    errPickWho: "Pick one of the two.",
+    errPickSupport: "Pick one.",
+    errPickPhoto: "Pick one. This one matters.",
+  },
+
+  es: {
+    metaTitle: "Inscripción",
+    metaDesc:
+      "Inscríbete o inscribe a alguien a tu cargo en las clases de arte, teatro o guitarra en Miami.",
+    eyebrow: "Arte, teatro, guitarra",
+    title: "Vamos a conseguirte un lugar.",
+    lead: "Seis pasos cortos. Se acuerda de dónde te quedaste.",
+
+    stepWho: "¿Para quién es?",
+    stepCaregiver: "Sobre ti",
+    stepStudent: "Sobre el estudiante",
+    stepSupport: "Apoyo y salud",
+    stepPhotos: "Fotos y video",
+    stepReview: "Revisa y envía",
+
+    whoQuestion: "¿A quién estás inscribiendo?",
+    whoSelf: "A mí",
+    whoSelfHelp: "Yo soy el estudiante.",
+    whoChild: "A alguien a mi cargo",
+    whoChildHelp: "Un hijo, o un adulto que cuido.",
+
+    caregiverIntro: "Para saber a quién llamar.",
+    relationship: "Tu relación con el estudiante",
+    relationshipHelp: "Madre, padre, tutor, cuidador…",
+
+    studentIntro: "La persona que viene a clase.",
+    studentFirst: "Nombre del estudiante",
+    studentLast: "Apellido del estudiante",
+    studentBirth: "Fecha de nacimiento del estudiante",
+    studentAge: "Edad",
+
+    classesTotal: "Tu sábado",
+    changeClasses: "Cambiar las clases",
+    noClassesTitle: "Primero elige tus clases.",
+    noClassesBody:
+      "La inscripción necesita saber qué estás pidiendo. Toma un minuto: elige una, dos o las tres, y el formulario se abre con ellas puestas.",
+    noClassesCta: "Ir a las clases",
+
+    supportQuestion: "¿El estudiante necesita atención uno a uno?",
+    supportYes: "Sí, por favor",
+    supportNo: "No, gracias",
+    supportNote:
+      "No cuesta nada adicional, y no cambia nada más: la misma clase, los mismos maestros, el mismo salón, el mismo precio.",
+    diagnosis: "¿Algo que debamos saber para acompañarlo bien?",
+    diagnosisHelp:
+      "Diagnóstico, qué lo altera, qué lo calma, cómo se comunica. Solo lo que quieras contar. También nos lo puedes decir en persona.",
+    allergies: "Alergias o medicación",
+    allergiesHelp: "Incluye lo que haría falta en una emergencia.",
+    healthPrivacy:
+      "Quién lo ve: el personal e instructores que trabajan con el estudiante, y la administradora que asigna el apoyo. Nadie más.",
+
+    photoQuestion: "¿Podemos fotografiar o grabar al estudiante en clase?",
+    photoYes: "Sí, está bien",
+    photoNo: "No, por favor",
+    photoNoNote:
+      "Entendido: sin fotos en clase. Una cosa que conviene que sepas: la fundación también hace eventos y shows públicos, y esos sí se graban. Cuando haya uno te lo pedimos aparte, por escrito. Decir que no acá no deja al estudiante fuera de nada.",
+    photoYesNote:
+      "Gracias. Las usamos para mostrar el trabajo, nunca con el nombre completo del estudiante.",
+
+    reviewIntro: "Dale un vistazo antes de que salga.",
+    termsAccept:
+      "Confirmo que la información es verdadera y acepto los términos y condiciones.",
+    termsLink: "Leer los términos",
+    paymentNote:
+      "Todavía no se paga nada. La fundación lee esto, confirma el lugar, y después te dice cómo pagar.",
+
+    submit: "Enviar inscripción",
+    sending: "Enviando…",
+    okTitle: "Ya estás en la lista.",
+    okBody:
+      "La fundación tiene tu inscripción. Alguien confirma el lugar y te escribe para lo del pago.",
+    okBack: "Volver a las clases",
+
+    errPickWho: "Elige una de las dos.",
+    errPickSupport: "Elige una.",
+    errPickPhoto: "Elige una. Esta importa.",
+  },
+};
+
+export type IntakeDict = (typeof INTAKE_DICTS)["en"];
+export const INTAKE: Record<Locale, IntakeDict> = INTAKE_DICTS;
+export function i(locale: Locale): IntakeDict {
+  return INTAKE[locale];
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Ayuda con el pago
+   ══════════════════════════════════════════════════════════════════════════
+
+   El botón vive debajo de las clases, que es donde alguien ve el precio y
+   piensa "no puedo". Ahí mismo, no en una página perdida del menú.
+
+   El tono de todo este formulario es el que importa: pedir ayuda cuesta, y
+   un formulario frío hace que la gente se vaya. Ninguna pregunta pide
+   comprobantes ni cifras exactas. La fundación ya dice en la portada que a
+   nadie se le dice que no por dinero; esto es solo la puerta. */
+
+const FIN_DICTS = {
+  en: {
+    metaTitle: "Help with the fee",
+    metaDesc:
+      "Ask about a scholarship or a payment plan for art, theatre or guitar classes in Miami.",
+    eyebrow: "Nobody is turned away for money",
+    title: "Let's find a way.",
+    lead: "Tell us a little and somebody calls you. No paperwork at this stage.",
+
+    button: "Ask about help with the fee",
+    buttonHelp: "Scholarships and payment plans. It stays between you and the foundation.",
+
+    stepWho: "Who is asking",
+    stepSituation: "Your situation",
+
+    forWhom: "Who are the classes for?",
+    forSelf: "For me",
+    forChild: "For someone in my care",
+
+    householdSize: "How many people live in your home?",
+    householdHelp: "Counting yourself.",
+    canPay: "What could you manage each month?",
+    canPayHelp:
+      "Any number is a good answer, including zero. It just helps us know where to start.",
+    situation: "Anything you want to tell us?",
+    situationHelp:
+      "Only if you feel like it. It helps, and it is not a requirement.",
+    prefer: "How should we reach you?",
+    preferPhone: "Call me",
+    preferEmail: "Write to me",
+
+    privacy:
+      "This goes to the foundation's administrator and stops there. It is not attached to the student's file and it changes nothing about how they are treated in class.",
+
+    submit: "Send",
+    sending: "Sending…",
+    okTitle: "We have it.",
+    okBody:
+      "Somebody from the foundation gets in touch. There is almost always a way, and asking costs nothing.",
+    okBack: "Back to the classes",
+  },
+
+  es: {
+    metaTitle: "Ayuda con la cuota",
+    metaDesc:
+      "Pregunta por una beca o un plan de pago para las clases de arte, teatro o guitarra en Miami.",
+    eyebrow: "A nadie se le dice que no por dinero",
+    title: "Busquemos la forma.",
+    lead: "Cuéntanos un poco y alguien te llama. En esta etapa no se pide ningún papel.",
+
+    button: "Pedir ayuda con la cuota",
+    buttonHelp: "Becas y planes de pago. Queda entre tú y la fundación.",
+
+    stepWho: "Quién pregunta",
+    stepSituation: "Tu situación",
+
+    forWhom: "¿Para quién son las clases?",
+    forSelf: "Para mí",
+    forChild: "Para alguien a mi cargo",
+
+    householdSize: "¿Cuántas personas viven en tu casa?",
+    householdHelp: "Contándote a ti.",
+    canPay: "¿Cuánto podrías cubrir al mes?",
+    canPayHelp:
+      "Cualquier número es una buena respuesta, incluido cero. Solo nos sirve para saber por dónde empezar.",
+    situation: "¿Algo que quieras contarnos?",
+    situationHelp: "Solo si te apetece. Ayuda, y no es un requisito.",
+    prefer: "¿Cómo te contactamos?",
+    preferPhone: "Llámame",
+    preferEmail: "Escríbeme",
+
+    privacy:
+      "Esto va a la administradora de la fundación y ahí se queda. No se adjunta al expediente del estudiante y no cambia nada de cómo se le trata en clase.",
+
+    submit: "Enviar",
+    sending: "Enviando…",
+    okTitle: "Ya lo tenemos.",
+    okBody:
+      "Alguien de la fundación se pone en contacto. Casi siempre hay una forma, y preguntar no cuesta nada.",
+    okBack: "Volver a las clases",
+  },
+};
+
+export type FinDict = (typeof FIN_DICTS)["en"];
+export const FINANCIACION: Record<Locale, FinDict> = FIN_DICTS;
+export function fin(locale: Locale): FinDict {
+  return FINANCIACION[locale];
+}

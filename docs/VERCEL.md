@@ -13,7 +13,7 @@ Dos cosas distintas que se suelen confundir:
 
 1. Entrar a [vercel.com/new](https://vercel.com/new) con la cuenta de Judo.
 2. Importar `JudoMarketing/ART-Foundation`.
-3. Framework: **Next.js**. Todo lo demás se detecta solo — no hay que tocar
+3. Framework: **Next.js**. Todo lo demás se detecta solo, no hay que tocar
    comando de build ni carpeta de salida.
 4. Antes de darle a *Deploy*, cargar las variables de abajo.
 
@@ -26,7 +26,7 @@ Dos cosas distintas que se suelen confundir:
 | `JUDO_ANON_KEY` | Production, Preview | La anon key de Supabase. |
 | `NEXT_PUBLIC_HERO_VIDEO_URL` | Production, Preview | Dirección del video de portada. Vacía, la portada usa el archivo del repositorio. Ver `docs/VIDEO-PORTADA.md`. |
 | `RESEND_API_KEY` | Production, Preview | Clave de [resend.com](https://resend.com/api-keys). **Sin ella el formulario de voluntariado no envía nada**: la persona llena todo, le da a enviar, y ve el teléfono de la fundación como salida. |
-| `EMAIL_FROM` | Production, Preview | Remitente de los correos. Tiene que ser de un dominio verificado en Resend — p. ej. `web@artfoundation-x-pwd.com`. Un remitente sin verificar hace que los correos caigan en spam o se rechacen. |
+| `EMAIL_FROM` | Production, Preview | Remitente de los correos. Tiene que ser de un dominio verificado en Resend, p. ej. `web@artfoundation-x-pwd.com`. Un remitente sin verificar hace que los correos caigan en spam o se rechacen. |
 
 El kill switch es *fail-open*: si estas variables faltan o el panel no
 contesta, el sitio sigue en pie. Una fundación no se cae por un fallo de
@@ -75,7 +75,7 @@ node scripts/vercel.mjs domains art-foundation  # dominios y si están verificad
 ```
 
 `scripts/vercel.mjs` hace **solo peticiones GET**. No despliega, no borra, no
-cambia variables, y nunca imprime el valor de una variable de entorno — solo
+cambia variables, y nunca imprime el valor de una variable de entorno, solo
 su nombre y en qué ambiente vive. Si alguna vez hace falta ver un valor, se
 mira en el panel con tu cuenta, no desde un script cuya salida puede terminar
 copiada en cualquier lado.

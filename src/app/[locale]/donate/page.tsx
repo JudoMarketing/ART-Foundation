@@ -99,7 +99,7 @@ export default async function DonatePage({
       </section>
 
       {/* A dónde va: los mismos tres destinos de la portada, con sus
-          dibujos. Se repite a propósito — quien llega directo a esta página
+          dibujos. Se repite a propósito, quien llega directo a esta página
           desde Google no vio la portada. */}
       <section className="bg-ink">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">

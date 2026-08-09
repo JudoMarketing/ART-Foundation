@@ -36,8 +36,11 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
             <div className="flex items-center gap-4">
               <SiteLogo className="h-20 w-20 shrink-0" />
               <p className="leading-tight">
-                <span className="block font-[family-name:var(--font-display)] text-xl font-bold">
-                  Art Foundation
+                <span className="block font-[family-name:var(--font-display)] text-xl font-bold uppercase tracking-wide">
+                  <span className="text-brand-ink">A</span>
+                  <span className="text-leaf-ink">R</span>
+                  <span className="text-sky-ink">T</span>{" "}
+                  <span className="text-ink">FOUNDATION</span>
                 </span>
                 <span className="block text-sm text-ink-soft">
                   {es

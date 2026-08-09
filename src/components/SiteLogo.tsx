@@ -3,7 +3,7 @@
  *
  * ⚠️ **Es una reconstrucción, no el archivo original.** El dueño lo mandó
  * como imagen; el vectorial oficial sigue pendiente (`docs/PENDIENTES.md`).
- * El marco de esquinas está sacado a medida y es exacto — es la parte que da
+ * El marco de esquinas está sacado a medida y es exacto, es la parte que da
  * la identidad, y la que se repite en los fondos. Las letras se dibujan con
  * la tipografía del sistema y **se ven parecidas, no idénticas**: la del logo
  * original es otra.
@@ -108,7 +108,7 @@ export function LogoMark({ className, color }: Props & { color?: string }) {
  *
  * Se lo ganaron y va donde se vea. Está dibujado acá en vez de traído como
  * imagen para que se vea nítido a cualquier tamaño y no dependa de un
- * servidor ajeno — pero **el sello oficial lo entrega Candid**, y lo correcto
+ * servidor ajeno, pero **el sello oficial lo entrega Candid**, y lo correcto
  * es reemplazar esto por el suyo cuando el dueño pase el código de inserción
  * de su perfil. Queda anotado en `docs/PENDIENTES.md`.
  */

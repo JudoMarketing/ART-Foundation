@@ -4,10 +4,10 @@ import { fetchSiteStatus } from "./lib/judo-kit";
 /**
  * Un solo middleware con dos trabajos:
  *
- *  1. Kill switch del Judo Site Kit — el dueño puede apagar y prender el sitio
+ *  1. Kill switch del Judo Site Kit, el dueño puede apagar y prender el sitio
  *     desde judomarketing.net. Fail-open: si el panel no responde, el sitio
  *     sigue vivo. Una fundación no se cae por un fallo nuestro.
- *  2. Idiomas — el inglés vive en la raíz (/classes) y el español bajo /es
+ *  2. Idiomas, el inglés vive en la raíz (/classes) y el español bajo /es
  *     (/es/classes). Por dentro los dos van a /[locale], pero la dirección
  *     que ve el visitante y que indexó Google no cambia.
  */

@@ -32,7 +32,7 @@ export default async function TermsPage({
       </p>
 
       {/* Índice. En un documento largo, poder saltar a la sección que
-          importa es la diferencia entre leerlo y no leerlo — y para quien
+          importa es la diferencia entre leerlo y no leerlo, y para quien
           usa lector de pantalla, entre 20 segundos y cuatro minutos. */}
       <nav
         aria-label={es ? "Contenido" : "Contents"}

@@ -12,7 +12,7 @@
  * alguien con licencia en Florida.
  *
  * Cada inscripción y cada postulación guarda: la versión aceptada, la fecha
- * y quién aceptó. Por eso VERSION se sube cada vez que cambie el texto — sin
+ * y quién aceptó. Por eso VERSION se sube cada vez que cambie el texto, sin
  * eso, dentro de un año no se puede probar qué aceptó una familia.
  */
 

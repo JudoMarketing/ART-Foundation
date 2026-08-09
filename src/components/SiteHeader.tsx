@@ -51,7 +51,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 sm:px-6">
-        {/* El logo y, al lado, el nombre en dos líneas — como lo usa el sitio
+        {/* El logo y, al lado, el nombre en dos líneas, como lo usa el sitio
             actual. El nombre no es adorno: "ARTxpwd" solo no le dice nada a
             quien entra por primera vez. */}
         <Link
@@ -59,9 +59,16 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
           className="tap mr-auto flex items-center gap-3 text-ink"
         >
           <SiteLogo className="h-11 w-11 shrink-0" />
+          {/* El logotipo largo: la marca cuadrada y, al lado, el nombre con
+              ART en los tres colores, como en el original. Van con las
+              tintas oscuras y no con los colores plenos: el magenta pleno da
+              4.28:1 y a 14 píxeles eso no se lee. */}
           <span className="hidden leading-tight sm:block">
             <span className="block text-sm font-bold uppercase tracking-wide">
-              Art Foundation
+              <span className="text-brand-ink">A</span>
+              <span className="text-leaf-ink">R</span>
+              <span className="text-sky-ink">T</span>{" "}
+              <span className="text-ink">FOUNDATION</span>
             </span>
             <span className="block text-xs text-ink-soft">
               {locale === "es"

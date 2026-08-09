@@ -1,4 +1,4 @@
-# ART Foundation — mapa de URLs actual (línea base SEO)
+# ART Foundation, mapa de URLs actual (línea base SEO)
 
 Capturado: 2026-08-08 desde los sitemaps de AIOSEO v5.0.0.1 de
 https://artfoundation-x-pwd.com/
@@ -19,7 +19,7 @@ Hallazgos que cambian el plan:
 
 1. **El sitio es bilingüe** (inglés en la raíz, español bajo `/es/`). El brief
    decía "está en inglés". Son dos árboles de contenido, no uno.
-2. **Existe `/shop/` y `/es/shop-2/`** — o sea que sí hay algo que se vende o
+2. **Existe `/shop/` y `/es/shop-2/`**, o sea que sí hay algo que se vende o
    se cobra, además de donaciones. Hay que preguntar qué es.
 3. **Voluntariado, pasantías, talleres, eventos y clases** tienen página propia
    (`/volunteer-opportunities/`, `/internship-opportunities/`, `/workshops/`,
@@ -31,7 +31,7 @@ Hallazgos que cambian el plan:
    WordPress, no contenido. Al migrar **no se replican**: se les pone 410 o se
    redirigen a su página padre.
 6. `/es/the-abart-intervention-model/` está en el árbol español pero con slug
-   en inglés — al migrar, corregir y dejar 301 desde la vieja.
+   en inglés, al migrar, corregir y dejar 301 desde la vieja.
 
 ## Inglés (38)
 
@@ -107,7 +107,7 @@ Hallazgos que cambian el plan:
 - /es/un-vistazo-a-nuestro-evento-de-arte-y-teatro-del-4-de-mayo/
 - /es/workshops/                   ← slug en inglés dentro del árbol ES
 
-## Ruido técnico (7) — no se migran
+## Ruido técnico (7), no se migran
 
 - /responsive_slider/
 - /responsive_slider/1st-day-of-creative-arts-class/

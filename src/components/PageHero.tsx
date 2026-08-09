@@ -8,7 +8,7 @@
  * El `tone` cambia solo el color de fondo, y sigue el color de la sección a
  * la que pertenece la página en la portada: las clases son magenta, las
  * donaciones tinta, la tienda naranja, el voluntariado celeste. Es un mapa de
- * colores, no decoración — quien navega mucho el sitio empieza a saber dónde
+ * colores, no decoración, quien navega mucho el sitio empieza a saber dónde
  * está antes de leer el título.
  */
 
@@ -27,7 +27,7 @@ const TONES = {
  * Acá hubo un error que vale dejar escrito, porque es el más fácil de
  * repetir: al principio esto bajaba la opacidad del texto (`text-paper/85`,
  * `text-ink/80`) para darle jerarquía al título. Sobre fondos suaves no pasa
- * nada, pero sobre el magenta y el celeste —que ya son colores fuertes— la
+ * nada, pero sobre el magenta y el celeste (que ya son colores fuertes) la
  * opacidad se come el contraste y lo tira a 2.9:1. Se veía "elegante" y era
  * ilegible.
  *
@@ -49,7 +49,7 @@ const SOFT = {
  * El color de los garabatos en cada fondo.
  *
  * Sobre fondos claros con texto oscuro van claros, para aclarar todavía más.
- * Sobre el magenta, que lleva texto blanco, van oscuros — si van claros
+ * Sobre el magenta, que lleva texto blanco, van oscuros, si van claros
  * aclaran el magenta y el blanco deja de contrastar. Sobre la tinta, que es
  * casi negra, van claros: aclararla un poco no le quita nada al blanco, que
  * ahí anda por encima de 12:1.
@@ -80,14 +80,14 @@ export default function PageHero({
   return (
     <section className={`relative isolate overflow-hidden ${TONES[tone]}`}>
       {/* Los garabatos de fondo. Van solo en las cabeceras, donde hay tres
-          líneas de texto grande y espacio de sobra — nunca detrás de un
+          líneas de texto grande y espacio de sobra, nunca detrás de un
           párrafo largo.
 
           El color no es estético, es de contraste: un dibujo encima del fondo
           CAMBIA el fondo, y con él cambia el contraste del texto. La regla es
           que el garabato tiene que empujar el fondo en dirección contraria al
           texto. Sobre el magenta, con letras blancas, unos garabatos blancos
-          aclaran el fondo y tiran el contraste de 4.55 a 4.15 — que es
+          aclaran el fondo y tiran el contraste de 4.55 a 4.15, que es
           justamente por debajo del mínimo. Ahí van oscuros. */}
       <div aria-hidden="true" className={`doodles ${DOODLE[tone]}`} />
 

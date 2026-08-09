@@ -3,7 +3,7 @@
 El sitio ya está preparado para recibirlo. Cuando exista el archivo, se pone
 su dirección en la variable `NEXT_PUBLIC_HERO_VIDEO_URL` y aparece solo. Si
 la variable está vacía, la portada usa el fondo pintado y se ve igual de
-bien — el video suma, no sostiene.
+bien, el video suma, no sostiene.
 
 ---
 
@@ -23,7 +23,7 @@ Va en inglés porque estos generadores responden mejor así.
 > nylon guitar strings; hands shaking a pair of maracas. Paint splashes
 > and colored powder drift softly through the air against the white
 > background. Warm natural daylight, soft shadows, shallow depth of
-> field. The mood is joyful, calm and generous — helping, not
+> field. The mood is joyful, calm and generous, helping, not
 > performing. Colors are saturated and vivid: magenta, cyan, lime green,
 > warm orange. No faces, no text, no logos, no watermarks. Camera moves
 > slowly and steadily, never shaky.

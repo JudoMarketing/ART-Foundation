@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { localePath, type Locale } from "@/lib/i18n";
 import { p } from "@/content/pages";
+import { fin } from "@/content/forms";
 import { t } from "@/content/copy";
 import { CLASSES, CLASS_DAY, ORG } from "@/content/site";
 import {
@@ -41,6 +42,7 @@ export default async function ClassesPage({
   const locale = raw as Locale;
   const c = p(locale).classes;
   const home = t(locale);
+  const finTextos = fin(locale);
 
   const pickerItems = CLASSES.map((k) => ({
     id: k.id,
@@ -114,7 +116,12 @@ export default async function ClassesPage({
               items={pickerItems}
               locale={locale}
               labels={home.classes}
-              registerHref={localePath(locale, "/register")}
+              registerHref={localePath(locale, "/register/apply")}
+              financiacion={{
+                href: localePath(locale, "/classes/financing"),
+                texto: finTextos.button,
+                ayuda: finTextos.buttonHelp,
+              }}
             />
           </div>
 

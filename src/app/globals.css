@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================================
-   ARTxpwd — sistema de marca
+   ARTxpwd, sistema de marca
    ----------------------------------------------------------------------------
    La paleta sale del sitio actual (tema Betheme). Se midió el contraste de cada
    color y se corrigió lo que no pasa WCAG 2.2 AA. Nada de esto es decorativo:
@@ -32,7 +32,7 @@
      Cada color tiene tres formas y cada una tiene un trabajo:
        ·        el color pleno  → superficie grande. Encima va TINTA, no
                                   blanco (cian 6.84:1, verde 9.52:1,
-                                  naranja 8.45:1 — todos holgados).
+                                  naranja 8.45:1, todos holgados).
        · -deep  el oscurecido   → superficie que lleva texto BLANCO (≥4.5:1)
        · -ink   el legible      → texto de ese color sobre fondo claro
        · -soft  el tinte        → solo fondos muy sutiles */
@@ -51,14 +51,14 @@
 
   /* — El antes y el después de un precio ————————————————————————
      Dos colores que solo existen para esto: el precio viejo y el nuevo.
-     No salen de la paleta de la marca a propósito — un descuento tiene que
+     No salen de la paleta de la marca a propósito, un descuento tiene que
      leerse como un descuento en cualquier sitio del mundo, y para eso el
      rojo y el verde son idioma universal.
 
      Los dos pasan AA para texto normal, así que sirven aunque el número sea
      chico. Y nunca van solos: el viejo lleva su tachado y su "Antes:", el
-     nuevo su "Ahora:". Quien no distingue rojo de verde —uno de cada doce
-     hombres— tiene que entenderlo igual. */
+     nuevo su "Ahora:". Quien no distingue rojo de verde, uno de cada doce
+     hombres, tiene que entenderlo igual. */
   --color-was: #c81e2b;          /* precio anterior   →  5.71:1 sobre blanco */
   --color-now: #1f7a34;          /* precio con rebaja →  5.40:1              */
 
@@ -71,7 +71,7 @@
 
   /* — Tipografía ——————————————————————————————————————————— */
   /* Domine es la del sitio actual: serif, con carácter, legible en títulos.
-     Para el cuerpo va una sans de sistema — más legible en pantalla, cero
+     Para el cuerpo va una sans de sistema, más legible en pantalla, cero
      descarga, y menos fatiga para quien lee despacio. */
   --font-display: Domine, Georgia, "Times New Roman", serif;
   --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
@@ -83,7 +83,7 @@
 }
 
 /* ============================================================================
-   Accesibilidad — reglas base, no opcionales
+   Accesibilidad, reglas base, no opcionales
    ========================================================================== */
 
 /* Foco visible SIEMPRE, en todo lo que se pueda enfocar. El anillo es de dos
@@ -299,7 +299,7 @@ a.link:hover {
    La regla de siempre: si el visitante pidió menos movimiento, las monedas
    no se mueven. Se quedan repartidas a lo largo de la línea, en las
    posiciones que trae cada una escritas en su atributo `style`, y la idea
-   —el dinero va de acá para allá— se lee igual de bien quietas.
+   (el dinero va de acá para allá) se lee igual de bien quietas.
 
    La animación va sobre `left` y no sobre `transform` a propósito: la
    posición de reposo también es `left`, así que cuando la animación no
@@ -347,7 +347,7 @@ a.link:hover {
      400 → 1200 ms el $50 aparece en verde, creciendo desde chiquito
 
    Se pisan cien milisegundos a propósito: encadenado se lee como una sola
-   acción —"esto se tachó y salió esto otro"— y no como dos cosas sueltas.
+   acción ("esto se tachó y salió esto otro") y no como dos cosas sueltas.
 
    Con `prefers-reduced-motion` no se mueve nada: la raya ya está puesta y el
    número nuevo ya está ahí. La información es la misma; lo que se pierde es
@@ -446,7 +446,7 @@ a.link:hover {
 /* — El sello de VENDIDO ——————————————————————————————————————————
    Una banda roja atravesada sobre la pieza. Inclinada y no recta a
    propósito: un cartel torcido se lee como algo que se puso encima después,
-   que es exactamente lo que pasó — la obra estaba y la compraron. Uno recto
+   que es exactamente lo que pasó, la obra estaba y la compraron. Uno recto
    parecería parte del cuadro.
 
    El rojo es el mismo `--color-was` del precio tachado: en este sitio, rojo

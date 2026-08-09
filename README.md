@@ -1,4 +1,4 @@
-# ARTxpwd — Art Foundation for People with Disabilities
+# ARTxpwd, Art Foundation for People with Disabilities
 
 Sitio de la fundación. Miami, Florida. Construido por Judo Marketing.
 
@@ -63,7 +63,7 @@ portal del administrador. Del kit solo se usa el kill switch.
 ## Antes de tocar nada
 
 Leer `docs/PENDIENTES.md`. Hay contradicciones sin resolver entre lo que
-publica el sitio actual y lo que se acordó — sobre todo **el precio y los
+publica el sitio actual y lo que se acordó, sobre todo **el precio y los
 horarios de las clases**. Los valores en disputa están en `null` a
 propósito: es preferible que no se muestre nada a que se muestre un precio
 equivocado.

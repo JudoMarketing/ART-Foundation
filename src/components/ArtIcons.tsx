@@ -1,8 +1,8 @@
 /**
  * Los vectores de las disciplinas: pintura, teatro, música y ritmo.
  *
- * Están dibujados en el espíritu de los que ya usa el sitio actual — los
- * separadores de 60px con la paleta, la máscara, las notas y las maracas —
+ * Están dibujados en el espíritu de los que ya usa el sitio actual, los
+ * separadores de 60px con la paleta, la máscara, las notas y las maracas,
  * pero rehechos en vectorial para que se vean a cualquier tamaño. Los de
  * hoy son PNG de 60 píxeles: se pixelan apenas crecen.
  *
@@ -37,7 +37,7 @@ function Squiggles({ y, flip = false }: { y: number; flip?: boolean }) {
   );
 }
 
-/** Pintura — la paleta. */
+/** Pintura, la paleta. */
 export function IconPalette({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -57,7 +57,7 @@ export function IconPalette({ className }: IconProps) {
   );
 }
 
-/** Teatro — la máscara. */
+/** Teatro, la máscara. */
 export function IconMask({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -77,7 +77,7 @@ export function IconMask({ className }: IconProps) {
   );
 }
 
-/** Música — las notas. */
+/** Música, las notas. */
 export function IconNotes({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -94,7 +94,7 @@ export function IconNotes({ className }: IconProps) {
   );
 }
 
-/** Ritmo — las maracas. */
+/** Ritmo, las maracas. */
 export function IconMaracas({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -112,7 +112,7 @@ export function IconMaracas({ className }: IconProps) {
   );
 }
 
-/** Cuidado — el corazón. Va en la parte de donaciones. */
+/** Cuidado, el corazón. Va en la parte de donaciones. */
 export function IconHeart({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -140,14 +140,14 @@ export const CLASS_ICONS = {
    ══════════════════════════════════════════════════════════════════════════
 
    Tres figuras que dicen lo mismo que el texto de al lado, pero de un
-   vistazo. Van en rosa, azul y verde — los colores de la marca, en el mismo
+   vistazo. Van en rosa, azul y verde, los colores de la marca, en el mismo
    orden en que están las tres tarjetas.
 
    Una advertencia que vale escribir: la silla de ruedas representa una parte
    de la discapacidad, la que se ve. La mayoría de los estudiantes de esta
    fundación tienen discapacidades del desarrollo, que no se dibujan con una
    silla. Se usa igual porque es el símbolo que todo el mundo reconoce al
-   instante, y de eso se trata acá — pero el texto de la tarjeta es el que
+   instante, y de eso se trata acá, pero el texto de la tarjeta es el que
    manda, no el dibujo. */
 
 /* Los tres van sin rayitas, a diferencia de los iconos de las clases. Son
@@ -159,7 +159,7 @@ export const CLASS_ICONS = {
    de color con contorno oscuro, que es lo que aguanta sobre fondo claro y
    sobre fondo de color sin cambiar nada. */
 
-/** Estudiantes con discapacidad — la silla de ruedas. */
+/** Estudiantes con discapacidad, la silla de ruedas. */
 export function IconWheelchair({ className }: IconProps) {
   const body = "M42 24L34 35h12l3 10";
   return (
@@ -177,7 +177,7 @@ export function IconWheelchair({ className }: IconProps) {
   );
 }
 
-/** Estudiantes sin discapacidad — la figura de pie, con un brazo arriba. */
+/** Estudiantes sin discapacidad, la figura de pie, con un brazo arriba. */
 export function IconStanding({ className }: IconProps) {
   const body = "M32 23v15M32 28l-11 6M32 27l11-8M32 38l-8 16M32 38l9 16";
   return (
@@ -193,11 +193,11 @@ export function IconStanding({ className }: IconProps) {
 }
 
 /**
- * La única diferencia — uno con el brazo sobre el hombro del otro.
+ * La única diferencia, uno con el brazo sobre el hombro del otro.
  *
  * Acá había dos manos dándose la mano. No funcionó: tres versiones y las tres
  * terminaban leyéndose como una mancha verde. Dos manos agarradas es un
- * objeto difícil de dibujar plano — se pierden los dedos, se pierde quién es
+ * objeto difícil de dibujar plano, se pierden los dedos, se pierde quién es
  * quién, y a cien píxeles queda un bigote.
  *
  * Esto dice lo mismo y se entiende de un vistazo, porque **es una figura como
@@ -242,7 +242,7 @@ export function IconTogether({ className }: IconProps) {
    Estos van en grupo, varios por tarjeta, y son chicos. Por eso no llevan
    rayitas: a 40px las rayitas se convierten en suciedad. */
 
-/** Materiales — los pinceles.
+/** Materiales, los pinceles.
  *
  *  Un pincel se reconoce por tres cosas juntas: el mango largo, la virola
  *  metálica y el pelo cargado de color. Si falta la virola parece un lápiz.
@@ -276,7 +276,7 @@ export function IconBrushes({ className }: IconProps) {
   );
 }
 
-/** Materiales — el pomo de pintura. */
+/** Materiales, el pomo de pintura. */
 export function IconPaintTube({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -290,7 +290,7 @@ export function IconPaintTube({ className }: IconProps) {
   );
 }
 
-/** Materiales — la guitarra.
+/** Materiales, la guitarra.
  *
  *  La silueta es una sola forma con cintura en el medio: dos círculos
  *  superpuestos dejan la costura a la vista y se ve como un muñeco de nieve.
@@ -315,7 +315,7 @@ export function IconGuitarBody({ className }: IconProps) {
   );
 }
 
-/** Materiales — el traje, en su percha. */
+/** Materiales, el traje, en su percha. */
 export function IconCostume({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -328,7 +328,7 @@ export function IconCostume({ className }: IconProps) {
   );
 }
 
-/** Paseos — la camioneta. */
+/** Paseos, la camioneta. */
 export function IconVan({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -346,7 +346,7 @@ export function IconVan({ className }: IconProps) {
   );
 }
 
-/** Paseos — la carpa. */
+/** Paseos, la carpa. */
 export function IconTent({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -359,7 +359,7 @@ export function IconTent({ className }: IconProps) {
   );
 }
 
-/** Paseos — el árbol del parque. */
+/** Paseos, el árbol del parque. */
 export function IconTree({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -374,7 +374,7 @@ export function IconTree({ className }: IconProps) {
   );
 }
 
-/** Becas — el pase. El lugar ya está pagado. */
+/** Becas, el pase. El lugar ya está pagado. */
 export function IconTicket({ className }: IconProps) {
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
@@ -388,7 +388,7 @@ export function IconTicket({ className }: IconProps) {
   );
 }
 
-/** Becas — las manos ahuecadas que reciben la moneda. */
+/** Becas, las manos ahuecadas que reciben la moneda. */
 export function IconCoinHand({ className }: IconProps) {
   const cup = "M12 36c0 11 9 19 20 19s20-8 20-19";
   return (
@@ -457,7 +457,7 @@ export function IconFramedArt({ className, art = 0 }: IconProps & { art?: 0 | 1 
   ][art];
 
   // El id del recorte lleva el número del dibujo: los tres cuadros conviven
-  // en la misma página, y dos elementos con el mismo id es HTML roto — el
+  // en la misma página, y dos elementos con el mismo id es HTML roto, el
   // navegador aplica el primero a todos y los otros dos se ven vacíos.
   const clip = `frame-clip-${art}`;
 
@@ -490,7 +490,7 @@ export function IconTag({ className }: IconProps) {
   );
 }
 
-/** Voluntariado — las manos que sostienen. */
+/** Voluntariado, las manos que sostienen. */
 export function IconHelpingHands({ className }: IconProps) {
   const cup = "M9 34c0 12.5 10.3 22 23 22s23-9.5 23-22";
   return (
@@ -556,7 +556,7 @@ export function IconFacebook({ className }: IconProps) {
   );
 }
 
-/** El blog — la libreta con la pluma. */
+/** El blog, la libreta con la pluma. */
 export function IconBlog({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
