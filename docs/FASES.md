@@ -1,4 +1,4 @@
-# ARTxpwd — plan por fases
+# ARTxpwd, plan por fases
 
 Orden pensado para que el dinero entre lo antes posible y lo complicado
 venga después. Las donaciones y las inscripciones son las dos metas; todo lo
@@ -32,7 +32,7 @@ Lo que ya está construido y compilando en este repositorio.
   siempre acompañadas del código EN/ES: una bandera de 18px sola no la
   distingue alguien con baja visión, y una bandera es un país, no un idioma
 - **Términos y condiciones** en los dos idiomas, con versión fechada
-  (`/terms`) — borrador, pendiente de revisión legal
+  (`/terms`), borrador, pendiente de revisión legal
 - **Tabla de redirecciones 301** desde las direcciones viejas de WordPress
 - Aviso legal obligatorio de Florida y número de registro CH73874 en el pie
 
@@ -56,14 +56,14 @@ Las páginas que hoy son solo enlaces en el menú.
 | Pasantías | La convocatoria, con el mismo aviso |
 | Blog | Listado y página de artículo (todavía sin panel) |
 | Contacto | Formulario, mapa, las dos direcciones |
-| Accesibilidad | Declaración de accesibilidad — obligatoria en un sitio así |
+| Accesibilidad | Declaración de accesibilidad, obligatoria en un sitio así |
 | Términos | ✅ borrador listo en `/terms`. Falta revisión legal. |
 | Privacidad | La que hay que aceptar al inscribirse |
 
 **El aviso de seguimiento va en la página pública, no en el portal.** El
 encargo pide avisarle al voluntario que todo lo que haga con la fundación
 queda registrado. Ese registro es lo que después permite la carta de
-recomendación con horas firmadas — o sea que es a favor del voluntario, no en
+recomendación con horas firmadas, o sea que es a favor del voluntario, no en
 su contra, y así hay que escribirlo. Pero se dice **antes** de que se postule,
 en la misma página donde está el formulario. Enterarse después de que te
 estaban midiendo es otra cosa.
@@ -89,7 +89,7 @@ tu cargo?**
 
 Después:
 
-1. Elegir clases: Arte, Teatro, Guitarra — una, dos o las tres
+1. Elegir clases: Arte, Teatro, Guitarra, una, dos o las tres
 2. **¿Necesita terapeuta uno a uno?** Si marca que sí, se provee sin costo.
    Esa casilla no cambia el precio ni saca al estudiante del grupo.
 3. Aceptar términos y condiciones (casilla obligatoria, con el texto
@@ -100,7 +100,7 @@ El formulario se construye en pasos cortos, con una sola pregunta grande por
 pantalla, porque lo va a llenar gente muy distinta entre sí. Guarda lo
 escrito: si alguien se va a la mitad, al volver no empieza de cero.
 
-**Consentimiento de imagen** — va en toda inscripción, la del padre y la de
+**Consentimiento de imagen.** Va en toda inscripción, la del padre y la de
 quien se inscribe solo:
 
 - «Sí, está bien que mi hijo sea fotografiado o grabado»
@@ -121,7 +121,7 @@ Cada inscripción guarda **qué versión de los términos aceptó y cuándo**.
 - Donación única y donación mensual
 - **Recibo por correo al donar**, con el número 501(c)(3) y el registro
   CH73874, para que el donante lo use en sus impuestos
-- En la página de gracias: enlace a Instagram, Facebook y al blog — "mira a
+- En la página de gracias: enlace a Instagram, Facebook y al blog, "mira a
   dónde va tu dinero"
 - Texto claro de a dónde va: materiales, paseos y becas
 

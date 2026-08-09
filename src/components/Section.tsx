@@ -3,7 +3,7 @@
  *
  * Existe para una cosa: que ninguna sección del sitio se quede sin encabezado
  * de verdad. Quien navega con lector de pantalla salta de encabezado en
- * encabezado — si las secciones se arman con <div> y texto grande, esa
+ * encabezado, si las secciones se arman con <div> y texto grande, esa
  * persona no tiene forma de moverse por la página.
  */
 export default function Section({

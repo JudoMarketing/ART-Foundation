@@ -14,7 +14,7 @@
  * **Y no basta con la palabra dibujada.** El sello es decoración para quien
  * ve la pantalla; quien usa lector de pantalla necesita oírlo dentro del
  * texto de la pieza. Por eso el sello va `aria-hidden` y el estado se dice
- * aparte, en la ficha — dos caminos para el mismo dato, uno por ojo y otro
+ * aparte, en la ficha, dos caminos para el mismo dato, uno por ojo y otro
  * por oído.
  *
  * **La obra no se apaga del todo.** Se le baja un poco el color para que se

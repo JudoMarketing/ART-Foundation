@@ -29,7 +29,7 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
 2. ~~**Obra de los estudiantes.**~~ ✅ Resuelto, y no hizo falta pedirla:
    estaba en el WordPress actual. Nueve piezas en `public/obra/`, sacadas de
    la biblioteca de medios (`/wp-json/wp/v2/media`, que está abierta) y
-   reducidas de 4000 px a 1000 px en WebP — las nueve juntas pesan menos que
+   reducidas de 4000 px a 1000 px en WebP, las nueve juntas pesan menos que
    uno solo de los originales. Ver `src/content/obra.ts`.
 
 3. **Fotos de las clases.** Esto sí sigue faltando, y es distinto de la obra.
@@ -42,7 +42,7 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
    no es consentimiento: es haberla encontrado.
 
    Lo que hace falta: fotos de las clases **con el consentimiento firmado de
-   cada familia que aparezca**, o fotos donde no se reconozca a nadie — manos
+   cada familia que aparezca**, o fotos donde no se reconozca a nadie, manos
    trabajando, pinceles, el salón, la obra a medio hacer. Las de manos son
    las que mejor funcionan en un sitio así, y no necesitan permiso de nadie.
 
@@ -53,7 +53,7 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
    está a medida y es exacto, pero las letras se dibujan con la tipografía
    del sistema y no son las del logo original. Se ve bien y escala, pero no
    es el archivo. Cuando llegue el SVG bueno se reemplaza ese componente y
-   nada más — el resto del sitio ya lo usa y no sabe cómo está hecho.
+   nada más, el resto del sitio ya lo usa y no sabe cómo está hecho.
 
 6. **El sello de Candid.** El *Gold Transparency 2025* está dibujado a mano
    en el pie porque se lo ganaron y tiene que verse. Pero el sello oficial lo
@@ -66,13 +66,13 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
    retirar del sitio hasta 30 días después de la venta, y pasa a la categoría
    "Ya vendidas" con la cuenta a la vista. Está montado
    (`DIAS_MINIMOS_EN_VITRINA` en `src/content/obra.ts`) y hoy no hay ninguna
-   pieza marcada como vendida — marcarlo a mano sería decir que la obra de un
+   pieza marcada como vendida, marcarlo a mano sería decir que la obra de un
    estudiante se vendió cuando no. Lo escribirá la compra en la fase 6.
 
 8. **El porcentaje que va al estudiante.** La tienda muestra hoy un **40% de
    marcador de posición** (`PORCENTAJE_ESTUDIANTE_PROVISIONAL` en
    `src/content/obra.ts`). El encargo pide que sea configurable por pieza
-   desde el panel, y eso es la fase 6 — pero el número que se muestre
+   desde el panel, y eso es la fase 6, pero el número que se muestre
    mientras tanto tiene que ser uno real. **La tienda no se publica con
    precios hasta que ese número esté decidido.**
 9. **Los enlaces reales de Instagram y Facebook.** Los que están en el código
@@ -80,7 +80,7 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
 10. **Acceso al WordPress actual.** La API de medios estaba abierta y por ahí
    salió la obra. **Ya no:** el sitio devuelve una pantalla de "One moment,
    please…" a los pedidos automáticos. Por eso el logo, el sello y el fondo
-   del pie —que son archivos del tema, no de la biblioteca— hubo que
+   del pie (que son archivos del tema, no de la biblioteca) hubo que
    rehacerlos. Para los artículos del blog de la fase 5 va a hacer falta
    acceso de verdad.
 
@@ -107,7 +107,7 @@ voluntarios, tienda, donaciones, riesgo y cambios.
 
 Cada versión del texto lleva fecha (`TERMS_VERSION`). Cuando se construyan
 los formularios, cada inscripción va a guardar qué versión aceptó la familia
-y cuándo — sin eso, dentro de un año no hay forma de probar qué aceptaron.
+y cuándo, sin eso, dentro de un año no hay forma de probar qué aceptaron.
 
 ---
 

@@ -19,7 +19,7 @@ import {
  * ── Lo que queda registrado del consentimiento ────────────────────────────
  *
  * Cada inscripción guarda QUÉ VERSIÓN de los términos se aceptó y CUÁNDO. Sin
- * eso, dentro de un año no hay forma de probar qué aceptó una familia — y en
+ * eso, dentro de un año no hay forma de probar qué aceptó una familia, y en
  * un sitio con menores, información de salud y consentimiento de imagen, eso
  * no es un detalle administrativo.
  *
@@ -113,8 +113,8 @@ export async function POST(req: Request) {
       etiqueta: "Consentimiento de imagen",
       valor:
         limpio(datos.get("photos")) === "yes"
-          ? "SÍ — se puede fotografiar en clase"
-          : "NO — no se fotografía en clase",
+          ? "SÍ, se puede fotografiar en clase"
+          : "NO, no se fotografía en clase",
     },
     {
       etiqueta: "Términos aceptados",

@@ -39,7 +39,7 @@ export type Pieza = {
    * Cuando está en `true`, la pieza sale con el sello rojo de VENDIDO encima
    * y deja de ofrecerse. Hoy lo pone una persona a mano; **cuando entre el
    * cobro (fase 6), esto lo escribe la compra**: Stripe confirma el pago y el
-   * panel marca la pieza. Ninguna se vende dos veces porque son únicas — es
+   * panel marca la pieza. Ninguna se vende dos veces porque son únicas, es
    * un cuadro, no una camiseta con tallas.
    *
    * Hasta que eso exista, todas van en `false`. No hay ninguna marcada de
@@ -63,7 +63,7 @@ export type Pieza = {
  *
  * Es una regla del dueño y tiene sentido de sobra: la venta es la prueba de
  * que la tienda funciona. Si una pieza desaparece el mismo día que se vende,
- * el sitio queda igual que si nunca hubiera pasado nada — nadie ve que se
+ * el sitio queda igual que si nunca hubiera pasado nada, nadie ve que se
  * vendan cuadros, y el estudiante que la hizo pierde el único registro
  * público de que su obra encontró comprador.
  *
@@ -226,7 +226,7 @@ export const OBRA_TIENDA = ["kandinsky-ko", "naturaleza-05", "noche-estrellada-g
  *
  * ⚠️ **Este número es un marcador de posición.** La fundación todavía no lo
  * decidió, y en la fase 6 se configura por pieza desde el panel del
- * administrador — el encargo pide justamente eso.
+ * administrador, el encargo pide justamente eso.
  *
  * Está acá, en un solo lugar y con este cartel encima, para que la tienda se
  * pueda ver como se va a ver. Vive en una constante y no repartido por las

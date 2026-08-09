@@ -93,7 +93,7 @@ export default async function StorePage({
           treinta días (`DIAS_MINIMOS_EN_VITRINA` en `content/obra.ts`), y
           después es el panel el que decide. La razón está escrita ahí: si la
           pieza desaparece el mismo día que se vende, nadie ve nunca que en
-          esta tienda se venden cuadros — y el estudiante que la hizo pierde
+          esta tienda se venden cuadros, y el estudiante que la hizo pierde
           el único registro público de que su obra encontró comprador. */}
       <section className="paper-grain bg-paper">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">

@@ -29,7 +29,7 @@ import type { Locale } from "@/lib/i18n";
  * Tres cosas que lo sostienen y que no se pueden sacar:
  *
  * 1. **Son botones de verdad**, con `aria-pressed`. Un lector de pantalla
- *    dice "Arte, seleccionado" — no hace falta ver el tilde.
+ *    dice "Arte, seleccionado", no hace falta ver el tilde.
  * 2. **El total se anuncia** por una región viva. Si el precio cambia porque
  *    tocaste otra cosa, alguien que no ve la pantalla se entera igual.
  * 3. **El precio tachado no depende del tachado.** Va con "Antes" y "Ahora"
@@ -78,11 +78,14 @@ export default function ClassPicker({
   labels,
   locale,
   registerHref,
+  financiacion,
 }: {
   items: Item[];
   labels: PickerLabels;
   locale: Locale;
   registerHref: string;
+  /** El enlace y los textos del botón de ayuda con la cuota. */
+  financiacion?: { href: string; texto: string; ayuda: string };
 }) {
   const [picked, setPicked] = useState<ClassId[]>([]);
 
@@ -90,7 +93,7 @@ export default function ClassPicker({
   // dentro. Motivo: la sección de las clases lleva `clip-path` para el borde
   // rasgado, y un elemento con clip-path se convierte en el marco de
   // referencia de todo `position: fixed` que tenga dentro. La barra quedaba
-  // anclada a la sección y recortada por el mismo borde — invisible.
+  // anclada a la sección y recortada por el mismo borde, invisible.
   const [montado, setMontado] = useState(false);
   useEffect(() => setMontado(true), []);
 
@@ -106,7 +109,7 @@ export default function ClassPicker({
 
   // El orden del descuento sale del orden de las clases, no del orden en que
   // se tocaron. Si dependiera de los clics, tocar en distinto orden mostraría
-  // precios distintos para la misma cuenta — la misma plata contada de dos
+  // precios distintos para la misma cuenta, la misma plata contada de dos
   // maneras es la forma más rápida de que alguien deje de confiar.
   const firstPicked = items.find((k) => picked.includes(k.id))?.id;
 
@@ -273,6 +276,21 @@ export default function ClassPicker({
         </div>
       </div>
 
+      {/* Ayuda con la cuota. Va justo debajo del precio, que es donde alguien
+          lo lee y piensa "no puedo". Escondido en el menú no lo encuentra
+          nadie, y quien no lo encuentra no pregunta: se va. */}
+      {financiacion && (
+        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-[--radius-card] bg-paper px-6 py-5">
+          <Link
+            href={financiacion.href}
+            className="btn tap inline-flex items-center rounded-full border-2 border-ink px-6 py-3 text-base font-bold text-ink transition-transform hover:scale-[1.03]"
+          >
+            {financiacion.texto}
+          </Link>
+          <p className="text-ink-soft">{financiacion.ayuda}</p>
+        </div>
+      )}
+
       {montado &&
         count > 0 &&
         createPortal(
@@ -282,7 +300,7 @@ export default function ClassPicker({
              pantallas atrás y hay que salir a buscarlo. Esta barra lo lleva
              consigo.
 
-             Aparece solo cuando hay algo elegido — una barra fija que está
+             Aparece solo cuando hay algo elegido, una barra fija que está
              siempre roba la parte de abajo de la pantalla, que en un teléfono
              es justo donde llega el pulgar. */
           <div className="fixed inset-x-0 bottom-0 z-40 border-t border-ink/10 bg-paper/95 p-3 shadow-[0_-8px_24px_rgb(0_0_0/0.12)] backdrop-blur lg:hidden">

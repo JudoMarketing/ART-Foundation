@@ -11,12 +11,13 @@ import { ORG } from "@/content/site";
  * venta. Es lo que pidió el dueño y tiene sentido operativo: son tres flujos
  * de trabajo distintos con tres urgencias distintas.
  *
- *   verde   → voluntarios y pasantes
- *   rojizo  → estudiantes nuevos
- *   azul    → ventas de la tienda
+ *   verde    → voluntarios y pasantes
+ *   rojizo   → estudiantes nuevos
+ *   azul     → ventas de la tienda
+ *   amarillo → solicitudes de ayuda con el pago
  *
  * El rojizo es un carmín, no el rojo puro: en este sitio el rojo pleno ya
- * significa "esto ya no" —el precio tachado, el sello de VENDIDO— y usarlo
+ * significa "esto ya no" (el precio tachado, el sello de VENDIDO) y usarlo
  * para dar la bienvenida a una familia nueva sería decir lo contrario de lo
  * que pasa.
  *
@@ -31,12 +32,24 @@ import { ORG } from "@/content/site";
  * imágenes, y hay filtros de spam que castigan al que solo trae HTML.
  */
 
-export type TipoAviso = "voluntario" | "estudiante" | "venta";
+export type TipoAviso = "voluntario" | "estudiante" | "venta" | "financiamiento";
 
-const COLORES: Record<TipoAviso, { franja: string; tinta: string; etiqueta: string }> = {
-  voluntario: { franja: "#647e20", tinta: "#4a5f14", etiqueta: "VOLUNTARIADO" },
-  estudiante: { franja: "#c2185b", tinta: "#a3134b", etiqueta: "ESTUDIANTE NUEVO" },
-  venta: { franja: "#00607f", tinta: "#00506b", etiqueta: "VENTA" },
+/**
+ * Cada tipo con su franja, y con el color de letra que esa franja aguanta.
+ *
+ * El amarillo del financiamiento va con letra oscura y no blanca. No es una
+ * preferencia: un amarillo lo bastante oscuro para aguantar texto blanco ya
+ * no se ve amarillo, se ve marrón. Con letra oscura encima, el amarillo sigue
+ * siendo amarillo y el contraste pasa de sobra.
+ */
+const COLORES: Record<
+  TipoAviso,
+  { franja: string; letra: string; etiqueta: string }
+> = {
+  voluntario: { franja: "#647e20", letra: "#ffffff", etiqueta: "VOLUNTARIADO" },
+  estudiante: { franja: "#c2185b", letra: "#ffffff", etiqueta: "ESTUDIANTE NUEVO" },
+  venta: { franja: "#00607f", letra: "#ffffff", etiqueta: "VENTA" },
+  financiamiento: { franja: "#f2c200", letra: "#161922", etiqueta: "AYUDA CON EL PAGO" },
 };
 
 export type Campo = { etiqueta: string; valor: string };
@@ -58,7 +71,7 @@ export function cuerpoTexto(titulo: string, campos: Campo[]): string {
   const lineas = campos
     .filter((c) => c.valor.trim() !== "")
     .map((c) => `${c.etiqueta}: ${c.valor}`);
-  return [titulo, "", ...lineas, "", `— ${ORG.name}`].join("\n");
+  return [titulo, "", ...lineas, "", `--- ${ORG.name}`].join("\n");
 }
 
 export function cuerpoHtml(
@@ -90,10 +103,10 @@ export function cuerpoHtml(
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:620px;background:#ffffff;border-radius:12px;overflow:hidden;">
 
         <tr><td style="background:${c.franja};padding:20px 28px;">
-          <div style="color:#ffffff;font-size:12px;font-weight:700;letter-spacing:2px;">
+          <div style="color:${c.letra};font-size:12px;font-weight:700;letter-spacing:2px;">
             ${c.etiqueta}
           </div>
-          <div style="color:#ffffff;font-size:22px;font-weight:700;margin-top:6px;">
+          <div style="color:${c.letra};font-size:22px;font-weight:700;margin-top:6px;">
             ${escapar(titulo)}
           </div>
         </td></tr>

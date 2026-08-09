@@ -7,7 +7,7 @@ import { useError } from "./FormShell";
  *
  * Cada uno se pinta su propio error leyéndolo del contexto del armazón. Así
  * un campo no necesita que le pasen nada por cinco niveles de componentes, y
- * —más importante— no hay forma de olvidarse de mostrar un error: si el
+ * más importante todavía, no hay forma de olvidarse de mostrar un error: si el
  * armazón lo tiene, el campo lo pinta.
  *
  * Todos comparten tres cosas que no se negocian:

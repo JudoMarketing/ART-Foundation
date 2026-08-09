@@ -1,7 +1,7 @@
 # Marca y accesibilidad
 
 La paleta y la tipografía salen del sitio actual. Lo que cambió, cambió
-porque no pasaba contraste — no por gusto.
+porque no pasaba contraste, no por gusto.
 
 ## La paleta, medida
 
@@ -37,7 +37,7 @@ son para leer.
 
 ## Tipografía
 
-- **Domine** para títulos — es la del sitio actual, tiene carácter y se lee
+- **Domine** para títulos, es la del sitio actual, tiene carácter y se lee
   bien en tamaño grande.
 - **Sans del sistema** para el cuerpo. No es pereza: en pantalla se lee más
   rápido que una serif, no hay descarga que esperar, y para alguien que lee

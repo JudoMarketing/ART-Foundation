@@ -19,7 +19,7 @@ import { DEFAULT_LOCALE, LOCALES, LOCALE_LABELS, type Locale } from "@/lib/i18n"
  *
  * 1. La bandera NUNCA va sola. Va con "EN" / "ES" al lado. Una bandera de
  *    18px es indistinguible para alguien con baja visión, y una bandera no
- *    es un idioma — es un país. El texto es el que de verdad informa.
+ *    es un idioma, es un país. El texto es el que de verdad informa.
  * 2. Son ENLACES, no un desplegable. Un <select> con JavaScript encima es el
  *    patrón que más se rompe con lector de pantalla. Dos enlaces no.
  * 3. El nombre que oye un lector de pantalla es "English" / "Español",

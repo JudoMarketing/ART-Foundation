@@ -3,7 +3,7 @@ import type { Locale } from "@/lib/i18n";
 /**
  * Los textos de las páginas interiores, en los dos idiomas.
  *
- * Están separados de `copy.ts` —que tiene la portada, el menú y el pie— solo
+ * Están separados de `copy.ts` (que tiene la portada, el menú y el pie) solo
  * por tamaño: juntos era un archivo de mil líneas donde no se encontraba
  * nada.
  *
@@ -44,7 +44,7 @@ const DICTS = {
         "The foundation grew out of a simple idea: that a person's disability should change how much help they get, and nothing else.",
       modelTitle: "The ABArt model",
       modelBody:
-        "Art as the activity, structured support underneath it. The student comes to make something — the method is what makes that possible.",
+        "Art as the activity, structured support underneath it. The student comes to make something, and the method is what makes that possible.",
       ctaTitle: "Two ways in.",
       ctaClasses: "See the classes",
       ctaDonate: "Donate",
@@ -77,7 +77,7 @@ const DICTS = {
     donate: {
       metaTitle: "Donate",
       metaDesc:
-        "Every dollar goes to materials, field trips or a scholarship. Registered 501(c)(3) — you get a receipt for your taxes.",
+        "Every dollar goes to materials, field trips or a scholarship. Registered 501(c)(3), so you get a receipt for your taxes.",
       eyebrow: "501(c)(3) · CH73874",
       title: "Give a student a seat.",
       lead: "Materials, field trips, and paid seats for families who cannot cover the fee.",
@@ -129,7 +129,7 @@ const DICTS = {
         "Volunteer or intern with us. Your hours are recorded from day one, and you leave with a signed letter.",
       eyebrow: "Volunteers and interns",
       title: "Come help. We keep the record.",
-      lead: "Every hour you give is written down — so that at the end there is something with your name on it.",
+      lead: "Every hour you give is written down, so that at the end there is something with your name on it.",
       stepsTitle: "How it goes",
       steps: [
         { title: "Apply", body: "A short form. Tell us what you are good at." },
@@ -148,7 +148,7 @@ const DICTS = {
       ],
       internTitle: "Internships",
       internBody:
-        "Same process, longer commitment, and a letter that speaks to the work — not just the hours.",
+        "Same process, longer commitment, and a letter that speaks to the work, not just the hours.",
       cta: "Apply",
       formLead: "The form takes about ten minutes and you only fill it once.",
       soon: "The form arrives soon. Meanwhile, write to us and we will start the process.",
@@ -160,7 +160,7 @@ const DICTS = {
       metaDesc: "What we are working on, written by the people doing it.",
       eyebrow: "From the foundation",
       title: "What is happening in the room.",
-      lead: "Written by the people doing it — not by a marketing department.",
+      lead: "Written by the people doing it, not by a marketing department.",
       emptyTitle: "Nothing published yet.",
       emptyBody:
         "The foundation writes these from its own panel. When the first one goes up, it shows here.",
@@ -218,7 +218,7 @@ const DICTS = {
       ],
       formTitle: "Six short steps.",
       formBody:
-        "Fill it in once and the foundation takes it from there. No payment on this form — we confirm the seat first, then tell you how to pay.",
+        "Fill it in once and the foundation takes it from there. No payment on this form. We confirm the seat first, then tell you how to pay.",
       startCta: "Start the registration",
       pickCta: "See the classes first",
       callCta: "Call to register",
@@ -254,7 +254,7 @@ const DICTS = {
         "La fundación salió de una idea simple: que la discapacidad de una persona cambie cuánta ayuda recibe, y nada más.",
       modelTitle: "El modelo ABArt",
       modelBody:
-        "El arte es la actividad; debajo va el apoyo estructurado. El estudiante viene a hacer algo — el método es lo que lo hace posible.",
+        "El arte es la actividad; debajo va el apoyo estructurado. El estudiante viene a hacer algo, y el método es lo que lo hace posible.",
       ctaTitle: "Dos maneras de entrar.",
       ctaClasses: "Ver las clases",
       ctaDonate: "Donar",
@@ -287,7 +287,7 @@ const DICTS = {
     donate: {
       metaTitle: "Donar",
       metaDesc:
-        "Cada dólar va a materiales, paseos o una beca. Somos 501(c)(3) — te enviamos el recibo para tus impuestos.",
+        "Cada dólar va a materiales, paseos o una beca. Somos 501(c)(3), así que te enviamos el recibo para tus impuestos.",
       eyebrow: "501(c)(3) · CH73874",
       title: "Regálale un lugar a un estudiante.",
       lead: "Materiales, paseos, y lugares pagados para familias que no pueden cubrir la cuota.",
@@ -339,7 +339,7 @@ const DICTS = {
         "Sé voluntario o pasante. Tus horas quedan registradas desde el primer día, y te vas con una carta firmada.",
       eyebrow: "Voluntarios y pasantes",
       title: "Ven a ayudar. Nosotros llevamos el registro.",
-      lead: "Cada hora que das queda escrita — para que al final haya algo con tu nombre.",
+      lead: "Cada hora que das queda escrita, para que al final haya algo con tu nombre.",
       stepsTitle: "Cómo funciona",
       steps: [
         { title: "Postúlate", body: "Un formulario corto. Cuéntanos en qué eres bueno." },
@@ -358,7 +358,7 @@ const DICTS = {
       ],
       internTitle: "Pasantías",
       internBody:
-        "El mismo proceso, más compromiso, y una carta que habla del trabajo — no solo de las horas.",
+        "El mismo proceso, más compromiso, y una carta que habla del trabajo, no solo de las horas.",
       cta: "Postularme",
       formLead: "El formulario toma unos diez minutos y se llena una sola vez.",
       soon: "El formulario llega pronto. Mientras tanto, escríbenos y arrancamos el proceso.",
@@ -370,7 +370,7 @@ const DICTS = {
       metaDesc: "En qué estamos trabajando, contado por quienes lo hacen.",
       eyebrow: "Desde la fundación",
       title: "Lo que pasa en el salón.",
-      lead: "Escrito por quienes lo hacen — no por un departamento de marketing.",
+      lead: "Escrito por quienes lo hacen, no por un departamento de marketing.",
       emptyTitle: "Todavía no hay nada publicado.",
       emptyBody:
         "La fundación los escribe desde su propio panel. Cuando suba el primero, aparece acá.",
@@ -428,7 +428,7 @@ const DICTS = {
       ],
       formTitle: "Seis pasos cortos.",
       formBody:
-        "Se llena una vez y la fundación sigue desde ahí. En este formulario no se paga nada — primero confirmamos el lugar y después te decimos cómo pagar.",
+        "Se llena una vez y la fundación sigue desde ahí. En este formulario no se paga nada. Primero confirmamos el lugar y después te decimos cómo pagar.",
       startCta: "Empezar la inscripción",
       pickCta: "Ver las clases primero",
       callCta: "Llamar para inscribirse",

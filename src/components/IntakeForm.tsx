@@ -11,7 +11,7 @@ import { AreaTexto, Bloque, Campo, Opciones } from "@/components/FormFields";
 import { CLASS_ICONS, IconHeart, IconTogether } from "@/components/ArtIcons";
 
 /**
- * La inscripción. La llena el padre, la madre, el cuidador — o el propio
+ * La inscripción. La llena el padre, la madre, el cuidador, o el propio
  * estudiante cuando viene solo.
  *
  * Se llena ANTES de pagar, y eso ordena el resto: primero la fundación sabe a
@@ -37,13 +37,19 @@ import { CLASS_ICONS, IconHeart, IconTogether } from "@/components/ArtIcons";
  * momento qué implica y qué no.
  */
 
-export default function IntakeForm({ locale }: { locale: Locale }) {
+export default function IntakeForm({
+  locale,
+  clases,
+}: {
+  locale: Locale;
+  /** Lo que la persona ya eligió en el mostrador de clases. */
+  clases: string[];
+}) {
   const c = intake(locale);
   const g = f(locale); // los textos genéricos: errores, etiquetas comunes
   const home = t(locale);
 
   const [para, setPara] = useState<"self" | "child" | null>(null);
-  const [clases, setClases] = useState<string[]>([]);
   const [fotos, setFotos] = useState<"yes" | "no" | null>(null);
   const [enviando, setEnviando] = useState(false);
   const [listo, setListo] = useState(false);
@@ -153,57 +159,6 @@ export default function IntakeForm({ locale }: { locale: Locale }) {
   });
 
   pasos.push({
-    id: "classes",
-    titulo: c.stepClasses,
-    validar: () => (clases.length > 0 ? {} : { classes: c.errPickClass } as Record<string, string>),
-    contenido: (
-      <>
-        <Opciones
-          id="classes"
-          legend={c.classesIntro}
-          name="classes"
-          tipo="checkbox"
-          tono="brand"
-          onChange={(v, marcado) =>
-            setClases((prev) => (marcado ? [...prev, v] : prev.filter((x) => x !== v)))
-          }
-          opciones={CLASSES.map((k) => ({
-            valor: k[locale].name,
-            titulo: k[locale].name,
-            ayuda: `${CLASS_DAY[locale]} · ${k.start}–${k.end}`,
-          }))}
-        />
-
-        {/* La cuenta, en vivo. El descuento se ve al marcar la segunda, que
-            es cuando importa. */}
-        <div
-          aria-live="polite"
-          className="mt-6 rounded-[--radius-card] border-2 border-brand bg-brand-soft p-6"
-        >
-          <p className="text-sm font-bold uppercase tracking-[0.14em] text-ink-soft">
-            {c.classesTotal}
-          </p>
-          <p className="mt-2">
-            <span className="text-4xl font-bold">{formatPrice(total, locale)}</span>{" "}
-            <span className="text-base text-ink-soft">
-              {home.classes.perMonth} ·{" "}
-              {clases.length === 1
-                ? home.classes.oneClass
-                : home.classes.manyClasses.replace("{n}", String(clases.length))}
-            </span>
-          </p>
-          {ahorro > 0 && (
-            <p className="mt-1 font-bold text-[var(--color-now)]">
-              {home.classes.save.replace("{amount}", formatPrice(ahorro, locale))}
-            </p>
-          )}
-          <p className="mt-2 text-sm text-ink-soft">{home.classes.included}</p>
-        </div>
-      </>
-    ),
-  });
-
-  pasos.push({
     id: "support",
     titulo: c.stepSupport,
     validar: (d) =>
@@ -283,17 +238,14 @@ export default function IntakeForm({ locale }: { locale: Locale }) {
 
         <dl className="mt-6 divide-y divide-line rounded-[--radius-card] border-2 border-line bg-paper px-6">
           <Fila etiqueta={c.stepWho} valor={para === "self" ? c.whoSelf : c.whoChild} />
+          <Fila etiqueta={c.classesTotal} valor={clases.join(" + ")} />
           <Fila
-            etiqueta={c.stepClasses}
-            valor={clases.length ? clases.join(", ") : "—"}
-          />
-          <Fila
-            etiqueta={c.classesTotal}
+            etiqueta={home.classes.total}
             valor={`${formatPrice(total, locale)} ${home.classes.perMonth}`}
           />
           <Fila
             etiqueta={c.photoQuestion}
-            valor={fotos === "yes" ? c.photoYes : fotos === "no" ? c.photoNo : "—"}
+            valor={fotos === "yes" ? c.photoYes : fotos === "no" ? c.photoNo : "…"}
           />
         </dl>
 
@@ -315,6 +267,7 @@ export default function IntakeForm({ locale }: { locale: Locale }) {
   async function enviar(datos: FormData) {
     datos.set("locale", locale);
     datos.set("total", String(total));
+    for (const k of clases) datos.append("classes", k);
     setEnviando(true);
     setFallo(null);
     try {
@@ -351,6 +304,30 @@ export default function IntakeForm({ locale }: { locale: Locale }) {
 
   return (
     <>
+      {/* Lo que ya eligió, a la vista y sin volver a preguntarlo.
+          Preguntar dos veces lo mismo es la forma más rápida de que alguien
+          piense que el formulario no se enteró de lo que hizo hace un minuto. */}
+      <div className="mb-8 max-w-3xl rounded-[--radius-card] border-2 border-brand bg-brand-soft p-6">
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-ink-soft">
+          {c.classesTotal}
+        </p>
+        <p className="mt-2 text-2xl font-bold">{clases.join(" + ")}</p>
+        <p className="mt-1">
+          <span className="text-3xl font-bold">{formatPrice(total, locale)}</span>{" "}
+          <span className="text-base text-ink-soft">
+            {home.classes.perMonth}
+            {ahorro > 0 &&
+              ` · ${home.classes.save.replace("{amount}", formatPrice(ahorro, locale))}`}
+          </span>
+        </p>
+        <Link
+          href={`${localePath(locale, "/classes")}#clases`}
+          className="link mt-3 inline-block text-sm font-semibold"
+        >
+          {c.changeClasses}
+        </Link>
+      </div>
+
       {fallo && (
         <div
           role="alert"

@@ -78,7 +78,7 @@ export default async function VolunteerPage({
       {/* El aviso del registro. Va grande y antes del formulario, no en la
           letra chica: enterarse después de que te estaban midiendo es otra
           cosa. Y se cuenta a favor del voluntario, que es lo que de verdad
-          es — sin ese registro no hay carta al final. */}
+          es, sin ese registro no hay carta al final. */}
       <section className="bg-ink">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto]">

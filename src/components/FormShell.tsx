@@ -18,7 +18,7 @@ import { useRef, useState } from "react";
  * 1. **Todos los pasos existen siempre en el documento**, escondidos con el
  *    atributo `hidden`. No se desmontan. Así lo escrito no se pierde al ir y
  *    volver, el `FormData` del final los junta todos, y el autocompletar del
- *    navegador funciona — que para alguien que escribe con dificultad es la
+ *    navegador funciona, que para alguien que escribe con dificultad es la
  *    diferencia entre llenarlo y no.
  * 2. **El foco viaja al título del paso nuevo.** Sin esto, quien usa lector
  *    de pantalla toca "Siguiente", la pantalla cambia entera y él sigue

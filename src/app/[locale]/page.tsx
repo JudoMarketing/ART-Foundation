@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Locale } from "@/lib/i18n";
 import { t } from "@/content/copy";
+import { fin } from "@/content/forms";
 import { CLASSES, CLASS_DAY, ORG } from "@/content/site";
 import { OBRA, OBRA_TIENDA } from "@/content/obra";
 import {
@@ -49,7 +50,7 @@ function hour(hhmm: string, locale: Locale) {
  *
  * Van con `prefers-reduced-motion` respetado desde el CSS: si el visitante
  * pidió menos movimiento, las monedas se quedan repartidas a lo largo de la
- * línea y no se mueven. La idea — el dinero va de acá para allá — se entiende
+ * línea y no se mueven. La idea ( el dinero va de acá para allá ) se entiende
  * igual quietas.
  */
 const COINS = [0, 1.2, 2.4, 3.6, 4.8];
@@ -63,6 +64,7 @@ export default async function HomePage({
   const { locale: raw } = await params;
   const locale = raw as Locale;
   const c = t(locale);
+  const finTextos = fin(locale);
 
   const pickerItems = CLASSES.map((k) => ({
     id: k.id,
@@ -155,7 +157,7 @@ export default async function HomePage({
 
           Cada tarjeta lleva su figura: la silla de ruedas, la persona de
           pie, y las dos manos agarradas. La tercera es la que carga el
-          sentido de toda la sección — lo único que cambia es la ayuda. */}
+          sentido de toda la sección, lo único que cambia es la ayuda. */}
       <section className="paper-grain bg-paper">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <h2 className="max-w-3xl text-4xl font-bold sm:text-5xl">
@@ -205,7 +207,12 @@ export default async function HomePage({
               items={pickerItems}
               locale={locale}
               labels={c.classes}
-              registerHref={localePath(locale, "/register")}
+              registerHref={localePath(locale, "/register/apply")}
+              financiacion={{
+                href: localePath(locale, "/classes/financing"),
+                texto: finTextos.button,
+                ayuda: finTextos.buttonHelp,
+              }}
             />
           </div>
 
@@ -252,8 +259,8 @@ export default async function HomePage({
               <li key={p.slug}>
                 <figure className="card-lift">
                   {/* Proporción fija para todas. Las piezas vienen en
-                      tamaños distintos —hay una apaisada entre ocho
-                      verticales— y en una rejilla eso deja huecos. Acá se
+                      tamaños distintos (hay una apaisada entre ocho
+                      verticales) y en una rejilla eso deja huecos. Acá se
                       recortan parejas; la pieza entera se ve en la tienda. */}
                   <div className="aspect-[4/5] overflow-hidden rounded-[--radius-card] border-2 border-line bg-paper-warm">
                     <Image

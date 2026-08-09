@@ -16,7 +16,7 @@ import { useEffect, useRef, useState } from "react";
  *    teclado. WCAG 2.2.2 lo exige para cualquier cosa que se mueva más de
  *    cinco segundos, y aquí además es de sentido común.
  * 3. **El texto nunca va directo sobre el video.** Va sobre una capa oscura
- *    que garantiza el contraste pase lo que pase en la imagen — un video
+ *    que garantiza el contraste pase lo que pase en la imagen, un video
  *    cambia de brillo cuadro a cuadro y el contraste no se puede medir
  *    sobre algo que se mueve.
  * 4. **Sin sonido y sin depender del video.** Si no carga, si el navegador

@@ -4,7 +4,7 @@ import type { Locale } from "@/lib/i18n";
  * Los textos del sitio, en los dos idiomas.
  *
  * Regla de escritura para este sitio: frases cortas, voz activa, y nada de
- * lenguaje de folleto. Lo lee gente que decide si inscribe a su hijo — y
+ * lenguaje de folleto. Lo lee gente que decide si inscribe a su hijo, y
  * también lo lee un lector de pantalla en voz alta, palabra por palabra.
  * Una frase de cuatro líneas es una frase que nadie termina de escuchar.
  */

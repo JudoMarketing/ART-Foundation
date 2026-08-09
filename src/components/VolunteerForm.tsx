@@ -23,7 +23,7 @@ import { IconCertificate, IconHelpingHands } from "@/components/ArtIcons";
  *
  * Ahora usa el mismo armazón que la inscripción (`FormShell`), así que las
  * dos se comportan igual: la misma barra de avance, los mismos botones, el
- * mismo sitio para los errores. Quien llenó una ya sabe llenar la otra — y
+ * mismo sitio para los errores. Quien llenó una ya sabe llenar la otra, y
  * eso vale doble en un sitio donde parte de quien lo usa necesita que las
  * cosas se comporten como la última vez.
  *
@@ -250,7 +250,7 @@ export default function VolunteerForm({ locale }: { locale: Locale }) {
  *
  * El archivo no sale del navegador hasta que se envía el formulario entero.
  * Nada de subidas de fondo que dejan un documento sensible en un servidor
- * "por si acaso" — y menos uno que a lo mejor nunca se termina de enviar.
+ * "por si acaso", y menos uno que a lo mejor nunca se termina de enviar.
  */
 function SubidaChequeo({
   c,

@@ -51,7 +51,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 sm:px-6">
-        {/* El logo y, al lado, el nombre en dos líneas — como lo usa el sitio
+        {/* El logo y, al lado, el nombre en dos líneas, como lo usa el sitio
             actual. El nombre no es adorno: "ARTxpwd" solo no le dice nada a
             quien entra por primera vez. */}
         <Link

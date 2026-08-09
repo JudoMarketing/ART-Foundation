@@ -77,7 +77,7 @@ export default async function RegisterPage({
       </section>
 
       {/* El formulario todavía no existe. En vez de un botón muerto, la vía
-          que sí funciona hoy — y el paso previo que conviene hacer primero. */}
+          que sí funciona hoy, y el paso previo que conviene hacer primero. */}
       <section className="bg-ink">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <div className="card rounded-[--radius-card] bg-paper p-10">

@@ -139,7 +139,7 @@ se vea hecho a las apuradas. Tiran para lados distintos, y cuando chocan
 No es una preferencia de estilo. Es una fundación para personas con
 discapacidad: un sitio sobre inclusión que no se pueda usar se contradice a
 sí mismo. Que se vea trabajado se consigue con tipografía, ritmo, espacio y
-buenas fotos — no con animaciones que hay que perseguir con el ratón.
+buenas fotos, no con animaciones que hay que perseguir con el ratón.
 
 ### 2 · El sitio no es solo para personas con discapacidad
 
@@ -154,7 +154,7 @@ la fundación, no un texto de relleno.
 
 ### 3 · Métricas: dos portales distintos, no una contradicción
 
-El encargo parece contradecirse — *«este website no necesito metricas»* y
+El encargo parece contradecirse: *«este website no necesito metricas»* y
 después *«al admin permitele ver ventas, visitas al website, voluntarios»*.
 No se contradice: son dos tableros.
 
