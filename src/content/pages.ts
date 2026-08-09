@@ -150,6 +150,7 @@ const DICTS = {
       internBody:
         "Same process, longer commitment, and a letter that speaks to the work — not just the hours.",
       cta: "Apply",
+      formLead: "The form takes about ten minutes and you only fill it once.",
       soon: "The form arrives soon. Meanwhile, write to us and we will start the process.",
     },
 
@@ -358,6 +359,7 @@ const DICTS = {
       internBody:
         "El mismo proceso, más compromiso, y una carta que habla del trabajo — no solo de las horas.",
       cta: "Postularme",
+      formLead: "El formulario toma unos diez minutos y se llena una sola vez.",
       soon: "El formulario llega pronto. Mientras tanto, escríbenos y arrancamos el proceso.",
     },
 
