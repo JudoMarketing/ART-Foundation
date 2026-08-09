@@ -64,6 +64,11 @@ const TEXTOS = {
   red: { es: "También del mismo dueño", en: "Also by the same owner" },
   derechos: { es: "Todos los derechos reservados.", en: "All rights reserved." },
   por: { es: "Website por", en: "Website by" },
+  showcase: { es: "Ver más trabajos", en: "See more work" },
+  showcaseQue: {
+    es: "Otros sitios y apps que hizo Judo Marketing",
+    en: "Other sites and apps built by Judo Marketing",
+  },
   judoQue: {
     es: "Judo Marketing: páginas web y apps para negocios en Miami",
     en: "Judo Marketing: websites and apps for small businesses in Miami",
@@ -204,6 +209,11 @@ export default function JudoFooter({
           <p className="jf-copy">
             © {año} {negocio.nombre}. {TEXTOS.derechos[idioma]}
           </p>
+          {/* La firma, y al lado el showcase.
+              El enlace del showcase va a la versión del idioma en que esté
+              el visitante: mandar a alguien que lee en español a una página
+              en inglés es hacerle trabajo de más para ver unos trabajos.
+              Los dos van sin `nofollow`, que es la regla del kit. */}
           <p className="jf-copy">
             {TEXTOS.por[idioma]}{" "}
             <a
@@ -215,6 +225,22 @@ export default function JudoFooter({
             >
               Judo Marketing
             </a>
+            <span className="jf-sep" aria-hidden="true">
+              ·
+            </span>
+            <a
+              className="jf-a"
+              href={
+                idioma === "es"
+                  ? "https://www.judomarketing.net/es/showcase"
+                  : "https://www.judomarketing.net/showcase"
+              }
+              title={TEXTOS.showcaseQue[idioma]}
+              target="_blank"
+              rel="noopener"
+            >
+              {TEXTOS.showcase[idioma]}
+            </a>
           </p>
         </div>
       </div>
@@ -223,6 +249,10 @@ export default function JudoFooter({
 }
 
 const CSS = `
+.jf-sep {
+  margin: 0 8px;
+  opacity: 0.5;
+}
 .jf {
   background: var(--jf-fondo);
   color: var(--jf-texto);
