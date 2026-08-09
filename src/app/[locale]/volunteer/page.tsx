@@ -9,6 +9,8 @@ import {
   IconSpark,
   IconTicket,
 } from "@/components/ArtIcons";
+import Link from "next/link";
+import { localePath } from "@/lib/i18n";
 import PageHero from "@/components/PageHero";
 
 export async function generateMetadata({
@@ -128,17 +130,17 @@ export default async function VolunteerPage({
               <IconHelpingHands className="h-16 w-16" />
             </span>
             <h2 className="mt-5 text-3xl font-bold sm:text-4xl">{c.cta}</h2>
-            <p className="mt-4 text-lg text-ink-soft">{c.soon}</p>
+            <p className="mt-4 text-lg text-ink-soft">{c.formLead}</p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a
-                href={`mailto:${ORG.operationsEmail}`}
-                className="btn tap inline-flex items-center rounded-full bg-ink px-7 py-3.5 text-base font-bold text-paper transition-transform hover:scale-[1.03]"
+              <Link
+                href={localePath(locale, "/volunteer/apply")}
+                className="btn tap inline-flex items-center rounded-full bg-leaf-deep px-8 py-4 text-lg font-bold text-paper transition-transform hover:scale-[1.03]"
               >
-                {ORG.operationsEmail}
-              </a>
+                {c.cta}
+              </Link>
               <a
                 href={ORG.phoneHref}
-                className="btn tap inline-flex items-center rounded-full border-2 border-ink px-7 py-3.5 text-base font-bold text-ink transition-transform hover:scale-[1.03]"
+                className="btn tap inline-flex items-center rounded-full border-2 border-ink px-7 py-4 text-base font-bold text-ink transition-transform hover:scale-[1.03]"
               >
                 {ORG.phone}
               </a>

@@ -24,7 +24,9 @@ Dos cosas distintas que se suelen confundir:
 | `JUDO_KIT_KEY` | Production, Preview | Clave del expediente en judomarketing.net/admin. **Sin** `NEXT_PUBLIC`: si llega al navegador, cualquiera puede inyectar datos falsos al panel. |
 | `NEXT_PUBLIC_JUDO_STATUS_URL` | Production, Preview | `https://ajsuskyeatgatbubctzl.supabase.co` |
 | `JUDO_ANON_KEY` | Production, Preview | La anon key de Supabase. |
-| `NEXT_PUBLIC_HERO_VIDEO_URL` | Production, Preview | Dirección del video de portada. **Dejar vacía hasta que el video exista**: vacía, la portada usa el fondo pintado y se ve bien igual. Ver `docs/VIDEO-PORTADA.md`. |
+| `NEXT_PUBLIC_HERO_VIDEO_URL` | Production, Preview | Dirección del video de portada. Vacía, la portada usa el archivo del repositorio. Ver `docs/VIDEO-PORTADA.md`. |
+| `RESEND_API_KEY` | Production, Preview | Clave de [resend.com](https://resend.com/api-keys). **Sin ella el formulario de voluntariado no envía nada**: la persona llena todo, le da a enviar, y ve el teléfono de la fundación como salida. |
+| `EMAIL_FROM` | Production, Preview | Remitente de los correos. Tiene que ser de un dominio verificado en Resend — p. ej. `web@artfoundation-x-pwd.com`. Un remitente sin verificar hace que los correos caigan en spam o se rechacen. |
 
 El kill switch es *fail-open*: si estas variables faltan o el panel no
 contesta, el sitio sigue en pie. Una fundación no se cae por un fallo de
