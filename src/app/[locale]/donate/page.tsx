@@ -54,7 +54,7 @@ export default async function DonatePage({
 
   return (
     <>
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="ink">
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="ink" imagen="naturaleza-05">
         <div className="coin-flow max-w-3xl" aria-hidden="true">
           {COINS.map((delay, i) => (
             <span

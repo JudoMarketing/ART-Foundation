@@ -37,7 +37,7 @@ export default async function AboutPage({
 
   return (
     <>
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="paper" />
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="paper" imagen="naturaleza-01" />
 
       {/* Los tres números. Van solos, grandes, sin párrafo alrededor: un año
           y un registro dicen más de una fundación que tres frases sobre su

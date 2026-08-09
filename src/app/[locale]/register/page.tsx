@@ -35,7 +35,7 @@ export default async function RegisterPage({
 
   return (
     <>
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="brand" />
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="brand" imagen="kandinsky-gi" />
 
       {/* Las cuatro preguntas, a la vista antes de empezar.
           Un formulario que no dice cuánto falta es un formulario que la gente

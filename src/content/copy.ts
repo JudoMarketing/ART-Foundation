@@ -89,8 +89,8 @@ const DICTS = {
     },
 
     donate: {
-      title: "Where your donation goes",
-      lead: "Every dollar has a destination. These are the three:",
+      title: "Every dollar has a destination",
+      lead: "These are the three, and there is no fourth:",
       flowLabel: "Your dollar, on its way",
       uses: [
         {
@@ -232,8 +232,8 @@ const DICTS = {
     },
 
     donate: {
-      title: "A dónde va tu donación",
-      lead: "Cada dólar tiene un destino. Son estos tres:",
+      title: "Cada dólar tiene un destino",
+      lead: "Son estos tres, y no hay un cuarto:",
       flowLabel: "Tu dólar, en camino",
       uses: [
         {

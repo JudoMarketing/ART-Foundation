@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 /**
  * La cabecera de las páginas interiores.
  *
@@ -54,6 +56,48 @@ const SOFT = {
  * casi negra, van claros: aclararla un poco no le quita nada al blanco, que
  * ahí anda por encima de 12:1.
  */
+/**
+ * El velo que va encima de la obra.
+ *
+ * Opaco del todo a la izquierda y abriéndose hacia la derecha. Los porcentajes
+ * no son al gusto: a la izquierda el color tiene que estar entero para que el
+ * contraste del título sea exactamente el mismo que sin imagen, y a la derecha
+ * puede aflojar porque ahí no hay texto. En pantalla chica el texto ocupa todo
+ * el ancho, así que el velo se queda opaco de lado a lado.
+ */
+/* Dos capas y no una, y hay motivo.
+ *
+ * El primer intento ponía el color sólido y el degradado en el mismo div
+ * (`bg-sun sm:bg-linear-to-r ...`). Las dos reglas se aplican: el degradado
+ * es `background-image` y el color es `background-color`, así que el color
+ * queda pintado DETRÁS y se ve por donde el degradado es transparente. La
+ * obra estaba ahí, cargada y colocada, y no se veía ni un píxel.
+ *
+ * Con dos capas exclusivas no hay forma de que eso vuelva a pasar: una tapa
+ * entera para pantalla chica, donde el texto ocupa todo el ancho, y otra en
+ * degradado para pantalla grande, donde el texto vive a la izquierda y la
+ * obra puede respirar a la derecha.
+ *
+ * (Y de paso: en Tailwind 4 el degradado se llama `bg-linear-to-r`. Con el
+ * nombre viejo, `bg-gradient-to-r`, la clase no existe y no se genera nada.) */
+const VELO_SOLIDO = {
+  brand: "bg-brand-solid",
+  ink: "bg-ink",
+  sky: "bg-sky",
+  sun: "bg-sun",
+  leaf: "bg-leaf",
+  paper: "bg-paper-warm",
+} as const;
+
+const VELO_DEGRADADO = {
+  brand: "bg-linear-to-r from-brand-solid from-30% via-brand-solid/92 to-brand-solid/45",
+  ink: "bg-linear-to-r from-ink from-30% via-ink/92 to-ink/45",
+  sky: "bg-linear-to-r from-sky from-30% via-sky/92 to-sky/45",
+  sun: "bg-linear-to-r from-sun from-30% via-sun/92 to-sun/45",
+  leaf: "bg-linear-to-r from-leaf from-30% via-leaf/92 to-leaf/45",
+  paper: "bg-linear-to-r from-paper-warm from-30% via-paper-warm/92 to-paper-warm/45",
+} as const;
+
 const DOODLE = {
   brand: "text-ink",
   ink: "text-paper",
@@ -68,18 +112,55 @@ export default function PageHero({
   title,
   lead,
   tone = "paper",
+  imagen,
   children,
 }: {
   eyebrow?: string;
   title: string;
   lead?: string;
   tone?: keyof typeof TONES;
+  /**
+   * Obra de fondo, por su `slug` en `content/obra.ts`.
+   *
+   * Va detrás de un velo del color de la cabecera que arranca opaco a la
+   * izquierda, donde vive el texto, y se abre hacia la derecha. Es el mismo
+   * recurso del video de la portada, y por la misma razón: **el contraste no
+   * se puede medir sobre una imagen**. Cada cuadro tiene zonas claras y
+   * oscuras, así que el texto se apoya sobre el velo, que sí se conoce, y la
+   * obra se ve donde no hay nada que leer.
+   */
+  imagen?: string;
   /** Lo que va debajo del texto: botones, datos sueltos, lo que haga falta. */
   children?: React.ReactNode;
 }) {
   return (
     <section className={`relative isolate overflow-hidden ${TONES[tone]}`}>
-      {/* Los garabatos de fondo. Van solo en las cabeceras, donde hay tres
+      {imagen && (
+        <>
+          <Image
+            src={`/obra/${imagen}.webp`}
+            alt=""
+            aria-hidden="true"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div
+            aria-hidden="true"
+            className={`absolute inset-0 sm:hidden ${VELO_SOLIDO[tone]}`}
+          />
+          <div
+            aria-hidden="true"
+            className={`absolute inset-0 hidden sm:block ${VELO_DEGRADADO[tone]}`}
+          />
+        </>
+      )}
+
+      {/* Los garabatos de fondo. Con imagen no van: dos texturas encima de la
+          misma cabecera es una de más, y la que pierde es la obra.
+
+          Van solo en las cabeceras, donde hay tres
           líneas de texto grande y espacio de sobra, nunca detrás de un
           párrafo largo.
 
@@ -89,7 +170,7 @@ export default function PageHero({
           texto. Sobre el magenta, con letras blancas, unos garabatos blancos
           aclaran el fondo y tiran el contraste de 4.55 a 4.15, que es
           justamente por debajo del mínimo. Ahí van oscuros. */}
-      <div aria-hidden="true" className={`doodles ${DOODLE[tone]}`} />
+      {!imagen && <div aria-hidden="true" className={`doodles ${DOODLE[tone]}`} />}
 
       <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
         {eyebrow && (
@@ -97,7 +178,7 @@ export default function PageHero({
             {eyebrow}
           </p>
         )}
-        <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
+        <h1 className={`mt-4 text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl ${imagen ? "max-w-2xl" : "max-w-4xl"}`}>
           {title}
         </h1>
         {lead && (

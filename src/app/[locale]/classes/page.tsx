@@ -59,7 +59,7 @@ export default async function ClassesPage({
 
   return (
     <>
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="paper" />
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="paper" imagen="kandinsky-ko" />
 
       {/* El sábado como línea de tiempo, no como tres tarjetas.
           Tres cajas iguales dicen "hay tres clases". Una línea con horas

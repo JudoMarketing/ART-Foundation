@@ -36,7 +36,7 @@ export default async function VolunteerPage({
 
   return (
     <>
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="sky" />
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="sky" imagen="kandinsky-xf" />
 
       {/* Los cuatro pasos, numerados y con dibujo. Es un proceso con espera
           de por medio; verlo entero de una hace que la espera se entienda en

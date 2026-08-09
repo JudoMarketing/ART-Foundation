@@ -30,7 +30,7 @@ export default async function BlogPage({
 
   return (
     <>
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="paper" />
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="paper" imagen="naturaleza-09" />
 
       {/* Vacío, pero dicho de frente.
           Un blog sin artículos que dice "vienen en camino" con tres tarjetas

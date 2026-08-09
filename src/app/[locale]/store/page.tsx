@@ -2,12 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { type Locale } from "@/lib/i18n";
 import { p } from "@/content/pages";
-import {
-  OBRA,
-  PORCENTAJE_ESTUDIANTE_PROVISIONAL,
-  disponibles,
-  vendidas,
-} from "@/content/obra";
+import { OBRA, disponibles, vendidas } from "@/content/obra";
 import { ORG } from "@/content/site";
 import { IconBrushes, IconTag, IconTicket, IconVan } from "@/components/ArtIcons";
 import PageHero from "@/components/PageHero";
@@ -71,11 +66,16 @@ export default async function StorePage({
             )}
           </p>
         ) : (
+          /* El porcentaje que va al estudiante NO se publica. Es un acuerdo
+             entre la fundación y la familia, y ponerlo en una etiqueta
+             convierte la obra de un chico en una ficha de producto. Lo que sí
+             se dice, y va abajo de la página, es que parte de cada venta va a
+             quien la hizo. */
           <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-sun-soft px-4 py-2 font-bold text-sun-ink">
             <span aria-hidden="true">
               <IconTag className="h-6 w-6" />
             </span>
-            {PORCENTAJE_ESTUDIANTE_PROVISIONAL}% {c.shareLabel}
+            {c.shareLabel}
           </p>
         )}
       </figcaption>
@@ -84,7 +84,7 @@ export default async function StorePage({
 
   return (
     <>
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="sun" />
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="sun" imagen="naturaleza-04" />
 
       {/* Dos categorías: las que están a la venta y las que ya se
           vendieron, con su cuenta.

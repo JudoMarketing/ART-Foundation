@@ -42,7 +42,7 @@ export default async function ContactPage({
       {/* El teléfono y el correo van EN la cabecera, no más abajo.
           Quien entra a "Contacto" viene a hacer una sola cosa; hacérsela
           bajar media pantalla es hacerla esperar por nada. */}
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="sky">
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} tone="sky" imagen="naturaleza-03">
         <div className="flex flex-wrap gap-4">
           <a
             href={ORG.phoneHref}
