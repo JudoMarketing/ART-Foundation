@@ -36,7 +36,7 @@ const DICTS = {
       secondary: "Donate",
       playVideo: "Play",
       pauseVideo: "Pause",
-      disciplines: ["Painting", "Theatre", "Music", "Rhythm"],
+      disciplines: ["Art", "Theatre", "Music"],
     },
 
     audience: {
@@ -118,6 +118,7 @@ const DICTS = {
       title: "What comes out of the room",
       lead: "Work by our students. Every piece in the store is one of these.",
       byLabel: "by",
+      sold: "Sold",
       cta: "See the store",
     },
 
@@ -178,7 +179,7 @@ const DICTS = {
       secondary: "Donar",
       playVideo: "Reproducir",
       pauseVideo: "Pausar",
-      disciplines: ["Pintura", "Teatro", "Música", "Ritmo"],
+      disciplines: ["Arte", "Teatro", "Música"],
     },
 
     audience: {
@@ -260,6 +261,7 @@ const DICTS = {
       title: "Lo que sale del salón",
       lead: "Obra de nuestros estudiantes. Cada pieza de la tienda es una de estas.",
       byLabel: "de",
+      sold: "Vendido",
       cta: "Ver la tienda",
     },
 

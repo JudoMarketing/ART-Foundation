@@ -192,59 +192,44 @@ export function IconStanding({ className }: IconProps) {
   );
 }
 
-/** La única diferencia — dos manos agarradas.
+/**
+ * La única diferencia — uno con el brazo sobre el hombro del otro.
  *
- *  Costó tres intentos. Los dos primeros dibujaban las manos del mismo verde
- *  y del mismo grosor, y el resultado era una sola mancha: parecía un bigote,
- *  no un apretón.
+ * Acá había dos manos dándose la mano. No funcionó: tres versiones y las tres
+ * terminaban leyéndose como una mancha verde. Dos manos agarradas es un
+ * objeto difícil de dibujar plano — se pierden los dedos, se pierde quién es
+ * quién, y a cien píxeles queda un bigote.
  *
- *  Lo que lo resuelve es que las dos manos NO sean iguales. La de adelante va
- *  en verde oscuro, es más alta y se monta encima de la de atrás. El
- *  contorno de esa que se monta es lo que dice "hay dos manos acá", y los
- *  dedos encima terminan de contarlo.
+ * Esto dice lo mismo y se entiende de un vistazo, porque **es una figura como
+ * las otras dos de la fila**: silla de ruedas, persona de pie, y acá dos
+ * personas, una con el brazo sobre el hombro de la otra. Juntas, las tres
+ * tarjetas cuentan la sección sin que haya que leer una palabra.
+ *
+ * Y el brazo por encima del hombro es exactamente lo que dice el texto de esa
+ * tarjeta: lo único que cambia es cuánto apoyo recibe cada quien.
  */
-export function IconHands({ className }: IconProps) {
-  const A = "var(--color-leaf)";
-  const B = "var(--color-leaf-deep)";
-
-  /** Un dedo: una barra redondeada que cruza hacia la otra mano. */
-  const finger = (x: number, y: number, fill: string) => (
-    <rect
-      key={`${x}-${y}`}
-      x={x}
-      y={y}
-      width="26"
-      height="6"
-      rx="3"
-      fill={fill}
-      stroke="var(--color-ink)"
-      strokeWidth="2.6"
-    />
-  );
+export function IconTogether({ className }: IconProps) {
+  const chico = "M22 30v11M22 41l-5 14M22 41l5 14";
+  const grande = "M45 24v16M45 40l-4 15M45 40l6 15";
+  const brazo = "M45 29C37 26 28 27 16 31";
 
   return (
     <svg viewBox="0 0 64 64" className={`${BASE} ${className ?? ""}`} aria-hidden="true" focusable="false">
       <g strokeLinecap="round" strokeLinejoin="round">
-        {/* Las dos palmas. Se salen del cuadro por los dos lados, iguales:
-            son las manos entrando en escena, no dos objetos recortados. */}
-        <rect x="-8" y="17" width="28" height="30" rx="13" fill={A} stroke="var(--color-ink)" strokeWidth="3" />
-        <rect x="44" y="17" width="28" height="30" rx="13" fill={B} stroke="var(--color-ink)" strokeWidth="3" />
+        {/* El de la izquierda, más chico. */}
+        <path d={chico} fill="none" stroke="var(--color-ink)" strokeWidth="10" />
+        <path d={chico} fill="none" stroke="var(--color-leaf)" strokeWidth="5.5" />
+        <circle cx="22" cy="23" r="6.5" fill="var(--color-leaf)" stroke="var(--color-ink)" strokeWidth="3" />
 
-        {/* Los pulgares. Son lo que convierte una forma redondeada en una
-            mano: sin pulgar, una palma es una piedra. */}
-        <g transform="rotate(-38 16 20)">
-          <rect x="11" y="6" width="8" height="17" rx="4" fill={A} stroke="var(--color-ink)" strokeWidth="2.8" />
-        </g>
-        <g transform="rotate(-38 48 44)">
-          <rect x="45" y="41" width="8" height="17" rx="4" fill={B} stroke="var(--color-ink)" strokeWidth="2.8" />
-        </g>
+        {/* El de la derecha, más alto. */}
+        <path d={grande} fill="none" stroke="var(--color-ink)" strokeWidth="10" />
+        <path d={grande} fill="none" stroke="var(--color-leaf-deep)" strokeWidth="5.5" />
+        <circle cx="45" cy="16" r="7" fill="var(--color-leaf-deep)" stroke="var(--color-ink)" strokeWidth="3" />
 
-        {/* Los dedos, alternados: uno de una mano, uno de la otra. El
-            entrelazado es lo que dice que están agarradas. */}
-        {finger(16, 20.5, A)}
-        {finger(22, 27.5, B)}
-        {finger(16, 34.5, A)}
-        {finger(22, 41.5, B)}
+        {/* El brazo que rodea. Va último, encima de todo: es lo que une las
+            dos figuras, y debajo se cortaría contra el hombro. */}
+        <path d={brazo} fill="none" stroke="var(--color-ink)" strokeWidth="10" />
+        <path d={brazo} fill="none" stroke="var(--color-leaf-deep)" strokeWidth="5.5" />
       </g>
     </svg>
   );

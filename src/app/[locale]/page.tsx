@@ -15,11 +15,10 @@ import {
   IconCostume,
   IconFacebook,
   IconGuitarBody,
-  IconHands,
+  IconTogether,
   IconHeart,
   IconHelpingHands,
   IconInstagram,
-  IconMaracas,
   IconPaintTube,
   IconPalette,
   IconSpark,
@@ -33,6 +32,7 @@ import {
 } from "@/components/ArtIcons";
 import ClassPicker from "@/components/ClassPicker";
 import HeroVideo from "@/components/HeroVideo";
+import SoldSticker from "@/components/SoldSticker";
 
 /** 13:00 → "1:00 PM" / "1:00 p. m." según el idioma. */
 function hour(hhmm: string, locale: Locale) {
@@ -72,7 +72,7 @@ export default async function HomePage({
     schedule: `${hour(k.start, locale)} – ${hour(k.end, locale)}`,
   }));
 
-  const audienceIcons = [IconWheelchair, IconStanding, IconHands];
+  const audienceIcons = [IconWheelchair, IconStanding, IconTogether];
 
   /** Los grupos de vectores de cada destino de la donación. */
   const useIcons = [
@@ -112,12 +112,16 @@ export default async function HomePage({
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href={localePath(locale, "/register")}
+            {/* Baja a las clases, no salta al formulario. Quien todavía no
+                eligió qué clase quiere no tiene nada que hacer en un
+                formulario de inscripción: primero mira, arma su sábado, ve
+                el precio, y recién ahí se inscribe. */}
+            <a
+              href="#clases"
               className="btn tap inline-flex items-center rounded-full bg-paper px-8 py-4 text-base font-bold text-ink transition-transform hover:scale-[1.03]"
             >
               {c.hero.primary}
-            </Link>
+            </a>
             <Link
               href={localePath(locale, "/donate")}
               className="btn tap inline-flex items-center rounded-full bg-brand-solid px-8 py-4 text-base font-bold text-paper transition-transform hover:scale-[1.03]"
@@ -130,7 +134,7 @@ export default async function HomePage({
               va esto, y se lee antes que cualquier párrafo. */}
           <ul className="mt-16 flex flex-wrap gap-x-10 gap-y-6">
             {c.hero.disciplines.map((d, i) => {
-              const Icon = [IconPalette, CLASS_ICONS.theatre, CLASS_ICONS.guitar, IconMaracas][i];
+              const Icon = [IconPalette, CLASS_ICONS.theatre, CLASS_ICONS.guitar][i];
               return (
                 <li key={d} className="icon-play flex items-center gap-3 text-paper">
                   <span className="text-paper/70">
@@ -187,7 +191,7 @@ export default async function HomePage({
           las otras bajan a mitad de precio y la cuenta de abajo se arma
           sola. Ver el descuento pasar delante de los ojos es lo que hace que
           una familia se lleve dos clases en vez de una. */}
-      <section className="torn-top relative bg-brand-solid">
+      <section id="clases" className="torn-top relative scroll-mt-20 bg-brand-solid">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <h2 className="max-w-3xl text-4xl font-bold text-paper sm:text-5xl">
             {c.classes.title}
