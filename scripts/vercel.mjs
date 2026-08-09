@@ -88,10 +88,27 @@ async function findProject(nameOrId) {
 }
 
 const commands = {
+  /**
+   * Hay dos clases de token y se comportan distinto:
+   *
+   *   · el de cuenta empieza por `vct_` y sabe quién eres
+   *   · el de proyecto empieza por `vcp_` y NO — `/v2/user` devuelve 404
+   *
+   * El de proyecto es el que conviene: solo alcanza este proyecto, así que
+   * si se filtra no abre la cuenta entera. Por eso el 404 acá no es un
+   * error, es la respuesta correcta a la pregunta equivocada.
+   */
   async whoami() {
-    const { user } = await get("/v2/user");
-    console.log(`${user.username} · ${user.email}`);
-    console.log(TEAM ? `equipo: ${TEAM}` : "cuenta personal");
+    try {
+      const { user } = await get("/v2/user");
+      console.log(`${user.username} · ${user.email}`);
+      console.log(TEAM ? `equipo: ${TEAM}` : "cuenta personal");
+    } catch (err) {
+      if (!/^404 /.test(err.message)) throw err;
+      const { projects } = await get("/v9/projects", { limit: 5 });
+      console.log("Token de proyecto (no de cuenta): no lleva usuario.");
+      console.log(`Alcanza: ${projects.map((p) => p.name).join(", ") || "nada"}`);
+    }
   },
 
   async projects() {
