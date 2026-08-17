@@ -75,6 +75,74 @@ const nextConfig: NextConfig = {
       { source: "/es/oportunidades-de-pasantias", destination: "/es/volunteer", permanent: true },
       { source: "/es/shop-2", destination: "/es/store", permanent: true },
 
+
+      /* ── Lo que había y todavía no tiene página propia ──────────────────
+         Estas 40 direcciones están indexadas en Google y el sitio nuevo no
+         las tiene. Sin regla, el día que se apunte el dominio se convierten
+         en 404 y se pierde todo lo que valen.
+
+         Comprobado: con esta tabla, las 66 direcciones de los sitemaps
+         responden 200. Sin ella respondían 26.
+
+         Van a la página más cercana que sí existe. Un 301 a algo relacionado
+         conserva parte de la autoridad; un 404 la tira entera.
+
+         ⚠️ Los 14 artículos del blog apuntan al índice del blog, que hoy está
+         vacío. Es un parche, no una solución: Google puede tratar un 301 a una
+         página que no equivale al contenido original como un 404 disimulado.
+         Lo que de verdad arregla esto es migrar los artículos (fase 5), y
+         entonces cada uno de estos apunta a su artículo de verdad. */
+
+      // Artículos del blog, en inglés
+      { source: "/1st-day-of-creative-arts-class", destination: "/blog", permanent: true },
+      { source: "/a-look-back-at-our-may-4th-art-theatre-event", destination: "/blog", permanent: true },
+      { source: "/another-point-of-view", destination: "/blog", permanent: true },
+      { source: "/beyond-sight", destination: "/blog", permanent: true },
+      { source: "/exploring-the-world-of-aba", destination: "/blog", permanent: true },
+      { source: "/how-art-transforms-us", destination: "/blog", permanent: true },
+      { source: "/how-to-fight-for-your-childs-iep-a-guide-from-someone-whos-been-there", destination: "/blog", permanent: true },
+      { source: "/the-contribution-of-psychology-to-child-development", destination: "/blog", permanent: true },
+      { source: "/where-art-meets-science-a-holistic-approach-to-supporting-neurodivergent-children-and-youth", destination: "/blog", permanent: true },
+      { source: "/in-the-media", destination: "/blog", permanent: true },
+
+      // Páginas de la fundación, en inglés
+      { source: "/artists-with-disabilities", destination: "/about", permanent: true },
+      { source: "/the-abart-intervention-model", destination: "/about", permanent: true },
+      { source: "/art-in-action-522/our-instructors", destination: "/about", permanent: true },
+      { source: "/testimonials", destination: "/about", permanent: true },
+      { source: "/events", destination: "/about", permanent: true },
+      { source: "/creative-sessions", destination: "/classes", permanent: true },
+      { source: "/workshops", destination: "/classes", permanent: true },
+      { source: "/adult-open-studio-art-therapy-group-2025", destination: "/classes", permanent: true },
+      { source: "/parents-caregivers", destination: "/classes", permanent: true },
+      { source: "/photo-galleries", destination: "/store", permanent: true },
+      { source: "/gallery-art-in-action", destination: "/store", permanent: true },
+      { source: "/student-creations", destination: "/store", permanent: true },
+
+      // Artículos del blog, en español
+      { source: "/es/como-el-arte-nos-transforma", destination: "/es/blog", permanent: true },
+      { source: "/es/como-luchar-por-el-iep-de-tu-hijo", destination: "/es/blog", permanent: true },
+      { source: "/es/donde-el-arte-se-encuentra-con-la-ciencia-un-enfoque-integral-para-apoyar-a-ninos-y-jovenes-neurodivergentes", destination: "/es/blog", permanent: true },
+      { source: "/es/la-contribucion-de-la-psicologia-al-desarrollo-infantil", destination: "/es/blog", permanent: true },
+      { source: "/es/mas-alla-de-la-vista", destination: "/es/blog", permanent: true },
+      { source: "/es/otro-punto-de-vista", destination: "/es/blog", permanent: true },
+      { source: "/es/un-vistazo-a-nuestro-evento-de-arte-y-teatro-del-4-de-mayo", destination: "/es/blog", permanent: true },
+      { source: "/es/en-los-medios", destination: "/es/blog", permanent: true },
+
+      // Páginas de la fundación, en español
+      { source: "/es/artistas-con-discapacidad", destination: "/es/about", permanent: true },
+      { source: "/es/modelo-de-intervencion-abart", destination: "/es/about", permanent: true },
+      // El slug en inglés dentro del árbol español. Existe indexado así.
+      { source: "/es/the-abart-intervention-model", destination: "/es/about", permanent: true },
+      { source: "/es/nuestros-instructores", destination: "/es/about", permanent: true },
+      { source: "/es/testimonios", destination: "/es/about", permanent: true },
+      { source: "/es/eventos-comunitarios", destination: "/es/about", permanent: true },
+      { source: "/es/sesiones-creativas", destination: "/es/classes", permanent: true },
+      { source: "/es/terapia-de-arte-para-adultos-2025", destination: "/es/classes", permanent: true },
+      { source: "/es/padres-cuidadores", destination: "/es/classes", permanent: true },
+      { source: "/es/galerias-de-fotos", destination: "/es/store", permanent: true },
+      { source: "/es/creaciones-de-estudiantes", destination: "/es/store", permanent: true },
+
       // — Ruido del tema de WordPress: no se migra —
       { source: "/responsive_slider/:path*", destination: "/", permanent: true },
       { source: "/slide-types/:path*", destination: "/", permanent: true },

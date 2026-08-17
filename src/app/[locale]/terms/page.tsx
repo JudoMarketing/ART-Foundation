@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { type Locale } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { TERMS, TERMS_VERSION } from "@/content/terms";
 
 export async function generateMetadata({
@@ -10,6 +11,7 @@ export async function generateMetadata({
   const { locale } = await params;
   return {
     title: locale === "es" ? "Términos y condiciones" : "Terms and conditions",
+    alternates: alternatesFor(locale as Locale, "/terms"),
   };
 }
 

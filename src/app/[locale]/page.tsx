@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Locale } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { t } from "@/content/copy";
 import { fin } from "@/content/forms";
 import { CLASSES, CLASS_DAY, ORG } from "@/content/site";
@@ -55,6 +57,20 @@ function hour(hhmm: string, locale: Locale) {
  */
 const COINS = [0, 1.2, 2.4, 3.6, 4.8];
 const COIN_RESTING = ["6%", "26%", "46%", "66%", "86%"];
+
+/**
+ * El título y la descripción de la portada los pone el layout, que es donde
+ * viven los de por defecto. Acá va solo el canónico, porque el canónico no se
+ * puede heredar: cada página tiene el suyo.
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return { alternates: alternatesFor(locale as Locale, "/") };
+}
 
 export default async function HomePage({
   params,

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { type Locale } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { p } from "@/content/pages";
 import { t } from "@/content/copy";
 import { OBRA } from "@/content/obra";
@@ -15,7 +16,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const c = p(locale as Locale);
-  return { title: c.blog.metaTitle, description: c.blog.metaDesc };
+  return {
+    title: c.blog.metaTitle,
+    description: c.blog.metaDesc,
+    alternates: alternatesFor(locale as Locale, "/blog"),
+  };
 }
 
 export default async function BlogPage({

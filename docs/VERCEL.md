@@ -25,6 +25,7 @@ Dos cosas distintas que se suelen confundir:
 | `NEXT_PUBLIC_JUDO_STATUS_URL` | Production, Preview | `https://ajsuskyeatgatbubctzl.supabase.co` |
 | `JUDO_ANON_KEY` | Production, Preview | La anon key de Supabase. |
 | `NEXT_PUBLIC_HERO_VIDEO_URL` | Production, Preview | Dirección del video de portada. Vacía, la portada usa el archivo del repositorio. Ver `docs/VIDEO-PORTADA.md`. |
+| `NEXT_PUBLIC_SITE_URL` | Production | La dirección donde el sitio vive de verdad, sin barra al final. Por defecto es `https://artfoundation-x-pwd.com`. **Solo hace falta mientras el sitio esté en una dirección de borrador**: ahí se pone la de borrador, y con eso los canónicos apuntan a donde el sitio realmente está y `robots.txt` prohíbe la indexación, para que la copia no le compita al sitio real. Ver `docs/DOMINIO.md`. |
 | `RESEND_API_KEY` | Production, Preview | Clave de [resend.com](https://resend.com/api-keys). **Sin ella el formulario de voluntariado no envía nada**: la persona llena todo, le da a enviar, y ve el teléfono de la fundación como salida. |
 | `EMAIL_FROM` | Production, Preview | Remitente de los correos. Tiene que ser de un dominio verificado en Resend, p. ej. `web@artfoundation-x-pwd.com`. Un remitente sin verificar hace que los correos caigan en spam o se rechacen. |
 

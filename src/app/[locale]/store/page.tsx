@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { type Locale } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { p } from "@/content/pages";
 import { OBRA, disponibles, vendidas } from "@/content/obra";
 import { ORG } from "@/content/site";
@@ -15,7 +16,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const c = p(locale as Locale);
-  return { title: c.store.metaTitle, description: c.store.metaDesc };
+  return {
+    title: c.store.metaTitle,
+    description: c.store.metaDesc,
+    alternates: alternatesFor(locale as Locale, "/store"),
+  };
 }
 
 export default async function StorePage({

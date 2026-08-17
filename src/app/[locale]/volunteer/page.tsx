@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { type Locale } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { p } from "@/content/pages";
 import { ORG } from "@/content/site";
 import {
@@ -20,7 +21,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const c = p(locale as Locale);
-  return { title: c.volunteer.metaTitle, description: c.volunteer.metaDesc };
+  return {
+    title: c.volunteer.metaTitle,
+    description: c.volunteer.metaDesc,
+    alternates: alternatesFor(locale as Locale, "/volunteer"),
+  };
 }
 
 export default async function VolunteerPage({

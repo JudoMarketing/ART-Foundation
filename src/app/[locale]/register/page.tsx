@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { localePath, type Locale } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { p } from "@/content/pages";
 import { ORG } from "@/content/site";
 import {
@@ -19,7 +20,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const c = p(locale as Locale);
-  return { title: c.register.metaTitle, description: c.register.metaDesc };
+  return {
+    title: c.register.metaTitle,
+    description: c.register.metaDesc,
+    alternates: alternatesFor(locale as Locale, "/register"),
+  };
 }
 
 export default async function RegisterPage({

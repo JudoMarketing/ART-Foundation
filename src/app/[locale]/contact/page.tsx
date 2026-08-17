@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { type Locale } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { p } from "@/content/pages";
 import { CLASSES, CLASS_DAY, ORG } from "@/content/site";
 import { CLASS_ICONS, IconFacebook, IconInstagram } from "@/components/ArtIcons";
@@ -12,7 +13,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const c = p(locale as Locale);
-  return { title: c.contact.metaTitle, description: c.contact.metaDesc };
+  return {
+    title: c.contact.metaTitle,
+    description: c.contact.metaDesc,
+    alternates: alternatesFor(locale as Locale, "/contact"),
+  };
 }
 
 function hour(hhmm: string, locale: Locale) {

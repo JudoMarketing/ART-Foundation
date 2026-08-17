@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Locale } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { p } from "@/content/pages";
 import { ORG } from "@/content/site";
 import { OBRA } from "@/content/obra";
@@ -21,7 +22,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const c = p(locale as Locale);
-  return { title: c.about.metaTitle, description: c.about.metaDesc };
+  return {
+    title: c.about.metaTitle,
+    description: c.about.metaDesc,
+    alternates: alternatesFor(locale as Locale, "/about"),
+  };
 }
 
 export default async function AboutPage({

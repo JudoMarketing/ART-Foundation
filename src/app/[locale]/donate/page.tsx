@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { type Locale } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { p } from "@/content/pages";
 import { t } from "@/content/copy";
 import { FL_DISCLOSURE, ORG, formatPrice } from "@/content/site";
@@ -30,7 +31,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const c = p(locale as Locale);
-  return { title: c.donate.metaTitle, description: c.donate.metaDesc };
+  return {
+    title: c.donate.metaTitle,
+    description: c.donate.metaDesc,
+    alternates: alternatesFor(locale as Locale, "/donate"),
+  };
 }
 
 const COINS = [0, 1.2, 2.4, 3.6, 4.8];

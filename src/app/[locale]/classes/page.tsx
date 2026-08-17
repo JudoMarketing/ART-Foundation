@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { localePath, type Locale } from "@/lib/i18n";
+import { alternatesFor } from "@/lib/seo";
 import { p } from "@/content/pages";
 import { fin } from "@/content/forms";
 import { t } from "@/content/copy";
@@ -21,7 +22,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const c = p(locale as Locale);
-  return { title: c.classes.metaTitle, description: c.classes.metaDesc };
+  return {
+    title: c.classes.metaTitle,
+    description: c.classes.metaDesc,
+    alternates: alternatesFor(locale as Locale, "/classes"),
+  };
 }
 
 function hour(hhmm: string, locale: Locale) {
