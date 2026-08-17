@@ -35,7 +35,17 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       // Los formularios ya van con `noindex` en su propia página, pero eso
       // Google lo aprende recién después de entrar. Acá no entra.
-      disallow: ["/api/", "/register/apply", "/volunteer/apply", "/classes/financing"],
+      //
+      // `/admin` va con las dos protecciones a la vez y no es exceso: el
+      // robots pide que no entren, y el `noindex` del portal es lo que vale
+      // si alguien entró igual. Adentro hay datos de familias y de menores.
+      disallow: [
+        "/api/",
+        "/admin",
+        "/register/apply",
+        "/volunteer/apply",
+        "/classes/financing",
+      ],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,

@@ -54,5 +54,17 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: "/((?!api|_next|favicon.ico).*)",
+  /**
+   * `/admin` queda afuera, y por dos motivos distintos.
+   *
+   * El del idioma: el portal no vive bajo `/[locale]`, tiene su propio marco
+   * y su propio idioma guardado en una galleta. Si pasara por acá, `/admin`
+   * se reescribiría a `/en/admin`, que no existe, y el portal daría 404.
+   *
+   * El del kill switch: cuando el sitio está apagado, el portal tiene que
+   * seguir abriendo. Es justo el momento en que Mónica más necesita entrar a
+   * ver qué pasó, y dejarla afuera de sus propios datos porque el sitio
+   * público está en pausa no tiene ningún sentido.
+   */
+  matcher: "/((?!api|_next|admin|favicon.ico).*)",
 };

@@ -131,6 +131,33 @@ No bloquean nada hoy. Las dejo escritas para no olvidarlas.
 
 ---
 
+## 🔵 Portal del administrador (`/admin`)
+
+El borrador visual está construido y se puede recorrer entero. Lo que falta
+para que sea un portal de verdad, en orden de peso:
+
+1. **Base de datos.** No hay ninguna. Hoy los tres formularios llegan por
+   correo y no se guardan en ningún lado, así que el portal no tiene de dónde
+   leer. Todo lo demás de esta lista depende de esto.
+2. **Cuentas por persona, en vez de una clave compartida.** Lo que hay ahora
+   es una sola clave para todos, que alcanza para un borrador y para una
+   persona. Un portal con datos de menores adentro necesita: una cuenta por
+   persona, contraseña que solo su dueño conoce, segundo factor, y registro de
+   quién miró qué. Sin eso, si un dato se filtra no hay forma de saber por
+   dónde salió.
+3. **El PDF de la carta de recomendación**, con sus campos marcados. Lo tiene
+   que dar la fundación. Sin él no hay nada que firmar.
+4. **Confirmar quién entra al portal.** Hoy arranca en español porque quien lo
+   usa es Mónica. Si va a entrar alguien más, decirlo: el idioma se cambia con
+   un botón, pero conviene saber para quién se escribe.
+5. **Decidir qué cuenta como "voluntario activo"** en el panel. ¿El que tiene
+   horas cargadas este mes, o el que está aceptado aunque no haya venido?
+
+**Lo que el portal NO va a hacer, por pedido del dueño:** mandar métricas al
+panel de Judo. Las cifras de la fundación se ven acá y en ningún otro lado.
+
+---
+
 ## Autocrítica del diseño
 
 Las tres de la ronda anterior están resueltas:
