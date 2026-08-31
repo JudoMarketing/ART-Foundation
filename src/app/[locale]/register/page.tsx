@@ -53,21 +53,18 @@ export default async function RegisterPage({
           <ol className="mt-14 grid gap-6 sm:grid-cols-2">
             {c.steps.map((step, i) => {
               const Icon = stepIcons[i];
-              const border = ["border-brand", "border-sky", "border-leaf", "border-sun"][i];
-              const fill = ["bg-brand-solid", "bg-sky", "bg-leaf", "bg-sun"][i];
-              const onFill = ["text-paper", "text-ink", "text-ink", "text-ink"][i];
               return (
                 <li
                   key={step.title}
-                  className={`icon-play card card-lift flex gap-6 rounded-[--radius-card] border-2 ${border} bg-paper p-8`}
+                  className="card card-lift flex gap-6 rounded-[--radius-card] bg-paper p-8"
                 >
-                  <span aria-hidden="true" className="shrink-0">
-                    <Icon className="h-20 w-20" />
+                  <span aria-hidden="true" className="icono-sobrio shrink-0 text-ink-soft">
+                    <Icon className="h-11 w-11" />
                   </span>
                   <div>
                     <span
                       aria-hidden="true"
-                      className={`inline-flex h-8 w-8 items-center justify-center rounded-full ${fill} ${onFill} text-sm font-bold`}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper"
                     >
                       {i + 1}
                     </span>
@@ -87,7 +84,7 @@ export default async function RegisterPage({
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <div className="card rounded-[--radius-card] bg-paper p-10">
             <span aria-hidden="true" className="block">
-              <IconTicket className="h-16 w-16" />
+              <IconTicket className="h-10 w-10" />
             </span>
             <h2 className="mt-5 text-3xl font-bold sm:text-4xl">{c.formTitle}</h2>
             <p className="mt-4 max-w-2xl text-lg text-ink-soft">{c.formBody}</p>

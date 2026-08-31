@@ -120,7 +120,7 @@ export default async function VoluntariosPage() {
       <p className="mt-4 max-w-3xl text-sm text-ink-soft">{c.colaNota}</p>
 
       {/* La carta de recomendación, que es lo que el voluntario se lleva. */}
-      <section className="mt-14 rounded-[--radius-card] border-2 border-line bg-paper p-8">
+      <section className="mt-14 rounded-[--radius-card] border border-line bg-paper p-8">
         <span aria-hidden="true" className="block">
           <IconCertificate className="h-14 w-14" />
         </span>

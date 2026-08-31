@@ -83,7 +83,7 @@ export default async function ContactPage({
           hora de auto con un niño en el asiento de atrás. */}
       <section className="paper-grain bg-paper">
         <div className="mx-auto grid max-w-6xl gap-6 px-4 py-24 sm:px-6 lg:grid-cols-2">
-          <article className="card card-lift rounded-[--radius-card] border-2 border-brand bg-paper p-8">
+          <article className="card card-lift rounded-[--radius-card] bg-paper p-8">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-ink">
               {c.venueTitle} · {CLASS_DAY[locale]}
             </p>
@@ -110,7 +110,7 @@ export default async function ContactPage({
             </a>
           </article>
 
-          <article className="card card-lift rounded-[--radius-card] border-2 border-line bg-paper p-8">
+          <article className="card card-lift rounded-[--radius-card] bg-paper p-8">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-ink-soft">
               {c.officeTitle}
             </p>
@@ -150,7 +150,7 @@ export default async function ContactPage({
                   className="icon-play flex items-center gap-4 rounded-[--radius-card] bg-paper/10 px-6 py-5 text-paper ring-1 ring-inset ring-white/25"
                 >
                   <span aria-hidden="true" className="text-paper">
-                    <Icon className="h-12 w-12" />
+                    <Icon className="h-8 w-8" />
                   </span>
                   <span>
                     <span className="block text-lg font-bold">{k[locale].name}</span>

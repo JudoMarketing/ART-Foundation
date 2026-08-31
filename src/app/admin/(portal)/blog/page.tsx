@@ -52,7 +52,7 @@ export default async function BlogAdminPage() {
       {/* El editor. Los campos están puestos y desactivados: es más fácil
           decir "falta la categoría" mirando el formulario que leyendo una
           lista de campos en un documento. */}
-      <section className="mt-14 rounded-[--radius-card] border-2 border-line bg-paper p-8">
+      <section className="mt-14 rounded-[--radius-card] border border-line bg-paper p-8">
         <h2 className="text-2xl font-bold">{c.editorTitle}</h2>
         <p className="mt-2 text-ink-soft">{c.editorNota}</p>
 
@@ -98,7 +98,7 @@ function Campo({ etiqueta, lineas = 1 }: { etiqueta: string; lineas?: number }) 
       <span className="block text-base font-bold">{etiqueta}</span>
       <span
         aria-hidden="true"
-        className="mt-2 block rounded-[--radius-card] border-2 border-line bg-paper-warm"
+        className="mt-2 block rounded-[--radius-card] border border-line bg-paper-warm"
         style={{ height: `${lineas * 1.75 + 1.5}rem` }}
       />
     </p>

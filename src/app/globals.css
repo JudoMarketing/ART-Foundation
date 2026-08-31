@@ -7,7 +7,31 @@
    color y se corrigió lo que no pasa WCAG 2.2 AA. Nada de esto es decorativo:
    este sitio lo van a usar personas con baja visión y con lectores de pantalla.
 
-   Medición del magenta de marca #eb008b:
+   ── Segunda vuelta: por qué el sitio se veía infantil ─────────────────────
+   El primer borrador usaba estos mismos colores como SUPERFICIE: secciones
+   enteras de magenta a sangre, bloques de cian, verde y naranja uno al lado
+   del otro, bordes de 2px de un color distinto por tarjeta, y botones en
+   forma de píldora de cuatro colores en la misma pantalla.
+
+   Cada decisión por separado era defendible. Juntas daban una sola lectura, y
+   no era la que la fundación quiere: cuatro colores saturados peleando en una
+   pantalla es el lenguaje de un jardín de infantes, y este sitio también lo
+   miran adultos que están decidiendo dónde poner su dinero y padres que
+   deciden dónde dejar a su hijo.
+
+   La regla nueva, y es una sola:
+
+     **El color de marca es ACENTO, nunca superficie.**
+
+   Las superficies son tres y todas neutras: papel, papel cálido y tinta. El
+   magenta aparece en cosas chicas y cargadas de sentido, un rótulo, una
+   línea, el botón principal, un subrayado. El color grande de la página lo
+   pone la obra de los estudiantes, que para eso está.
+
+   Lo que se ganó con eso: la obra ahora resalta. Antes competía contra un
+   fondo magenta y perdía.
+
+   ── Medición del magenta de marca #eb008b ────────────────────────────────
      · sobre blanco          → 4.28:1   FALLA texto normal (pide 4.5)
      · sobre tinta #161922   → 4.10:1   FALLA texto normal
      · blanco encima de él   → 4.28:1   FALLA texto normal
@@ -62,24 +86,71 @@
   --color-was: #c81e2b;          /* precio anterior   →  5.71:1 sobre blanco */
   --color-now: #1f7a34;          /* precio con rebaja →  5.40:1              */
 
-  /* — Neutros ——————————————————————————————————————————————— */
+  /* — Neutros ———————————————————————————————————————————————
+     Estos tres son ahora las ÚNICAS superficies grandes del sitio. Toda
+     sección es papel, papel cálido o tinta. Nada más. El ritmo de la página
+     sale de alternarlos y del aire entre ellos, no de cambiar de color. */
   --color-ink: #161922;          /* texto principal   → 17.55:1 sobre blanco */
   --color-ink-soft: #4b5163;     /* texto secundario  →  7.91:1              */
-  --color-line: #d9dce4;         /* separadores: decorativos, 1.37:1         */
+  --color-line: #e4e1da;         /* filete de 1px: decorativo, cálido        */
   --color-paper: #ffffff;
-  --color-paper-warm: #faf7f2;
+  --color-paper-warm: #f6f3ed;
 
-  /* — Tipografía ——————————————————————————————————————————— */
-  /* Domine es la del sitio actual: serif, con carácter, legible en títulos.
-     Para el cuerpo va una sans de sistema, más legible en pantalla, cero
-     descarga, y menos fatiga para quien lee despacio. */
-  --font-display: Domine, Georgia, "Times New Roman", serif;
-  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
-
-  /* — Ritmo ————————————————————————————————————————————————— */
-  --radius-card: 1.25rem;
+  /* — Ritmo —————————————————————————————————————————————————
+     Las esquinas bajaron de 20px a 6px. Veinte píxeles de redondeo es la
+     forma de una app de juegos; seis es la de un documento. La píldora se
+     queda solo para las cosas chicas y sueltas que de verdad son píldoras:
+     las etiquetas de estado y los interruptores de idioma. */
+  --radius-card: 0.5rem;
+  --radius-sm: 0.375rem;
   --radius-pill: 999px;
+}
+
+/* ============================================================================
+   Tipografía
+   ----------------------------------------------------------------------------
+   Cambió, y es el cambio que más se nota.
+
+   Antes: Domine para todo lo que fuera título. Es una serif de bloque,
+   redondeada y amable, del tipo que usan las editoriales infantiles. Sumada al
+   color plano, empujaba en la misma dirección equivocada.
+
+   Ahora son dos, y cada una hace un trabajo:
+
+   · **Instrument Serif** para los títulos grandes. Serif de contraste alto, de
+     trazo fino, del linaje de las revistas y los museos. En tamaño grande se
+     lee como algo hecho por alguien que sabe.
+   · **Inter** para todo lo demás. Es la sans más legible que hay en pantalla y
+     por eso lleva el cuerpo, la interfaz, los formularios y los títulos
+     chicos. Nada que haya que leer despacio va en serif.
+
+   La serif tiene un solo peso, el normal, y eso es a propósito: un título
+   grande en peso normal se ve tranquilo, uno en negrita se ve gritando.
+   ========================================================================== */
+
+/* ── El bloque de las fuentes tiene que ser `inline` ──────────────────────
+   Los nombres reales de las familias los inventa `next/font` al compilar y
+   los deja en `--font-instrument-serif` y `--font-inter`. Se usan a través de
+   esas variables y no por nombre: así las fuentes se sirven desde el mismo
+   dominio del sitio y el navegador de quien visita no le pide nada a Google.
+
+   ⚠️ Y va en `@theme inline`, separado del bloque de arriba. Esto costó una
+   compilación entera:
+
+   Un `@theme` normal guarda el valor tal cual y lo resuelve él. Si adentro
+   hay un `var()` que apunta a algo que Tailwind no conoce, no falla con un
+   error, **se cae el bloque completo en silencio**. Eso fue exactamente lo
+   que pasó: por meter dos `var()` de tipografía acá arriba, el sitio se quedó
+   sin `bg-ink`, sin `text-paper` y sin ningún color de la marca, y las
+   páginas salieron blancas con el texto blanco encima.
+
+   `inline` le dice a Tailwind que no intente resolverlo, que copie la
+   referencia tal cual en la utilidad. Con eso el `var()` se resuelve en el
+   navegador, que es quien sí conoce la variable. */
+@theme inline {
+  --font-display: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto,
+    sans-serif;
 }
 
 /* ============================================================================
@@ -130,10 +201,57 @@ body {
   text-wrap: pretty;
 }
 
-h1, h2, h3, h4 {
+/* ── La escala de títulos ────────────────────────────────────────────────
+   Dos familias y un corte claro entre ellas:
+
+   · h1 y h2 son los títulos GRANDES de cada sección. Van en la serif, en peso
+     normal, con el interletrado apretado. El interletrado negativo es el
+     detalle que más separa un título moderno de uno que no lo es: por defecto
+     las letras vienen espaciadas para tamaños de lectura, y a 60px ese mismo
+     espacio se ve suelto y blando.
+
+   · h3 y h4 son títulos de tarjeta y de bloque, de 18 a 28px. Van en la sans
+     en semi negrita. Una serif fina a 20px se ve endeble y, más importante,
+     se lee peor.
+
+   `font-synthesis: none` es lo que hace que esto no se rompa: la serif trae
+   un solo peso, y sin esta línea el navegador le INVENTA una negrita
+   engordando el trazo cuando encuentra una clase `font-bold`. Esa negrita
+   falsa es exactamente el aspecto barato que estamos sacando. Con la regla
+   puesta, el navegador usa el peso que existe y `font-bold` no hace daño. */
+h1, h2 {
   font-family: var(--font-display);
-  line-height: 1.15;
+  font-weight: 400;
+  font-synthesis: none;
+  letter-spacing: -0.025em;
+  line-height: 1.03;
   text-wrap: balance;
+}
+
+h3, h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: -0.011em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+/* La misma protección para cuando la serif se usa suelta, fuera de un
+   título: una cifra grande, un precio, un número de destaque. */
+.font-display {
+  font-synthesis: none;
+  letter-spacing: -0.02em;
+}
+
+/* ── Los rótulos ───────────────────────────────────────────────────────────
+   El textito en mayúsculas y espaciado que va arriba de cada título. Estaba
+   repetido a mano en catorce páginas con medidas apenas distintas en cada
+   una. Acá se define una vez y se ve igual en todas. */
+.rotulo {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 /* Los enlaces dentro de texto van subrayados. Sin subrayado, quien no
@@ -204,52 +322,66 @@ a.link:hover {
    para quien pidió que no se moviera.
    ========================================================================== */
 
-/* — Fondo de la portada: manchas de pintura que respiran ——————————— */
-/* Las manchas van a intensidad casi plena. Se puede: el velo oscuro de
-   encima deja el blanco del texto en 6.8:1 como mínimo, medido contra las
-   cuatro manchas a tope (ver docs/MARCA.md). Diluirlas no protegía a nadie,
-   solo apagaba la portada. */
+/* — Fondo de la portada, detrás del video ————————————————————————
+   Eran cuatro manchas de pintura, una de cada color de la marca, respirando
+   en bucle. Cuatro colores saturados moviéndose es el salvapantallas de una
+   computadora de los noventa, y era lo primero que veía cualquiera que
+   entrara con la conexión lenta.
+
+   Ahora son dos manchas del mismo tono, muy oscuras, sobre tinta. Cumple el
+   trabajo que de verdad tenía que cumplir, que el video no aparezca sobre un
+   rectángulo negro muerto, sin pretender ser el espectáculo.
+
+   Sigue respirando, más despacio y con mucho menos recorrido: a esta
+   intensidad no se percibe como movimiento sino como profundidad. */
 .hero-blobs {
   background:
-    radial-gradient(42rem 34rem at 10% 20%, color-mix(in oklab, var(--color-brand) 95%, transparent), transparent 65%),
-    radial-gradient(38rem 32rem at 84% 26%, color-mix(in oklab, var(--color-sky) 92%, transparent), transparent 65%),
-    radial-gradient(34rem 30rem at 66% 84%, color-mix(in oklab, var(--color-leaf) 88%, transparent), transparent 65%),
-    radial-gradient(28rem 26rem at 26% 90%, color-mix(in oklab, var(--color-sun) 88%, transparent), transparent 65%);
-  filter: saturate(1.2);
+    radial-gradient(48rem 38rem at 18% 22%, color-mix(in oklab, var(--color-brand) 26%, transparent), transparent 68%),
+    radial-gradient(44rem 36rem at 82% 78%, color-mix(in oklab, var(--color-sky) 20%, transparent), transparent 68%),
+    var(--color-ink);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-blobs {
-    animation: respirar 22s ease-in-out infinite alternate;
+    animation: respirar 34s ease-in-out infinite alternate;
   }
 }
 
 @keyframes respirar {
   from { transform: scale(1) translate3d(0, 0, 0); }
-  to   { transform: scale(1.12) translate3d(-1.5%, -1.5%, 0); }
+  to   { transform: scale(1.06) translate3d(-1%, -1%, 0); }
 }
 
-/* — Papel: una textura muy leve para que el blanco no se vea plano ——— */
+/* — Papel ————————————————————————————————————————————————————
+   Acá había una trama de puntitos cada 22px sobre los fondos claros. La idea
+   era "que el blanco no se vea plano". El problema es que una trama de puntos
+   regulares es papel de cuaderno, y encima le quitaba silencio a la página:
+   sobre un fondo con textura, el aire deja de leerse como aire.
+
+   El blanco plano no es un defecto que haya que tapar. Es el material con el
+   que trabajan los museos y las revistas, y es lo que hace que la obra de los
+   estudiantes se vea. La clase se queda declarada y sin efecto para no tener
+   que sacarla de veintidós lugares, y para que quede escrito por qué. */
 .paper-grain {
-  background-image:
-    radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--color-ink) 7%, transparent) 1px, transparent 0);
-  background-size: 22px 22px;
+  background-image: none;
 }
 
 /* — Tarjetas que responden ————————————————————————————————————————
-   El levantamiento es de 4px y la sombra crece: suficiente para que se
-   sienta, poco para que no maree. Y el borde se tiñe del color de la
-   tarjeta, que es la señal que de verdad se lee. */
+   Bajó de 4px a 2px y la sombra se volvió mucho más discreta. Cuatro píxeles
+   de salto con una sombra grande es el gesto de una tarjeta de videojuego: se
+   nota más el movimiento que la tarjeta. Dos píxeles y una sombra apenas
+   perceptible se sienten igual con el ratón encima y no llaman la atención
+   sobre sí mismos. */
 .card-lift {
   transition:
-    transform 0.22s cubic-bezier(0.2, 0.8, 0.3, 1),
-    box-shadow 0.22s ease,
-    border-color 0.22s ease;
+    transform 0.2s cubic-bezier(0.2, 0.8, 0.3, 1),
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 .card-lift:hover,
 .card-lift:focus-within {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 34px -12px color-mix(in oklab, var(--color-ink) 40%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px -16px color-mix(in oklab, var(--color-ink) 45%, transparent);
 }
 
 /* — Los vectores cobran vida al pasar por encima ————————————————— */
@@ -480,21 +612,109 @@ a.link:hover {
   }
 }
 
-/* — La pared de la galería de la tienda ——————————————————————————— */
+/* — La pared de la galería de la tienda ———————————————————————————
+   Era un lavado naranja. Una pared de galería no es naranja en ningún museo
+   del mundo, y por un motivo práctico antes que estético: cualquier color en
+   la pared se le mete al cuadro y le cambia los suyos. Ahora es el papel
+   cálido con una sombra muy leve arriba, que es lo que hace una pared de
+   verdad iluminada desde el techo. */
 .gallery-wall {
   background:
-    radial-gradient(
-      120% 80% at 50% 0%,
-      color-mix(in srgb, var(--color-sun) 22%, transparent),
-      transparent 70%
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-ink) 6%, transparent),
+      transparent 22rem
     ),
-    var(--color-sun-soft);
+    var(--color-paper-warm);
 }
 
-/* — Borde recortado, como papel rasgado ——————————————————————————— */
+/* — El borde rasgado, que ya no rasga ————————————————————————————
+   Era un `clip-path` que le daba a cinco secciones un borde superior
+   ondulado, como papel arrancado a mano. Combinado con el magenta a sangre
+   que llevaban esas mismas secciones, era la imagen más infantil del sitio.
+
+   Ahora el corte entre secciones es recto, y la separación la da el cambio de
+   fondo y el aire. Un corte recto entre un fondo claro y uno de tinta se ve
+   deliberado; uno ondulado se ve hecho con tijera.
+
+   Se gana algo más, y no es menor: el `clip-path` convertía a la sección en
+   bloque contenedor de sus hijos posicionados, y por eso la barra flotante
+   del móvil desaparecía y hubo que sacarla a un portal. Sin recorte, ese
+   problema deja de existir. */
 .torn-top {
-  clip-path: polygon(
-    0 12px, 6% 4px, 14% 14px, 23% 2px, 33% 12px, 44% 3px, 55% 13px,
-    66% 4px, 76% 14px, 86% 3px, 94% 12px, 100% 5px, 100% 100%, 0 100%
-  );
+  clip-path: none;
+}
+
+/* ============================================================================
+   Correcciones de forma, sin capa
+   ----------------------------------------------------------------------------
+   Este bloque va FUERA de toda `@layer` a propósito, y esa es toda su gracia.
+
+   En la cascada de CSS, lo que está sin capa gana sobre lo que está en una
+   capa. Tailwind mete sus utilidades en `@layer utilities`, así que una regla
+   de acá le gana a `rounded-full` sin usar `!important` y sin tener que
+   editar sesenta y cinco clases repartidas en catorce archivos.
+
+   Es el lugar correcto para una decisión de SISTEMA (todos los botones tienen
+   esta forma). No es el lugar para una excepción de una página: eso va en la
+   página, donde se ve.
+   ========================================================================== */
+
+/* — Los botones ——————————————————————————————————————————————
+   Todos eran píldoras completas. Una píldora sola está bien; siete píldoras
+   en la misma pantalla, tres de ellas de colores distintos, es una botonera
+   de juguete. Seis píxeles de redondeo se lee como un control, no como un
+   caramelo. */
+.btn {
+  border-radius: var(--radius-sm);
+}
+
+/* — Las tarjetas ——————————————————————————————————————————————
+   Sombra apenas insinuada más un filete de 1px. Antes muchas tarjetas
+   llevaban borde de 2px de un color distinto cada una (rosa, cian, naranja,
+   verde, las cuatro seguidas). Eso convertía una fila de tarjetas en una caja
+   de lápices. El filete neutro las agrupa, que es lo que una fila de tarjetas
+   tiene que decir: estas cuatro cosas son del mismo tipo. */
+.card {
+  border: 1px solid var(--color-line);
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--color-ink) 5%, transparent);
+}
+
+/* — Los iconos, en un solo color ————————————————————————————————
+   Los veintisiete vectores estaban dibujados con `var(--color-brand)`,
+   `var(--color-sky)` y compañía adentro. A ochenta píxeles y en fila, eran
+   ilustraciones de cuatro colores, o sea imágenes prediseñadas.
+
+   La primera versión de esta regla redefinía esas variables dentro del icono.
+   No servía, y el motivo vale anotarlo: los vectores usan `--color-ink` para
+   las LÍNEAS y también para algunos RELLENOS. Al mapear la variable a un solo
+   valor, las líneas quedaban bien y los rellenos se volvían manchas negras
+   macizas. El reloj de "cancelar cuando quieras" salía como un círculo negro.
+
+   Esta versión no toca las variables: separa por lo que de verdad distingue
+   una línea de una mancha, que es el atributo. Todo lo que tenga relleno pasa
+   a ser un velo del color del texto; todo lo que tenga trazo pasa al color
+   del texto pleno. El resultado es un juego de iconos de dos tonos del mismo
+   color, que se tiñe solo según dónde esté puesto.
+
+   `:not([fill="none"])` está para no rellenar lo que el dibujo declaró
+   explícitamente hueco: sin eso, las figuras de contorno se llenan solas. */
+svg.icono-sobrio [fill]:not([fill="none"]) {
+  fill: color-mix(in oklab, currentColor 15%, transparent);
+}
+
+svg.icono-sobrio [stroke]:not([stroke="none"]) {
+  stroke: currentColor;
+}
+
+/* En alto contraste de Windows los rellenos por porcentaje desaparecen y el
+   icono se quedaría solo con su contorno. Está bien que así sea: el contorno
+   es la figura, y el relleno era el matiz. */
+@media (forced-colors: active) {
+  svg.icono-sobrio [fill]:not([fill="none"]) {
+    fill: Canvas;
+  }
+  svg.icono-sobrio [stroke]:not([stroke="none"]) {
+    stroke: CanvasText;
+  }
 }

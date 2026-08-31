@@ -45,7 +45,7 @@ export default async function BlogPage({
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <div className="flex flex-wrap items-start gap-8">
             <span aria-hidden="true" className="text-paper/70">
-              <IconBlog className="h-20 w-20" />
+              <IconBlog className="h-11 w-11" />
             </span>
             <div className="min-w-[16rem] flex-1">
               <h2 className="text-3xl font-bold text-paper sm:text-4xl">
@@ -81,7 +81,7 @@ export default async function BlogPage({
           <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {OBRA.slice(0, 6).map((pieza) => (
               <li key={pieza.slug}>
-                <div className="aspect-square overflow-hidden rounded-[--radius-card] border-2 border-line">
+                <div className="aspect-square overflow-hidden rounded-[--radius-card] border border-line">
                   <Image
                     src={`/obra/${pieza.slug}.webp`}
                     alt={pieza.alt[locale]}

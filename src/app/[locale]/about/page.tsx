@@ -68,16 +68,15 @@ export default async function AboutPage({
           <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {c.pillars.map((pillar, i) => {
               const Icon = pillarIcons[i];
-              const border = ["border-brand", "border-sky", "border-sun", "border-leaf"][i];
               return (
                 <li
                   key={pillar.title}
-                  className={`icon-play card card-lift rounded-[--radius-card] border-2 ${border} bg-paper p-7`}
+                  className="card card-lift rounded-[--radius-card] bg-paper p-7"
                 >
-                  <span aria-hidden="true" className="block">
-                    <Icon className="h-20 w-20" />
+                  <span aria-hidden="true" className="icono-sobrio block text-ink-soft">
+                    <Icon className="h-11 w-11" />
                   </span>
-                  <h3 className="mt-5 text-2xl font-bold">{pillar.title}</h3>
+                  <h3 className="mt-6 text-xl">{pillar.title}</h3>
                   <p className="mt-3 text-ink-soft">{pillar.body}</p>
                 </li>
               );
@@ -88,8 +87,8 @@ export default async function AboutPage({
 
       {/* El fundador y el modelo, uno al lado del otro, con obra al costado
           para que la página no sea dos cajas de texto seguidas. */}
-      <section className="torn-top relative bg-brand-solid">
-        <div className="mx-auto grid max-w-6xl items-start gap-6 px-4 py-24 sm:px-6 lg:grid-cols-2">
+      <section className="relative bg-ink">
+        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-24 sm:px-6 lg:grid-cols-2">
           <article className="card rounded-[--radius-card] bg-paper p-10">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-ink-soft">
               {c.founderTitle}
@@ -106,7 +105,7 @@ export default async function AboutPage({
               {c.modelTitle}
             </p>
             <span aria-hidden="true" className="mt-5 block">
-              <IconTogether className="h-24 w-24" />
+              <IconTogether className="h-8 w-8" />
             </span>
             <p className="mt-5 text-lg text-ink-soft">{c.modelBody}</p>
           </article>
@@ -120,7 +119,7 @@ export default async function AboutPage({
           <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {OBRA.slice(0, 4).map((pieza) => (
               <li key={pieza.slug}>
-                <div className="aspect-square overflow-hidden rounded-[--radius-card] border-2 border-line">
+                <div className="aspect-square overflow-hidden rounded-[--radius-card] border border-line">
                   <Image
                     src={`/obra/${pieza.slug}.webp`}
                     alt={pieza.alt[locale]}

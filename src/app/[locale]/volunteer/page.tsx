@@ -53,20 +53,18 @@ export default async function VolunteerPage({
           <ol className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {c.steps.map((step, i) => {
               const Icon = stepIcons[i];
-              const fill = ["bg-brand-solid", "bg-sky", "bg-leaf", "bg-sun"][i];
-              const onFill = ["text-paper", "text-ink", "text-ink", "text-ink"][i];
               return (
                 <li
                   key={step.title}
-                  className="icon-play card card-lift rounded-[--radius-card] border-2 border-line bg-paper p-7"
+                  className="card card-lift rounded-[--radius-card] bg-paper p-7"
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <span aria-hidden="true">
-                      <Icon className="h-16 w-16" />
+                    <span aria-hidden="true" className="icono-sobrio text-ink-soft">
+                      <Icon className="h-10 w-10" />
                     </span>
                     <span
                       aria-hidden="true"
-                      className={`flex h-9 w-9 items-center justify-center rounded-full ${fill} ${onFill} text-sm font-bold`}
+                      className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper"
                     >
                       {i + 1}
                     </span>
@@ -120,11 +118,11 @@ export default async function VolunteerPage({
       </section>
 
       {/* Pasantías y el cierre. */}
-      <section className="torn-top relative bg-brand-solid">
+      <section className="relative bg-ink">
         <div className="mx-auto grid max-w-6xl gap-6 px-4 py-24 sm:px-6 lg:grid-cols-2">
           <article className="card rounded-[--radius-card] bg-paper p-10">
             <span aria-hidden="true" className="block">
-              <IconSpark className="h-16 w-16" />
+              <IconSpark className="h-10 w-10" />
             </span>
             <h2 className="mt-5 text-3xl font-bold sm:text-4xl">{c.internTitle}</h2>
             <p className="mt-4 text-lg text-ink-soft">{c.internBody}</p>
@@ -132,14 +130,14 @@ export default async function VolunteerPage({
 
           <article className="card rounded-[--radius-card] bg-paper p-10">
             <span aria-hidden="true" className="block">
-              <IconHelpingHands className="h-16 w-16" />
+              <IconHelpingHands className="h-10 w-10" />
             </span>
             <h2 className="mt-5 text-3xl font-bold sm:text-4xl">{c.cta}</h2>
             <p className="mt-4 text-lg text-ink-soft">{c.formLead}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href={localePath(locale, "/volunteer/apply")}
-                className="btn tap inline-flex items-center rounded-full bg-leaf-deep px-8 py-4 text-lg font-bold text-paper transition-transform hover:scale-[1.03]"
+                className="btn tap inline-flex items-center rounded-full bg-ink px-8 py-4 text-lg font-bold text-paper transition-transform hover:scale-[1.03]"
               >
                 {c.cta}
               </Link>

@@ -67,10 +67,41 @@ export type PickerLabels = {
   manyClasses: string;
 };
 
+/**
+ * Las tres clases se ven IGUAL, y ese es el cambio.
+ *
+ * Antes cada una traía su color: arte magenta, teatro cian, guitarra verde.
+ * En el papel suena bien (cada clase tiene identidad) y en pantalla salía mal
+ * por dos motivos.
+ *
+ * El de diseño: tres botones "Register" de tres colores, uno al lado del
+ * otro, se leen como tres cosas distintas cuando son la misma acción tres
+ * veces. Y sumados a los horarios en tres pastillas de tres colores, la fila
+ * entera se volvía una caja de lápices.
+ *
+ * El de uso, que pesa más: acá hay que ELEGIR, y lo que tiene que saltar a la
+ * vista es cuál está elegida. Si las tres ya vienen gritando color, la
+ * elegida no tiene con qué distinguirse. Con las tres en neutro, el magenta
+ * queda libre para hacer el único trabajo que importa en esta pantalla:
+ * marcar lo que la persona eligió.
+ *
+ * El objeto se conserva con tres entradas iguales a propósito. Cada clase
+ * sigue declarando su `accent` en `content/site.ts` y sigue habiendo un lugar
+ * donde volver a diferenciarlas si algún día hace falta; hoy ese lugar
+ * devuelve lo mismo para las tres.
+ */
+const NEUTRO = {
+  fill: "bg-ink",
+  onFill: "text-paper",
+  ink: "text-ink-soft",
+  soft: "bg-paper-warm",
+  ring: "ring-brand",
+} as const;
+
 const SKINS = {
-  brand: { fill: "bg-brand-solid", onFill: "text-paper", ink: "text-brand-ink", soft: "bg-brand-soft", ring: "ring-brand" },
-  sky: { fill: "bg-sky", onFill: "text-ink", ink: "text-sky-ink", soft: "bg-sky-soft", ring: "ring-sky" },
-  leaf: { fill: "bg-leaf", onFill: "text-ink", ink: "text-leaf-ink", soft: "bg-leaf-soft", ring: "ring-leaf" },
+  brand: NEUTRO,
+  sky: NEUTRO,
+  leaf: NEUTRO,
 } as const;
 
 export default function ClassPicker({
@@ -133,13 +164,13 @@ export default function ClassPicker({
           return (
             <li
               key={k.id}
-              className={`icon-play card flex flex-col rounded-[--radius-card] bg-paper p-8 transition-shadow ${
-                on ? `ring-4 ${s.ring}` : "ring-0"
+              className={`card flex flex-col rounded-[--radius-card] bg-paper p-8 transition-shadow ${
+                on ? `ring-2 ${s.ring}` : "ring-0"
               }`}
             >
               <div className="flex items-start justify-between gap-4">
-                <span className={s.ink}>
-                  <Icon className="h-16 w-16" />
+                <span aria-hidden="true" className={`icono-sobrio ${s.ink}`}>
+                  <Icon className="h-10 w-10" />
                 </span>
                 <span
                   aria-hidden="true"
@@ -151,9 +182,9 @@ export default function ClassPicker({
                 </span>
               </div>
 
-              <h3 className="mt-6 text-3xl font-bold">{k.name}</h3>
+              <h3 className="mt-6 text-2xl">{k.name}</h3>
 
-              <p className={`mt-3 inline-flex w-fit items-center rounded-full ${s.soft} px-3.5 py-1.5 text-sm font-bold ${s.ink}`}>
+              <p className="mt-3 inline-flex w-fit items-center rounded-[--radius-sm] bg-paper-warm px-3 py-1 text-sm font-semibold text-ink-soft">
                 <span className="sr-only">{labels.scheduleLabel}: </span>
                 {k.schedule}
               </p>

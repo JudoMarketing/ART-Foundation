@@ -28,7 +28,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
           sin competir con nada, porque en el pie no hay texto largo que leer.
           `isolate` y `relative` son para que la capa quede detrás del
           contenido y no encima de los enlaces. */}
-      <div className="relative isolate overflow-hidden border-t border-line bg-brand-soft">
+      <div className="relative isolate overflow-hidden border-t border-line bg-paper-warm">
         <div aria-hidden="true" className="doodles text-paper" />
 
         <div className="relative mx-auto max-w-6xl px-4 pt-14 sm:px-6">

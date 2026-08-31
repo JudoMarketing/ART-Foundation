@@ -160,9 +160,9 @@ export default function VolunteerForm({ locale }: { locale: Locale }) {
       },
       contenido: (
         <>
-          <div className="flex items-start gap-4 rounded-[--radius-card] bg-leaf-soft p-5">
+          <div className="flex items-start gap-4 rounded-[--radius-card] border border-line bg-paper-warm p-5">
             <span aria-hidden="true" className="shrink-0">
-              <IconCertificate className="h-12 w-12" />
+              <IconCertificate className="h-8 w-8" />
             </span>
             <p className="font-semibold">{c.checkIntro}</p>
           </div>
@@ -201,7 +201,7 @@ export default function VolunteerForm({ locale }: { locale: Locale }) {
         className="card rounded-[--radius-card] border-2 border-leaf bg-paper p-10"
       >
         <span aria-hidden="true" className="block">
-          <IconHelpingHands className="h-20 w-20" />
+          <IconHelpingHands className="h-11 w-11" />
         </span>
         <h2 className="mt-5 text-3xl font-bold sm:text-4xl">{c.okTitle}</h2>
         <p className="mt-4 max-w-2xl text-lg text-ink-soft">{c.okBody}</p>

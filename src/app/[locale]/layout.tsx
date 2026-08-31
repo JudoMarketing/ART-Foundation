@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Domine } from "next/font/google";
+import { Instrument_Serif, Inter } from "next/font/google";
 import { isLocale, LOCALES, type Locale } from "@/lib/i18n";
 import { t } from "@/content/copy";
 import { ORG } from "@/content/site";
@@ -9,11 +9,28 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import "../globals.css";
 
-/** Domine es la tipografía del sitio actual. Se conserva la identidad. */
-const domine = Domine({
+/**
+ * Las dos tipografías del sitio.
+ *
+ * `display: "swap"` en las dos: mientras la fuente baja, el texto se ve con
+ * la de respaldo. La alternativa es media pantalla en blanco esperando un
+ * archivo, y en una conexión de teléfono en Miami eso son segundos.
+ *
+ * Instrument Serif viene con un solo peso porque es el único que existe, y en
+ * `globals.css` hay un `font-synthesis: none` que impide que el navegador se
+ * invente una negrita engordando el trazo.
+ */
+const serif = Instrument_Serif({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-domine",
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
+  display: "swap",
+});
+
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -60,7 +77,7 @@ export default async function LocaleLayout({
   const c = t(locale as Locale);
 
   return (
-    <html lang={locale} className={domine.variable}>
+    <html lang={locale} className={`${serif.variable} ${sans.variable}`}>
       <body className="min-h-dvh bg-paper text-ink antialiased">
         {/* Primer elemento enfocable de la página: saltar la navegación.
             Para quien navega con teclado, ahorra 8 tabulaciones por página. */}

@@ -163,7 +163,7 @@ export function Opciones({
   const error = useError(id);
   const borde =
     tono === "leaf"
-      ? "hover:border-leaf has-[:checked]:border-leaf has-[:checked]:bg-leaf-soft"
+      ? "hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand-soft"
       : "hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand-soft";
   const acento = tono === "leaf" ? "accent-[var(--color-leaf-deep)]" : "accent-[var(--color-brand-ink)]";
 

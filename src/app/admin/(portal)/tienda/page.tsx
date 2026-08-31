@@ -160,7 +160,7 @@ function Tarjeta({
   children?: React.ReactNode;
 }) {
   return (
-    <li className="overflow-hidden rounded-[--radius-card] border-2 border-line bg-paper">
+    <li className="overflow-hidden rounded-[--radius-card] border border-line bg-paper">
       <span className="relative block aspect-4/3 bg-paper-warm">
         <Image
           src={`/obra/${pieza.slug}.webp`}

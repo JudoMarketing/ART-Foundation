@@ -76,7 +76,7 @@ export default async function StorePage({
              convierte la obra de un chico en una ficha de producto. Lo que sí
              se dice, y va abajo de la página, es que parte de cada venta va a
              quien la hizo. */
-          <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-sun-soft px-4 py-2 font-bold text-sun-ink">
+          <p className="mt-4 inline-flex items-center gap-2 rounded-[--radius-sm] bg-paper-warm px-3.5 py-2 font-semibold text-ink-soft">
             <span aria-hidden="true">
               <IconTag className="h-6 w-6" />
             </span>
@@ -142,7 +142,7 @@ export default async function StorePage({
             <p className="mt-4 max-w-2xl text-lg text-ink-soft">{c.soonBody}</p>
             <a
               href={`mailto:${ORG.email}`}
-              className="btn tap mt-8 inline-flex items-center rounded-full bg-sun px-8 py-4 text-base font-bold text-ink transition-transform hover:scale-[1.03]"
+              className="btn tap mt-8 inline-flex items-center rounded-full bg-brand-solid px-8 py-4 text-base font-bold text-paper transition-transform hover:scale-[1.03]"
             >
               {c.askCta}
             </a>
@@ -156,9 +156,9 @@ export default async function StorePage({
           <h2 className="text-3xl font-bold sm:text-4xl">{c.restTitle}</h2>
           <p className="mt-4 max-w-2xl text-lg text-ink-soft">{c.restBody}</p>
           <div aria-hidden="true" className="mt-8 flex flex-wrap items-center gap-5">
-            <IconBrushes className="h-16 w-16" />
-            <IconVan className="h-16 w-16" />
-            <IconTicket className="h-16 w-16" />
+            <IconBrushes className="h-10 w-10" />
+            <IconVan className="h-10 w-10" />
+            <IconTicket className="h-10 w-10" />
           </div>
         </div>
       </section>

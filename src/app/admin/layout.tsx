@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
-import { Domine } from "next/font/google";
+import { Instrument_Serif, Inter } from "next/font/google";
 import { idiomaAdmin } from "@/lib/admin-prefs";
 import "../globals.css";
 
-const domine = Domine({
+const serif = Instrument_Serif({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-domine",
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
+  display: "swap",
+});
+
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -28,7 +35,7 @@ export default async function AdminLayout({
   const idioma = await idiomaAdmin();
 
   return (
-    <html lang={idioma} className={domine.variable}>
+    <html lang={idioma} className={`${serif.variable} ${sans.variable}`}>
       <body className="min-h-dvh bg-paper-warm text-ink antialiased">{children}</body>
     </html>
   );

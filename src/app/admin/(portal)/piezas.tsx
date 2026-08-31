@@ -61,7 +61,7 @@ export function Tabla({
 }) {
   return (
     <>
-      <div className="mt-8 overflow-x-auto rounded-[--radius-card] border-2 border-line bg-paper">
+      <div className="mt-8 overflow-x-auto rounded-[--radius-card] border border-line bg-paper">
         <table className="w-full min-w-[52rem] border-collapse text-left">
           <thead>
             <tr className="border-b-2 border-line">

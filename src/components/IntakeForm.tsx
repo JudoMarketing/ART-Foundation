@@ -217,7 +217,7 @@ export default function IntakeForm({
             }`}
           >
             <span aria-hidden="true" className="shrink-0">
-              <IconHeart className="h-12 w-12" />
+              <IconHeart className="h-8 w-8" />
             </span>
             <p className="font-medium">
               {fotos === "no" ? c.photoNoNote : c.photoYesNote}
@@ -236,7 +236,7 @@ export default function IntakeForm({
       <>
         <p className="text-lg text-ink-soft">{c.reviewIntro}</p>
 
-        <dl className="mt-6 divide-y divide-line rounded-[--radius-card] border-2 border-line bg-paper px-6">
+        <dl className="mt-6 divide-y divide-line rounded-[--radius-card] border border-line bg-paper px-6">
           <Fila etiqueta={c.stepWho} valor={para === "self" ? c.whoSelf : c.whoChild} />
           <Fila etiqueta={c.classesTotal} valor={clases.join(" + ")} />
           <Fila
@@ -254,7 +254,7 @@ export default function IntakeForm({
             const Icon = CLASS_ICONS[k.id];
             return (
               <span key={k.id} aria-hidden="true">
-                <Icon className="h-12 w-12" />
+                <Icon className="h-8 w-8" />
               </span>
             );
           })}
@@ -285,10 +285,10 @@ export default function IntakeForm({
     return (
       <div
         tabIndex={-1}
-        className="card rounded-[--radius-card] border-2 border-brand bg-paper p-10"
+        className="card rounded-[--radius-card] bg-paper p-10"
       >
         <span aria-hidden="true" className="block">
-          <IconHeart className="h-20 w-20" />
+          <IconHeart className="h-11 w-11" />
         </span>
         <h2 className="mt-5 text-3xl font-bold sm:text-4xl">{c.okTitle}</h2>
         <p className="mt-4 max-w-2xl text-lg text-ink-soft">{c.okBody}</p>
@@ -307,7 +307,7 @@ export default function IntakeForm({
       {/* Lo que ya eligió, a la vista y sin volver a preguntarlo.
           Preguntar dos veces lo mismo es la forma más rápida de que alguien
           piense que el formulario no se enteró de lo que hizo hace un minuto. */}
-      <div className="mb-8 max-w-3xl rounded-[--radius-card] border-2 border-brand bg-brand-soft p-6">
+      <div className="mb-8 max-w-3xl rounded-[--radius-card] border border-line bg-paper-warm p-6">
         <p className="text-sm font-bold uppercase tracking-[0.14em] text-ink-soft">
           {c.classesTotal}
         </p>

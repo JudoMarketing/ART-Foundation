@@ -82,21 +82,25 @@ export default async function DonatePage({
           <h2 className="text-4xl font-bold sm:text-5xl">{c.amountsTitle}</h2>
 
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {c.amounts.map((a, i) => {
-              const fill = ["bg-sky-soft", "bg-leaf-soft", "bg-brand-soft", "bg-sun-soft"][i];
-              const ink = ["text-sky-ink", "text-leaf-ink", "text-brand-ink", "text-sun-ink"][i];
-              return (
-                <li
-                  key={a.amount}
-                  className={`card card-lift rounded-[--radius-card] ${fill} p-7`}
-                >
-                  <p className={`font-display text-4xl font-bold ${ink}`}>
-                    {formatPrice(a.amount, locale)}
-                  </p>
-                  <p className="mt-3 text-ink-soft">{a.buys}</p>
-                </li>
-              );
-            })}
+            {/* Cuatro montos en cuatro tintes pastel distintos, cada cifra de
+                su propio color. Ese arcoíris hacía que las cuatro cifras
+                compitieran entre sí en vez de leerse en orden de menor a
+                mayor, que es como se elige un monto.
+
+                Ahora las cuatro tarjetas son iguales y lo único de color es
+                la cifra, siempre en el magenta de la marca. Se leen como una
+                escala, no como cuatro opciones sueltas. */}
+            {c.amounts.map((a) => (
+              <li
+                key={a.amount}
+                className="card card-lift rounded-[--radius-card] bg-paper p-7"
+              >
+                <p className="font-display text-5xl text-brand-ink">
+                  {formatPrice(a.amount, locale)}
+                </p>
+                <p className="mt-4 text-ink-soft">{a.buys}</p>
+              </li>
+            ))}
           </ul>
 
           <p className="mt-8 text-ink-soft">{c.amountsNote}</p>
@@ -112,22 +116,21 @@ export default async function DonatePage({
 
           <ul className="mt-12 grid gap-6 md:grid-cols-3">
             {home.donate.uses.map((u, i) => {
-              const fill = ["bg-sky", "bg-leaf", "bg-sun"][i];
               return (
                 <li
                   key={u.title}
-                  className={`card card-lift rounded-[--radius-card] ${fill} p-8 text-ink`}
+                  className="rounded-[--radius-card] bg-white/5 p-8 text-paper ring-1 ring-inset ring-white/15"
                 >
-                  <h3 className="text-2xl font-bold">{u.title}</h3>
+                  <h3 className="text-xl text-paper">{u.title}</h3>
                   <div
                     aria-hidden="true"
-                    className="mt-6 flex items-center justify-start gap-3"
+                    className="icono-sobrio mt-6 flex items-center justify-start gap-3 text-paper/70"
                   >
                     {useIcons[i].map((Icon, j) => (
-                      <Icon key={j} className="h-14 w-14 shrink-0" />
+                      <Icon key={j} className="h-8 w-8 shrink-0" />
                     ))}
                   </div>
-                  <p className="mt-5 font-medium text-ink/85">{u.body}</p>
+                  <p className="mt-5 text-paper/75">{u.body}</p>
                 </li>
               );
             })}
@@ -137,7 +140,7 @@ export default async function DonatePage({
 
       {/* Cómo donar hoy, mientras no hay cobro en línea. Decirlo claro es
           mejor que un botón que no lleva a ningún lado. */}
-      <section className="torn-top relative bg-brand-solid">
+      <section className="relative bg-ink">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <div className="card rounded-[--radius-card] bg-paper p-10">
             <h2 className="text-3xl font-bold sm:text-4xl">{c.soonTitle}</h2>

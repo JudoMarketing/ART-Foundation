@@ -35,15 +35,72 @@ su tono**, y separar los usos.
 **La regla, en una frase:** los colores vivos son para rellenar, los `-ink`
 son para leer.
 
+## El color es acento, nunca superficie
+
+Esta es la regla que rige todo el aspecto del sitio, y llegó después de una
+corrección del cliente: **el primer borrador se veía infantil**.
+
+El diagnóstico, concreto:
+
+| Lo que había | Por qué leía como infantil |
+|---|---|
+| Cinco secciones de magenta a sangre, con el borde superior ondulado como papel rasgado | Color saturado a pantalla completa más un corte hecho a tijera |
+| Tres bloques seguidos de magenta, cian y verde plenos | Cuatro colores saturados peleando entre sí es el lenguaje de un aula de jardín |
+| Tarjetas con borde de 2px de un color distinto cada una | Una fila de tarjetas se leía como una caja de lápices |
+| Botones en píldora completa, tres colores distintos en la misma pantalla | Botonera de juguete, y la acción principal no se distinguía |
+| Veintisiete iconos de cuatro colores, a 80 y 96 píxeles | A ese tamaño y con esa paleta, imágenes prediseñadas |
+| Esquinas de 20px y trama de puntos sobre los fondos claros | Redondeo de app de juegos y papel de cuaderno |
+
+Ninguna de esas decisiones estaba mal por separado. Juntas daban una sola
+lectura, y el sitio también lo miran adultos que están decidiendo dónde poner
+su dinero y padres que deciden dónde dejar a su hijo.
+
+**La regla nueva:**
+
+- **Superficies: solo tres, y neutras.** Papel (`#ffffff`), papel cálido
+  (`#f6f3ed`) y tinta (`#161922`). Toda sección es una de esas tres. El ritmo
+  de la página sale de alternarlas y del aire entre ellas.
+- **El magenta aparece en cosas chicas.** Un rótulo, un subrayado, el botón
+  principal, la cifra de un monto, el aro de la clase que elegiste. Nunca un
+  fondo grande.
+- **El cian, el verde y el naranja salieron del diseño.** Siguen definidos
+  porque están dentro de los vectores, pero ya no visten ninguna superficie.
+- **El color grande de la página lo pone la obra de los estudiantes.** Es lo
+  mejor que tiene la fundación y antes competía contra un fondo magenta.
+- **Esquinas de 6px, filetes de 1px.** No 20px y 2px de color.
+- **Los iconos van en dos tonos del color del texto que tienen al lado**, y no
+  pasan de 48px. La regla vive en `.icono-sobrio` y se aplica sola a los
+  veintisiete desde `ArtIcons.tsx`.
+
 ## Tipografía
 
-- **Domine** para títulos, es la del sitio actual, tiene carácter y se lee
-  bien en tamaño grande.
-- **Sans del sistema** para el cuerpo. No es pereza: en pantalla se lee más
-  rápido que una serif, no hay descarga que esperar, y para alguien que lee
-  despacio esa diferencia se nota.
+Cambió, y es lo que más se nota.
+
+- **Instrument Serif** para los títulos grandes (`h1` y `h2`). Serif de
+  contraste alto y trazo fino, del linaje de las revistas y los museos. Va en
+  peso normal, con interletrado apretado (`-0.025em`): un título grande en
+  peso normal se ve tranquilo, uno en negrita se ve gritando.
+- **Inter** para todo lo demás: cuerpo, interfaz, formularios, y también los
+  títulos chicos (`h3`, `h4`) en semi negrita. Nada que haya que leer despacio
+  va en serif, y una serif fina a 20px se ve endeble además de leerse peor.
 - Interlineado 1.65. WCAG 1.4.12 pide que el texto aguante 1.5 sin romperse;
   se empieza por encima.
+
+Antes era **Domine** para todo lo que fuera título. Es una serif de bloque,
+redondeada y amable, del tipo que usan las editoriales infantiles, y sumada al
+color plano empujaba en la misma dirección equivocada.
+
+**Dos trampas que ya están resueltas y conviene no volver a pisar:**
+
+1. Instrument Serif tiene un solo peso. Sin `font-synthesis: none`, el
+   navegador le inventa una negrita engordando el trazo cada vez que encuentra
+   un `font-bold`, y esa negrita falsa es exactamente el aspecto barato que se
+   estaba sacando. La regla está puesta en `globals.css` sobre `h1`, `h2` y
+   `.font-display`.
+2. Las dos familias se declaran en un bloque **`@theme inline`** separado. Un
+   `@theme` normal que contenga un `var()` que Tailwind no conozca no da error:
+   se cae el bloque entero en silencio. Eso ya pasó una vez, y dejó al sitio
+   sin `bg-ink`, sin `text-paper` y sin un solo color de la marca.
 
 ## Reglas de accesibilidad que no se negocian
 

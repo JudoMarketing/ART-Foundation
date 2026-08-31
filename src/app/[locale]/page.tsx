@@ -184,19 +184,24 @@ export default async function HomePage({
           </p>
 
           <ul className="mt-14 grid gap-6 md:grid-cols-3">
+            {/* Las tres tarjetas llevaban borde de 2px de tres colores
+                distintos y una figura de 112px de alto en cuatro colores.
+                Ahora comparten el mismo filete neutro y la figura bajó a la
+                mitad y a un solo tono: son tres cosas del mismo tipo, y el
+                borde tiene que decir eso, no distinguirlas. Lo que las
+                distingue es el título, que para eso está. */}
             {c.audience.points.map((p, i) => {
-              const border = ["border-brand", "border-sky", "border-leaf"][i];
               const Figure = audienceIcons[i];
               return (
                 <li
                   key={p.title}
-                  className={`icon-play card card-lift rounded-[--radius-card] border-2 ${border} bg-paper p-8`}
+                  className="card card-lift rounded-[--radius-card] bg-paper p-8"
                 >
-                  <span className="mb-2 block">
-                    <Figure className="h-28 w-28" />
+                  <span aria-hidden="true" className="icono-sobrio mb-6 block text-ink-soft">
+                    <Figure className="h-9 w-9" />
                   </span>
-                  <h3 className="text-2xl font-bold">{p.title}</h3>
-                  <p className="mt-4 text-ink-soft">{p.body}</p>
+                  <h3 className="text-xl">{p.title}</h3>
+                  <p className="mt-3 text-ink-soft">{p.body}</p>
                 </li>
               );
             })}
@@ -209,7 +214,7 @@ export default async function HomePage({
           las otras bajan a mitad de precio y la cuenta de abajo se arma
           sola. Ver el descuento pasar delante de los ojos es lo que hace que
           una familia se lleve dos clases en vez de una. */}
-      <section id="clases" className="torn-top relative scroll-mt-20 bg-brand-solid">
+      <section id="clases" className="relative scroll-mt-20 bg-ink">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <h2 className="max-w-3xl text-4xl font-bold text-paper sm:text-5xl">
             {c.classes.title}
@@ -278,7 +283,7 @@ export default async function HomePage({
                       tamaños distintos (hay una apaisada entre ocho
                       verticales) y en una rejilla eso deja huecos. Acá se
                       recortan parejas; la pieza entera se ve en la tienda. */}
-                  <div className="aspect-[4/5] overflow-hidden rounded-[--radius-card] border-2 border-line bg-paper-warm">
+                  <div className="aspect-[4/5] overflow-hidden rounded-[--radius-card] border border-line bg-paper-warm">
                     <Image
                       src={`/obra/${p.slug}.webp`}
                       alt={p.alt[locale]}
@@ -326,7 +331,7 @@ export default async function HomePage({
               </p>
             </div>
             <span aria-hidden="true" className="text-paper/60">
-              <IconHeart className="h-24 w-24" />
+              <IconHeart className="h-8 w-8" />
             </span>
           </div>
 
@@ -348,13 +353,12 @@ export default async function HomePage({
 
           <ul className="mt-8 grid gap-6 md:grid-cols-3">
             {c.donate.uses.map((u, i) => {
-              const fill = ["bg-sky", "bg-leaf", "bg-sun"][i];
               return (
                 <li
                   key={u.title}
-                  className={`card card-lift rounded-[--radius-card] ${fill} p-8 text-ink`}
+                  className="rounded-[--radius-card] bg-white/5 p-8 text-paper ring-1 ring-inset ring-white/15"
                 >
-                  <h3 className="text-2xl font-bold">{u.title}</h3>
+                  <h3 className="text-xl text-paper">{u.title}</h3>
 
                   {/* Los dibujos van en una fila que no se parte. Materiales
                       lleva cuatro y los otros tres: si se dejan sueltos, los
@@ -362,10 +366,10 @@ export default async function HomePage({
                       lado de las otras dos. */}
                   <div
                     aria-hidden="true"
-                    className="mt-6 flex items-center justify-start gap-3"
+                    className="icono-sobrio mt-6 flex items-center justify-start gap-3 text-paper/70"
                   >
                     {useIcons[i].map((Icon, j) => (
-                      <Icon key={j} className="h-14 w-14 shrink-0 drop-shadow-sm" />
+                      <Icon key={j} className="h-9 w-9 shrink-0 drop-shadow-sm" />
                     ))}
                   </div>
 
@@ -464,7 +468,7 @@ export default async function HomePage({
               <h2 className="text-3xl font-bold sm:text-4xl">{c.store.title}</h2>
               <p className="mt-4 text-lg text-ink-soft">{c.store.lead}</p>
 
-              <p className="mt-5 flex items-start gap-3 font-bold text-sun-ink">
+              <p className="mt-5 flex items-start gap-3 font-bold text-brand-ink">
                 <span aria-hidden="true">
                   <IconTag className="mt-0.5 h-7 w-7" />
                 </span>
@@ -473,7 +477,7 @@ export default async function HomePage({
 
               <Link
                 href={localePath(locale, "/store")}
-                className="underline-grow mt-7 inline-block text-lg font-bold text-sun-ink"
+                className="underline-grow mt-7 inline-block text-lg font-bold text-brand-ink"
               >
                 {c.store.cta} →
               </Link>
@@ -481,7 +485,7 @@ export default async function HomePage({
           </article>
 
           <article className="card card-lift overflow-hidden rounded-[--radius-card] border-2 border-sky bg-paper">
-            <div className="icon-play flex items-end justify-center bg-sky-soft px-8 pb-6 pt-10" aria-hidden="true">
+            <div className="icon-play flex items-end justify-center bg-paper-warm px-8 pb-6 pt-10" aria-hidden="true">
               <IconHelpingHands className="h-40 w-40" />
             </div>
 

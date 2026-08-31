@@ -74,10 +74,29 @@ export default function FormShell({
   const ultimo = indice === pasos.length - 1;
   const paso = pasos[indice];
 
-  const acento =
-    tono === "leaf"
-      ? { barra: "bg-leaf-deep", boton: "bg-leaf-deep", anillo: "border-leaf" }
-      : { barra: "bg-brand-solid", boton: "bg-brand-solid", anillo: "border-brand" };
+  /**
+   * Los tres formularios se ven iguales, y el `tono` ya no cambia nada.
+   *
+   * Iban de un color cada uno: verde el de voluntarios, magenta el de
+   * inscripción, amarillo el de financiación. Ese código de colores sí tiene
+   * sentido y se conserva **en los correos**, que es donde hace falta: Mónica
+   * abre su bandeja y distingue de un vistazo una postulación de una
+   * inscripción sin leer el asunto.
+   *
+   * En pantalla no hace falta. Quien está llenando el formulario ya sabe cuál
+   * es, se lo dice el título que tiene arriba. Lo único que ese color lograba
+   * era que la barra de progreso y el botón de enviar cambiaran de color entre
+   * una página y otra del mismo sitio.
+   *
+   * El parámetro `tono` se queda para no tocar a quien lo pasa, y para que
+   * quede escrito que la decisión fue unificar, no que alguien se olvidó.
+   */
+  void tono;
+  const acento = {
+    barra: "bg-ink",
+    boton: "bg-ink",
+    anillo: "border-ink",
+  };
 
   function irA(nuevo: number) {
     setIndice(nuevo);

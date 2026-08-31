@@ -58,7 +58,7 @@ export default async function RegisterApplyPage({
                al mostrador. */
             <div className="card max-w-3xl rounded-[--radius-card] border-2 border-brand bg-paper p-10">
               <span aria-hidden="true" className="block">
-                <IconTicket className="h-16 w-16" />
+                <IconTicket className="h-10 w-10" />
               </span>
               <h2 className="mt-5 text-3xl font-bold sm:text-4xl">
                 {c.noClassesTitle}

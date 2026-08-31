@@ -114,7 +114,7 @@ export default function FinancingForm({ locale }: { locale: Locale }) {
 
           <p className="mt-6 flex items-start gap-4 rounded-[--radius-card] bg-paper-warm p-5 font-medium">
             <span aria-hidden="true" className="shrink-0">
-              <IconTicket className="h-12 w-12" />
+              <IconTicket className="h-8 w-8" />
             </span>
             {c.privacy}
           </p>
@@ -142,13 +142,13 @@ export default function FinancingForm({ locale }: { locale: Locale }) {
     return (
       <div tabIndex={-1} className="card rounded-[--radius-card] border-2 border-sun bg-paper p-10">
         <span aria-hidden="true" className="block">
-          <IconCoinHand className="h-20 w-20" />
+          <IconCoinHand className="h-11 w-11" />
         </span>
         <h2 className="mt-5 text-3xl font-bold sm:text-4xl">{c.okTitle}</h2>
         <p className="mt-4 max-w-2xl text-lg text-ink-soft">{c.okBody}</p>
         <Link
           href={localePath(locale, "/classes")}
-          className="underline-grow mt-7 inline-block text-lg font-bold text-sun-ink"
+          className="underline-grow mt-7 inline-block text-lg font-bold text-brand-ink"
         >
           {c.okBack} →
         </Link>

@@ -95,7 +95,7 @@ export default async function PanelPage() {
               <li key={p.texto}>
                 <Link
                   href={p.href}
-                  className="tap flex flex-wrap items-baseline gap-x-3 gap-y-1 rounded-[--radius-card] border-2 border-line bg-paper px-6 py-4 transition-colors hover:border-ink"
+                  className="tap flex flex-wrap items-baseline gap-x-3 gap-y-1 rounded-[--radius-card] border border-line bg-paper px-6 py-4 transition-colors hover:border-ink"
                 >
                   <span className="font-bold">{p.texto}</span>
                   <span className="text-ink-soft">{p.detalle}</span>

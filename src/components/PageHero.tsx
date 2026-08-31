@@ -7,20 +7,35 @@ import Image from "next/image";
  * que saber en tres segundos dónde cayó. Si cada página se presenta distinto,
  * cada una hay que aprenderla de nuevo.
  *
- * El `tone` cambia solo el color de fondo, y sigue el color de la sección a
- * la que pertenece la página en la portada: las clases son magenta, las
- * donaciones tinta, la tienda naranja, el voluntariado celeste. Es un mapa de
- * colores, no decoración, quien navega mucho el sitio empieza a saber dónde
- * está antes de leer el título.
+ * ── Sobre el `tone` ───────────────────────────────────────────────────────
+ * Antes había seis tonos y cuatro eran colores saturados a sangre: magenta,
+ * cian, verde y naranja. La idea era un mapa de colores, cada página con el
+ * color de su sección, para que quien navega mucho supiera dónde está antes de
+ * leer el título.
+ *
+ * No funcionaba, por dos motivos.
+ *
+ * El primero es que casi nadie navega mucho un sitio de siete páginas: se
+ * entra por Google a una, se hace lo que se vino a hacer y se sale. El mapa de
+ * colores le servía a un visitante que casi no existe.
+ *
+ * El segundo pesa más. Una cabecera de cian pleno de 300px de alto es lo
+ * primero que se ve de la página, y encima lleva UNA OBRA detrás. El color
+ * plano le ganaba siempre al cuadro. Se estaba tapando lo mejor que tiene la
+ * fundación con un rectángulo de color.
+ *
+ * Ahora son dos: claro y oscuro. Los seis nombres se conservan para no tener
+ * que editar catorce páginas, y cada uno cae en uno de los dos. Lo que
+ * distingue una cabecera de otra pasa a ser la obra que lleva detrás, que es
+ * distinta en cada página y es la que vale la pena mirar.
  */
-
 const TONES = {
-  brand: "bg-brand-solid text-paper",
+  brand: "bg-ink text-paper",
   ink: "bg-ink text-paper",
-  sky: "bg-sky text-ink",
-  sun: "bg-sun text-ink",
-  leaf: "bg-leaf text-ink",
-  paper: "paper-grain bg-paper-warm text-ink",
+  sky: "bg-paper-warm text-ink",
+  sun: "bg-paper-warm text-ink",
+  leaf: "bg-paper-warm text-ink",
+  paper: "bg-paper-warm text-ink",
 } as const;
 
 /**
@@ -39,22 +54,23 @@ const TONES = {
  * andando en 15:1.
  */
 const SOFT = {
-  brand: "text-paper",
+  brand: "text-paper/90",
   ink: "text-paper/90",
-  sky: "text-ink",
-  sun: "text-ink",
-  leaf: "text-ink",
+  sky: "text-ink-soft",
+  sun: "text-ink-soft",
+  leaf: "text-ink-soft",
   paper: "text-ink-soft",
 } as const;
 
 /**
  * El color de los garabatos en cada fondo.
  *
- * Sobre fondos claros con texto oscuro van claros, para aclarar todavía más.
- * Sobre el magenta, que lleva texto blanco, van oscuros, si van claros
- * aclaran el magenta y el blanco deja de contrastar. Sobre la tinta, que es
- * casi negra, van claros: aclararla un poco no le quita nada al blanco, que
- * ahí anda por encima de 12:1.
+ * La regla es que el garabato tiene que empujar el fondo en dirección
+ * CONTRARIA al texto: un dibujo encima del fondo cambia el fondo, y con él
+ * cambia el contraste de lo que va escrito arriba. Sobre papel, con texto
+ * oscuro, van oscuros y lo oscurecen todavía un poco más. Sobre tinta, con
+ * texto blanco, van claros. Con los dos fondos que quedaron, esto es directo:
+ * el garabato es del color del texto, siempre.
  */
 /**
  * El velo que va encima de la obra.
@@ -81,29 +97,29 @@ const SOFT = {
  * (Y de paso: en Tailwind 4 el degradado se llama `bg-linear-to-r`. Con el
  * nombre viejo, `bg-gradient-to-r`, la clase no existe y no se genera nada.) */
 const VELO_SOLIDO = {
-  brand: "bg-brand-solid",
+  brand: "bg-ink",
   ink: "bg-ink",
-  sky: "bg-sky",
-  sun: "bg-sun",
-  leaf: "bg-leaf",
+  sky: "bg-paper-warm",
+  sun: "bg-paper-warm",
+  leaf: "bg-paper-warm",
   paper: "bg-paper-warm",
 } as const;
 
 const VELO_DEGRADADO = {
-  brand: "bg-linear-to-r from-brand-solid from-30% via-brand-solid/92 to-brand-solid/45",
-  ink: "bg-linear-to-r from-ink from-30% via-ink/92 to-ink/45",
-  sky: "bg-linear-to-r from-sky from-30% via-sky/92 to-sky/45",
-  sun: "bg-linear-to-r from-sun from-30% via-sun/92 to-sun/45",
-  leaf: "bg-linear-to-r from-leaf from-30% via-leaf/92 to-leaf/45",
-  paper: "bg-linear-to-r from-paper-warm from-30% via-paper-warm/92 to-paper-warm/45",
+  brand: "bg-linear-to-r from-ink from-38% via-ink/94 to-ink/30",
+  ink: "bg-linear-to-r from-ink from-38% via-ink/94 to-ink/30",
+  sky: "bg-linear-to-r from-paper-warm from-38% via-paper-warm/94 to-paper-warm/25",
+  sun: "bg-linear-to-r from-paper-warm from-38% via-paper-warm/94 to-paper-warm/25",
+  leaf: "bg-linear-to-r from-paper-warm from-38% via-paper-warm/94 to-paper-warm/25",
+  paper: "bg-linear-to-r from-paper-warm from-38% via-paper-warm/94 to-paper-warm/25",
 } as const;
 
 const DOODLE = {
-  brand: "text-ink",
+  brand: "text-paper",
   ink: "text-paper",
-  sky: "text-paper",
-  sun: "text-paper",
-  leaf: "text-paper",
+  sky: "text-ink",
+  sun: "text-ink",
+  leaf: "text-ink",
   paper: "text-ink",
 } as const;
 
@@ -172,13 +188,13 @@ export default function PageHero({
           justamente por debajo del mínimo. Ahí van oscuros. */}
       {!imagen && <div aria-hidden="true" className={`doodles ${DOODLE[tone]}`} />}
 
-      <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
         {eyebrow && (
-          <p className={`text-sm font-semibold uppercase tracking-[0.2em] ${SOFT[tone]}`}>
+          <p className={`rotulo ${SOFT[tone]}`}>
             {eyebrow}
           </p>
         )}
-        <h1 className={`mt-4 text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl ${imagen ? "max-w-2xl" : "max-w-4xl"}`}>
+        <h1 className={`mt-5 text-5xl sm:text-6xl lg:text-7xl ${imagen ? "max-w-2xl" : "max-w-4xl"}`}>
           {title}
         </h1>
         {lead && (

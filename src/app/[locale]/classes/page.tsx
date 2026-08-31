@@ -77,30 +77,40 @@ export default async function ClassesPage({
           <p className="mt-4 text-lg text-paper/80">{c.dayLead}</p>
 
           <ol className="mt-12 grid gap-4 md:grid-cols-3">
-            {CLASSES.map((k, i) => {
+            {/* Eran tres bloques macizos de magenta, cian y verde, uno al
+                lado del otro. Tres colores saturados en fila es lo más
+                infantil que tenía el sitio, y encima obligaba a que el texto
+                de cada uno fuera de un color distinto para que contrastara.
+
+                Ahora los tres son la misma tarjeta sobre la tinta, separados
+                por un filete claro. Lo que cambia entre ellos es la hora y el
+                nombre, que es lo único que de verdad cambia. */}
+            {CLASSES.map((k) => {
               const Icon = CLASS_ICONS[k.id];
-              const fill = ["bg-brand-solid", "bg-sky", "bg-leaf"][i];
-              const ink = ["text-paper", "text-ink", "text-ink"][i];
               return (
                 <li
                   key={k.id}
-                  className={`icon-play card rounded-[--radius-card] ${fill} ${ink} p-7`}
+                  className="rounded-[--radius-card] bg-white/5 p-7 text-paper ring-1 ring-inset ring-white/15"
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <span aria-hidden="true">
-                      <Icon className="h-14 w-14" />
+                    <span aria-hidden="true" className="icono-sobrio text-paper">
+                      <Icon className="h-9 w-9" />
                     </span>
-                    <span className="text-sm font-bold uppercase tracking-[0.14em]">
-                      {CLASS_DAY[locale]}
-                    </span>
+                    <span className="rotulo text-paper/60">{CLASS_DAY[locale]}</span>
                   </div>
-                  <p className="mt-5 font-display text-2xl font-bold">
+                  {/* ⚠️ El magenta acá vive de que el texto sea GRANDE.
+                      #eb008b sobre esta tarjeta da 3.61:1. WCAG pide 4.5:1
+                      para texto normal y 3:1 desde 24px, que es justo lo que
+                      mide `text-2xl`. O sea que pasa, y pasa raspando: bajar
+                      esto a `text-xl` lo rompe sin que se note. Si hay que
+                      achicarlo, el color va a `text-paper`. */}
+                  <p className="mt-8 font-display text-2xl text-brand">
                     <time>{hour(k.start, locale)}</time>
                     <span aria-hidden="true"> – </span>
                     <time>{hour(k.end, locale)}</time>
                   </p>
-                  <h3 className="mt-1 text-3xl font-bold">{k[locale].name}</h3>
-                  <p className="mt-3">{k[locale].blurb}</p>
+                  <h3 className="mt-1 text-2xl text-paper">{k[locale].name}</h3>
+                  <p className="mt-3 text-paper/75">{k[locale].blurb}</p>
                 </li>
               );
             })}
@@ -111,7 +121,7 @@ export default async function ClassesPage({
       {/* El mismo mostrador de la portada. A propósito el mismo: quien lo usó
           en la portada ya sabe usarlo acá, y aprender dos veces lo mismo es
           la clase de fricción que hace que alguien se vaya. */}
-      <section id="clases" className="torn-top relative scroll-mt-20 bg-brand-solid">
+      <section id="clases" className="relative scroll-mt-20 bg-ink">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <h2 className="text-4xl font-bold text-paper sm:text-5xl">{c.pickTitle}</h2>
           <p className="mt-4 max-w-2xl text-lg text-paper">{home.classes.lead}</p>
@@ -147,10 +157,10 @@ export default async function ClassesPage({
               return (
                 <li
                   key={item.title}
-                  className="icon-play card card-lift rounded-[--radius-card] border-2 border-line bg-paper p-7"
+                  className="card card-lift rounded-[--radius-card] bg-paper p-7"
                 >
                   <span aria-hidden="true" className="block">
-                    <Icon className="h-16 w-16" />
+                    <Icon className="h-10 w-10" />
                   </span>
                   <h3 className="mt-5 text-xl font-bold">{item.title}</h3>
                   <p className="mt-2 text-ink-soft">{item.body}</p>
@@ -169,7 +179,7 @@ export default async function ClassesPage({
           <h2 className="text-4xl font-bold sm:text-5xl">{c.venueTitle}</h2>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <article className="card rounded-[--radius-card] border-2 border-brand bg-paper p-8">
+            <article className="card rounded-[--radius-card] bg-paper p-8">
               <p className="text-sm font-bold uppercase tracking-[0.14em] text-brand-ink">
                 {CLASS_DAY[locale]}
               </p>
@@ -193,7 +203,7 @@ export default async function ClassesPage({
               </a>
             </article>
 
-            <article className="card rounded-[--radius-card] border-2 border-line bg-paper p-8">
+            <article className="card rounded-[--radius-card] bg-paper p-8">
               <p className="text-sm font-bold uppercase tracking-[0.14em] text-ink-soft">
                 {p(locale).contact.officeTitle}
               </p>
