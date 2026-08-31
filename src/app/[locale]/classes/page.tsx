@@ -77,40 +77,41 @@ export default async function ClassesPage({
           <p className="mt-4 text-lg text-ink-soft">{c.dayLead}</p>
 
           <ol className="mt-12 grid gap-4 md:grid-cols-3">
-            {/* Eran tres bloques macizos de magenta, cian y verde, uno al
-                lado del otro. Tres colores saturados en fila es lo más
-                infantil que tenía el sitio, y encima obligaba a que el texto
-                de cada uno fuera de un color distinto para que contrastara.
-
-                Ahora los tres son la misma tarjeta sobre la tinta, separados
-                por un filete claro. Lo que cambia entre ellos es la hora y el
-                nombre, que es lo único que de verdad cambia. */}
+            {/* Cada clase con su color, el mismo del mostrador de abajo y el
+                mismo de toda la vida: arte magenta, teatro cian, guitarra
+                verde. El color va en la barra de arriba, en el icono y en la
+                hora; el fondo de la tarjeta se queda blanco. Antes eran tres
+                bloques MACIZOS de esos tres colores, y ahí sí molestaban: lo
+                que hacía ruido era el área, no el color. */}
             {CLASSES.map((k) => {
               const Icon = CLASS_ICONS[k.id];
+              const barra = { brand: "bg-brand", sky: "bg-sky", leaf: "bg-leaf" }[k.accent];
+              const tinta = { brand: "text-brand-ink", sky: "text-sky-ink", leaf: "text-leaf-ink" }[k.accent];
               return (
                 <li
                   key={k.id}
-                  className="rounded-[--radius-card] card bg-paper p-7"
+                  className="card overflow-hidden rounded-[--radius-card] bg-paper"
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <span aria-hidden="true" className="icono-sobrio text-ink">
-                      <Icon className="h-9 w-9" />
-                    </span>
-                    <span className="rotulo text-ink-soft">{CLASS_DAY[locale]}</span>
+                  <span aria-hidden="true" className={`block h-1.5 ${barra}`} />
+                  <div className="p-7">
+                    <div className="flex items-center justify-between gap-4">
+                      <span aria-hidden="true" className={tinta}>
+                        <Icon className="h-11 w-11" />
+                      </span>
+                      <span className="rotulo text-ink-soft">{CLASS_DAY[locale]}</span>
+                    </div>
+                    {/* La hora va en el tono `-ink` de cada clase, no en el
+                        pleno: los tres `-ink` pasan 7:1 sobre blanco, así que
+                        el color se lee a cualquier tamaño y no depende de que
+                        el texto sea grande. */}
+                    <p className={`mt-8 font-display text-2xl ${tinta}`}>
+                      <time>{hour(k.start, locale)}</time>
+                      <span aria-hidden="true"> – </span>
+                      <time>{hour(k.end, locale)}</time>
+                    </p>
+                    <h3 className="mt-1 text-2xl text-ink">{k[locale].name}</h3>
+                    <p className="mt-3 text-ink-soft">{k[locale].blurb}</p>
                   </div>
-                  {/* ⚠️ El magenta acá vive de que el texto sea GRANDE.
-                      #eb008b sobre esta tarjeta da 3.61:1. WCAG pide 4.5:1
-                      para texto normal y 3:1 desde 24px, que es justo lo que
-                      mide `text-2xl`. O sea que pasa, y pasa raspando: bajar
-                      esto a `text-xl` lo rompe sin que se note. Si hay que
-                      achicarlo, el color va a `text-paper`. */}
-                  <p className="mt-8 font-display text-2xl text-brand">
-                    <time>{hour(k.start, locale)}</time>
-                    <span aria-hidden="true"> – </span>
-                    <time>{hour(k.end, locale)}</time>
-                  </p>
-                  <h3 className="mt-1 text-2xl text-ink">{k[locale].name}</h3>
-                  <p className="mt-3 text-ink-soft">{k[locale].blurb}</p>
                 </li>
               );
             })}

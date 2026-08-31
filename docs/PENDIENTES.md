@@ -32,19 +32,14 @@ pedir la cuenta de Stripe mientras estamos en lo visual.
    reducidas de 4000 px a 1000 px en WebP, las nueve juntas pesan menos que
    uno solo de los originales. Ver `src/content/obra.ts`.
 
-3. **Fotos de las clases.** Esto sí sigue faltando, y es distinto de la obra.
-   En el WordPress hay **una sola** foto de clase (dos niñas en el escenario
-   del teatro) y un volante de campamento con la cara de un niño.
+3. ~~**Fotos de las clases.**~~ ✅ Resuelto. La biblioteca de medios del
+   WordPress volvió a responder y ahí estaban: decenas de fotos de clase, de
+   eventos y de teatro que la fundación ya publica en su propio sitio.
+   Catorce están puestas, optimizadas a WebP (las catorce juntas pesan 1.7 MB)
+   y catalogadas en `src/content/fotos.ts` con descripción en los dos idiomas.
 
-   **No las usé, a propósito.** Son menores identificables, y el sitio nuevo
-   pregunta el consentimiento de imagen en cada inscripción justamente porque
-   esto importa. Publicar la cara de un menor porque estaba en el sitio viejo
-   no es consentimiento: es haberla encontrado.
-
-   Lo que hace falta: fotos de las clases **con el consentimiento firmado de
-   cada familia que aparezca**, o fotos donde no se reconozca a nadie, manos
-   trabajando, pinceles, el salón, la obra a medio hacer. Las de manos son
-   las que mejor funcionan en un sitio así, y no necesitan permiso de nadie.
+   **Queda una cosa por confirmar y es importante: los consentimientos.** Ver
+   la sección "Las fotos" más abajo.
 
 4. **El PDF de la carta de recomendación.** Pospuesto por el dueño para más
    adelante. Bloquea solo la firma digital de la fase 5, que está lejos.
@@ -128,6 +123,26 @@ No bloquean nada hoy. Las dejo escritas para no olvidarlas.
    (`/alimentacion-en-el-autismo/`). Al migrar hay que moverlos a `/es/` con
    su redirección.
 6. **Lista de materiales de Blick.** El sitio actual la enlaza. ¿Se mantiene?
+
+---
+
+## 📸 Las fotos: confirmar consentimientos
+
+**Esto se confirma antes de que el sitio salga en vivo.**
+
+Hay catorce fotos puestas (`public/fotos/`, catalogadas en
+`src/content/fotos.ts`). Salieron de la biblioteca de medios del WordPress de
+la fundación, o sea que son fotos que **la fundación ya publica hoy en su
+propio sitio público**. En varias aparecen menores.
+
+Que estén publicadas dice que hubo consentimiento para ese sitio, y el sitio
+nuevo es el reemplazo del mismo, así que el uso es el mismo. Pero los papeles
+firmados los tiene la fundación, no nosotros. Mónica confirma que los
+consentimientos cubren a cada persona que aparece.
+
+Si alguna familia no autorizó, se borra esa entrada de `content/fotos.ts` y se
+pone otra: cada foto vive en una lista justamente para que sacar una sea
+borrar una línea y no ir a buscarla por catorce plantillas.
 
 ---
 

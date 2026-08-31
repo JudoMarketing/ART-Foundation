@@ -34,6 +34,7 @@ import {
   IconWheelchair,
 } from "@/components/ArtIcons";
 import ClassPicker from "@/components/ClassPicker";
+import Foto from "@/components/Foto";
 import HeroVideo from "@/components/HeroVideo";
 import SoldSticker from "@/components/SoldSticker";
 
@@ -180,8 +181,15 @@ export default async function HomePage({
               ancha, y en los dos casos la altura sale de la proporción y no
               de un número fijo, así que nunca hay una franja vacía debajo. */}
           <div className="relative aspect-4/5 overflow-hidden rounded-[--radius-card] shadow-lg sm:aspect-video lg:aspect-4/5">
+            {/* `poster` es la foto que se ve mientras el video baja, y la que
+                se queda si el video no llega nunca. Sin ella, ese hueco lo
+                llenaba el fondo pintado: bonito, pero sin nadie adentro.
+                Con la foto, lo primero que ve quien entra desde un teléfono
+                con mala señal es un salón de clase lleno de gente, que es
+                exactamente lo que la fundación necesita mostrar. */}
             <HeroVideo
               src={process.env.NEXT_PUBLIC_HERO_VIDEO_URL || "/video/hero.mp4"}
+              poster="/fotos/clase-taller-lleno.webp"
               labelPlay={c.hero.playVideo}
               labelPause={c.hero.pauseVideo}
             />
@@ -207,24 +215,37 @@ export default async function HomePage({
           </p>
 
           <ul className="mt-14 grid gap-6 md:grid-cols-3">
-            {/* Las tres tarjetas llevaban borde de 2px de tres colores
-                distintos y una figura de 112px de alto en cuatro colores.
-                Ahora comparten el mismo filete neutro y la figura bajó a la
-                mitad y a un solo tono: son tres cosas del mismo tipo, y el
-                borde tiene que decir eso, no distinguirlas. Lo que las
-                distingue es el título, que para eso está. */}
+            {/* Cada tarjeta abre con una foto de clase de la fundación.
+                Es el cambio que más levanta esta sección: la pregunta que
+                contesta es "¿esto es para mi hijo?", y una foto de un salón
+                con gente distinta la contesta antes que tres párrafos.
+
+                El dibujo se queda, chico, al lado del título. La foto dice
+                quiénes; el dibujo marca de qué tarjeta se trata. */}
             {c.audience.points.map((p, i) => {
               const Figure = audienceIcons[i];
+              const fotos = ["clase-apoyo-mesa", "nina-dibujando", "apoyo-uno-a-uno"];
+              const tinta = ["text-brand-ink", "text-sky-ink", "text-leaf-ink"][i];
               return (
                 <li
                   key={p.title}
-                  className="card card-lift rounded-[--radius-card] bg-paper p-8"
+                  className="card card-lift overflow-hidden rounded-[--radius-card] bg-paper"
                 >
-                  <span aria-hidden="true" className="icono-sobrio mb-6 block text-ink-soft">
-                    <Figure className="h-9 w-9" />
-                  </span>
-                  <h3 className="text-xl">{p.title}</h3>
-                  <p className="mt-3 text-ink-soft">{p.body}</p>
+                  <Foto
+                    slug={fotos[i]}
+                    locale={locale}
+                    aspect="aspect-4/3"
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                  />
+                  <div className="p-8">
+                    <div className="flex items-center gap-3">
+                      <span aria-hidden="true" className={tinta}>
+                        <Figure className="h-9 w-9" />
+                      </span>
+                      <h3 className="text-xl">{p.title}</h3>
+                    </div>
+                    <p className="mt-3 text-ink-soft">{p.body}</p>
+                  </div>
                 </li>
               );
             })}
@@ -389,7 +410,7 @@ export default async function HomePage({
                       lado de las otras dos. */}
                   <div
                     aria-hidden="true"
-                    className="icono-sobrio mt-6 flex items-center justify-start gap-3 text-ink-soft"
+                    className="mt-6 flex items-center justify-start gap-3 text-ink-soft"
                   >
                     {useIcons[i].map((Icon, j) => (
                       <Icon key={j} className="h-9 w-9 shrink-0 drop-shadow-sm" />

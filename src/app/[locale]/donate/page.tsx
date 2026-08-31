@@ -20,6 +20,7 @@ import {
   IconTree,
   IconVan,
 } from "@/components/ArtIcons";
+import Foto from "@/components/Foto";
 import PageHero from "@/components/PageHero";
 import Link from "next/link";
 import { localePath } from "@/lib/i18n";
@@ -124,7 +125,7 @@ export default async function DonatePage({
                   <h3 className="text-xl text-ink">{u.title}</h3>
                   <div
                     aria-hidden="true"
-                    className="icono-sobrio mt-6 flex items-center justify-start gap-3 text-ink-soft"
+                    className="mt-6 flex items-center justify-start gap-3 text-ink-soft"
                   >
                     {useIcons[i].map((Icon, j) => (
                       <Icon key={j} className="h-8 w-8 shrink-0" />
@@ -135,6 +136,21 @@ export default async function DonatePage({
               );
             })}
           </ul>
+        </div>
+      </section>
+
+      {/* Tres estudiantes con el cuadro que terminaron. Va justo después de
+          "a dónde va tu dinero" y antes de cómo donar: es la respuesta a la
+          pregunta anterior, dicha sin una sola palabra. */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <Foto
+            slug="tres-con-su-obra"
+            locale={locale}
+            aspect="aspect-16/9"
+            className="card rounded-[--radius-card]"
+            sizes="(min-width: 1024px) 72rem, 100vw"
+          />
         </div>
       </section>
 

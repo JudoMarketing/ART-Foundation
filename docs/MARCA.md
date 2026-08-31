@@ -72,27 +72,49 @@ tono, contención) intacto.
 
 El negro se quedó donde le corresponde: en la letra y en el botón principal.
 
-**La regla nueva:**
+### La tercera vuelta, y la regla que quedó
 
-- **Superficies: cuatro, y todas claras.** Papel (`#ffffff`), papel cálido
-  (`#f6f3ed`), rosa pálido (`#fce2f2`) y celeste pálido (`#dff5fd`). Toda
-  sección es una de esas cuatro. El ritmo de la página sale de alternarlas y
-  del aire entre ellas.
-- **El magenta aparece en cosas chicas.** Un rótulo, un subrayado, el botón
-  principal, la cifra de un monto, el aro de la clase que elegiste. Nunca un
-  fondo grande.
-- **El cian, el verde y el naranja plenos salieron del diseño.** Siguen
-  definidos porque están dentro de los vectores, y el celeste sobrevive en su
-  versión pálida como superficie. Ninguno viste una sección a saturación
-  completa.
-- **El color grande de la página lo pone la obra de los estudiantes.** Es lo
-  mejor que tiene la fundación y antes competía contra un fondo magenta.
-- **Esquinas de 6px, filetes de 1px.** No 20px y 2px de color.
-- **La tinta (`#161922`) es color de LETRA, no de fondo.** Sobrevive en los
-  botones principales y en el texto. Ninguna sección es negra.
-- **Los iconos van en dos tonos del color del texto que tienen al lado**, y no
-  pasan de 48px. La regla vive en `.icono-sobrio` y se aplica sola a los
-  veintisiete desde `ArtIcons.tsx`.
+Después de la versión clara vino la corrección final del dueño, y es la que
+ordena todo lo demás: *"no mates los colores… poner más cosas negras no lo
+hace ver más profesional"*.
+
+Ahí está el diagnóstico correcto de las tres vueltas. El problema nunca fue el
+color: **fue el ÁREA que ocupaba**. Media pantalla de magenta grita. Una
+pastilla de horario de 90 píxeles del mismo magenta no le molesta a nadie, y
+además sirve.
+
+**La regla, en tres partes:**
+
+**1. Proporción, no ausencia (60-30-10).** Alrededor del 60% de cada pantalla
+es neutro (papel y papel cálido), el 30% es tinte claro (rosa o celeste como
+fondo de sección) y el 10% es color pleno. Ese último 10% es el que hace que
+el sitio se vea vivo. Sacarlo no lo hace más profesional, lo hace más pobre.
+
+| Capa | Cuánto | Qué es |
+|---|---|---|
+| Lienzo | ~60% | `paper` `#ffffff`, `paper-warm` `#f6f3ed` |
+| Superficie de sección | ~30% | `brand-soft` `#fce2f2`, `sky-soft` `#dff5fd` |
+| Color pleno | ~10% | botones, pastillas, barras, iconos, cifras |
+
+**2. El color SIGNIFICA, no decora.** Cada clase tiene el suyo y es el mismo
+en todo el sitio: **arte magenta, teatro cian, guitarra verde**. Eso es una
+codificación categórica: quien vuelve reconoce su clase antes de leerla, en el
+mostrador, en el horario del sábado y en la ficha. Un color que carga
+información se gana su lugar; uno que solo alegra la pantalla es el que sobra.
+
+**3. El color va en superficies CHICAS.** Botón, pastilla, barra superior de
+tarjeta, icono, número de paso, aro de la tarjeta elegida. Nunca un fondo de
+sección a saturación completa, nunca un borde de 2px distinto por tarjeta.
+
+**Y lo que de verdad da calidez no es un color, son las fotos.** El sitio
+ahora abre con un salón de clase lleno de gente. Catorce fotos de la propia
+fundación, en `content/fotos.ts`. Ese es el cambio que más levantó el sitio, y
+ninguna paleta lo reemplaza.
+
+**Lo que se mantiene de las vueltas anteriores:** tipografía editorial,
+filetes de 1px en vez de bordes de 2px de colores, esquinas de 6px, iconos por
+debajo de 48px, y ninguna sección negra. La tinta es color de letra y de botón
+principal, no de fondo.
 
 ## Tipografía
 

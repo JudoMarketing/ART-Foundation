@@ -17,18 +17,21 @@
 type IconProps = { className?: string };
 
 /**
- * `icono-sobrio` va acá y no en cada sitio donde se usa un icono.
+ * Los iconos van A COLOR, que es como están dibujados.
  *
- * La regla vive en `globals.css` y hace que el vector salga en dos tonos del
- * color del texto que tiene al lado, en vez de en los cuatro colores de la
- * marca. Ponerla en el `BASE` significa que vale para los veintisiete de una
- * vez, y que un icono nuevo nace ya con ella puesta sin que nadie se acuerde.
+ * Hubo una vuelta en que salían todos en un solo tono, apagados. Servía para
+ * demostrar algo (que veintisiete ilustraciones de cuatro colores a noventa
+ * píxeles se leen como imágenes prediseñadas) y de paso apagaba el sitio.
  *
- * Los colores no se borran de los dibujos: siguen escritos en cada `path`. Si
- * algún día un icono tiene que ir a todo color en un lugar concreto, se le
- * saca la clase ahí y vuelve entero.
+ * Lo que estaba mal era el TAMAÑO, no el color. A 90px un icono compite con
+ * el título que tiene al lado; a 40px lo acompaña. Los tamaños se bajaron y el
+ * color se queda.
+ *
+ * `icono-sobrio` sigue existiendo en `globals.css` y se usa a mano donde de
+ * verdad conviene apagarlo: el portal del administrador, que es una
+ * herramienta de trabajo y no un folleto.
  */
-const BASE = "shrink-0 icono-sobrio";
+const BASE = "shrink-0";
 
 /** Las rayitas de humo/movimiento que llevan todos los separadores. */
 function Squiggles({ y, flip = false }: { y: number; flip?: boolean }) {

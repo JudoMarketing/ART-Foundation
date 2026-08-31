@@ -53,18 +53,22 @@ export default async function RegisterPage({
           <ol className="mt-14 grid gap-6 sm:grid-cols-2">
             {c.steps.map((step, i) => {
               const Icon = stepIcons[i];
+              // Los cuatro pasos, cada uno de un color de la marca. Es un
+              // círculo de 36px: color en superficie chica, que es donde el
+              // color suma en vez de gritar.
+              const bola = ["bg-brand-solid", "bg-sky-deep", "bg-leaf-deep", "bg-sun-deep"][i];
               return (
                 <li
                   key={step.title}
                   className="card card-lift flex gap-6 rounded-[--radius-card] bg-paper p-8"
                 >
-                  <span aria-hidden="true" className="icono-sobrio shrink-0 text-ink-soft">
+                  <span aria-hidden="true" className="shrink-0 text-ink-soft">
                     <Icon className="h-11 w-11" />
                   </span>
                   <div>
                     <span
                       aria-hidden="true"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper"
+                      className={`inline-flex h-8 w-8 items-center justify-center rounded-full ${bola} text-sm font-bold text-paper`}
                     >
                       {i + 1}
                     </span>

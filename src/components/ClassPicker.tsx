@@ -68,41 +68,47 @@ export type PickerLabels = {
 };
 
 /**
- * Las tres clases se ven IGUAL, y ese es el cambio.
+ * Cada clase tiene su color: arte magenta, teatro cian, guitarra verde.
  *
- * Antes cada una traía su color: arte magenta, teatro cian, guitarra verde.
- * En el papel suena bien (cada clase tiene identidad) y en pantalla salía mal
- * por dos motivos.
+ * Esto se sacó una vez y se volvió a poner, y vale escribir por qué, porque
+ * las dos veces había un argumento.
  *
- * El de diseño: tres botones "Register" de tres colores, uno al lado del
- * otro, se leen como tres cosas distintas cuando son la misma acción tres
- * veces. Y sumados a los horarios en tres pastillas de tres colores, la fila
- * entera se volvía una caja de lápices.
+ * **Por qué se sacó:** el sitio se veía infantil, y una fila de tres botones
+ * de tres colores era parte del problema.
  *
- * El de uso, que pesa más: acá hay que ELEGIR, y lo que tiene que saltar a la
- * vista es cuál está elegida. Si las tres ya vienen gritando color, la
- * elegida no tiene con qué distinguirse. Con las tres en neutro, el magenta
- * queda libre para hacer el único trabajo que importa en esta pantalla:
- * marcar lo que la persona eligió.
+ * **Por qué volvió:** el problema no era el color, era el ÁREA. Lo que hacía
+ * ruido eran los fondos saturados de media pantalla, no una pastilla de
+ * horario de 90 píxeles. Y acá el color hace un trabajo real: es una
+ * *codificación categórica*, o sea que el color no decora, **significa**. El
+ * magenta es arte en todo el sitio, el cian es teatro y el verde es guitarra,
+ * siempre, en el mostrador, en el horario del sábado y en la ficha de cada
+ * clase. Quien vuelve una segunda vez reconoce su clase antes de leer.
  *
- * El objeto se conserva con tres entradas iguales a propósito. Cada clase
- * sigue declarando su `accent` en `content/site.ts` y sigue habiendo un lugar
- * donde volver a diferenciarlas si algún día hace falta; hoy ese lugar
- * devuelve lo mismo para las tres.
+ * Un color que significa algo se gana su lugar. Un color que solo alegra la
+ * pantalla es el que sobra.
+ *
+ * Y una tercera cosa, que es la que lo mantiene ordenado: el color va en
+ * cosas CHICAS. El icono, la pastilla del horario, el botón, el aro de la
+ * elegida. La tarjeta es blanca, el borde es neutro y el fondo de la sección
+ * es un tinte claro. La proporción es más o menos 60% neutro, 30% tinte, 10%
+ * color pleno, que es la regla clásica y es exactamente lo que separa
+ * "colorido" de "gritón".
  */
-const NEUTRO = {
-  fill: "bg-ink",
-  onFill: "text-paper",
-  ink: "text-ink-soft",
-  soft: "bg-paper-warm",
-  ring: "ring-brand",
+const SKINS = {
+  brand: { fill: "bg-brand-solid", onFill: "text-paper", ink: "text-brand-ink", soft: "bg-brand-soft", ring: "ring-brand" },
+  sky: { fill: "bg-sky", onFill: "text-ink", ink: "text-sky-ink", soft: "bg-sky-soft", ring: "ring-sky" },
+  leaf: { fill: "bg-leaf", onFill: "text-ink", ink: "text-leaf-ink", soft: "bg-leaf-soft", ring: "ring-leaf" },
 } as const;
 
-const SKINS = {
-  brand: NEUTRO,
-  sky: NEUTRO,
-  leaf: NEUTRO,
-} as const;
+/* Los tres botones llevan el color PLENO, no el oscurecido, y encima va tinta
+   y no blanco. Hubo un intento con `sky-deep` y `leaf-deep` en blanco: pasa
+   contraste igual, pero el verde oscurecido sale color oliva y el conjunto
+   pierde justo lo que se quería recuperar.
+
+   Los plenos con tinta encima andan holgados: cian 6.84:1, verde 9.52:1. El
+   magenta es el único que no puede llevar tinta (el amarillo del texto sobre
+   rosa fuerte no funciona), así que ese va en `brand-solid` con blanco, que
+   da 4.55:1. Tres botones de tres colores, los tres legibles. */
 
 export default function ClassPicker({
   items,
@@ -165,12 +171,12 @@ export default function ClassPicker({
             <li
               key={k.id}
               className={`card flex flex-col rounded-[--radius-card] bg-paper p-8 transition-shadow ${
-                on ? `ring-2 ${s.ring}` : "ring-0"
+                on ? `ring-4 ${s.ring}` : "ring-0"
               }`}
             >
               <div className="flex items-start justify-between gap-4">
-                <span aria-hidden="true" className={`icono-sobrio ${s.ink}`}>
-                  <Icon className="h-10 w-10" />
+                <span aria-hidden="true" className={s.ink}>
+                  <Icon className="h-11 w-11" />
                 </span>
                 <span
                   aria-hidden="true"
@@ -184,7 +190,7 @@ export default function ClassPicker({
 
               <h3 className="mt-6 text-2xl">{k.name}</h3>
 
-              <p className="mt-3 inline-flex w-fit items-center rounded-[--radius-sm] bg-paper-warm px-3 py-1 text-sm font-semibold text-ink-soft">
+              <p className={`mt-3 inline-flex w-fit items-center rounded-[--radius-sm] ${s.soft} px-3 py-1 text-sm font-bold ${s.ink}`}>
                 <span className="sr-only">{labels.scheduleLabel}: </span>
                 {k.schedule}
               </p>

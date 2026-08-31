@@ -12,6 +12,7 @@ import {
 } from "@/components/ArtIcons";
 import Link from "next/link";
 import { localePath } from "@/lib/i18n";
+import Foto from "@/components/Foto";
 import PageHero from "@/components/PageHero";
 
 export async function generateMetadata({
@@ -53,18 +54,22 @@ export default async function VolunteerPage({
           <ol className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {c.steps.map((step, i) => {
               const Icon = stepIcons[i];
+              // Los cuatro pasos, cada uno de un color de la marca. Es un
+              // círculo de 36px: color en superficie chica, que es donde el
+              // color suma en vez de gritar.
+              const bola = ["bg-brand-solid", "bg-sky-deep", "bg-leaf-deep", "bg-sun-deep"][i];
               return (
                 <li
                   key={step.title}
                   className="card card-lift rounded-[--radius-card] bg-paper p-7"
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <span aria-hidden="true" className="icono-sobrio text-ink-soft">
+                    <span aria-hidden="true" className="text-ink-soft">
                       <Icon className="h-10 w-10" />
                     </span>
                     <span
                       aria-hidden="true"
-                      className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper"
+                      className={`flex h-9 w-9 items-center justify-center rounded-full ${bola} text-sm font-bold text-paper`}
                     >
                       {i + 1}
                     </span>
@@ -83,19 +88,24 @@ export default async function VolunteerPage({
           cosa. Y se cuenta a favor del voluntario, que es lo que de verdad
           es, sin ese registro no hay carta al final. */}
       <section className="bg-sky-soft">
-        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto]">
-            <div>
-              <h2 className="text-4xl font-bold text-ink sm:text-5xl">
-                {c.trackTitle}
-              </h2>
-              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ink-soft">
-                {c.trackBody}
-              </p>
-            </div>
-            <span aria-hidden="true" className="hidden lg:block">
-              <IconCertificate className="h-40 w-40" />
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-2">
+          <Foto
+            slug="instructora-y-alumna"
+            locale={locale}
+            aspect="aspect-4/3"
+            className="card rounded-[--radius-card] lg:order-2"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+          <div>
+            <span aria-hidden="true" className="block text-leaf-ink">
+              <IconCertificate className="h-12 w-12" />
             </span>
+            <h2 className="mt-6 text-4xl font-bold text-ink sm:text-5xl">
+              {c.trackTitle}
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-ink-soft">
+              {c.trackBody}
+            </p>
           </div>
         </div>
       </section>
@@ -108,7 +118,7 @@ export default async function VolunteerPage({
             {c.declare.map((d) => (
               <li
                 key={d}
-                className="card rounded-[--radius-card] border-2 border-sky bg-paper p-6 text-lg font-semibold"
+                className="card overflow-hidden rounded-[--radius-card] bg-paper p-6 text-lg font-semibold"
               >
                 {d}
               </li>

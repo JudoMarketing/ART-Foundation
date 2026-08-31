@@ -13,6 +13,7 @@ import {
   IconPalette,
   IconTogether,
 } from "@/components/ArtIcons";
+import Foto from "@/components/Foto";
 import PageHero from "@/components/PageHero";
 
 export async function generateMetadata({
@@ -73,7 +74,7 @@ export default async function AboutPage({
                   key={pillar.title}
                   className="card card-lift rounded-[--radius-card] bg-paper p-7"
                 >
-                  <span aria-hidden="true" className="icono-sobrio block text-ink-soft">
+                  <span aria-hidden="true" className="block text-ink-soft">
                     <Icon className="h-11 w-11" />
                   </span>
                   <h3 className="mt-6 text-xl">{pillar.title}</h3>
@@ -109,6 +110,27 @@ export default async function AboutPage({
             </span>
             <p className="mt-5 text-lg text-ink-soft">{c.modelBody}</p>
           </article>
+        </div>
+      </section>
+
+      {/* Gente trabajando, antes de la obra. Los cuadros dicen qué sale de
+          acá; las fotos dicen quiénes lo hacen, y una fundación que enseña a
+          personas al final es personas. */}
+      <section className="bg-paper">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {["adultos-en-taller", "instructora-y-alumna", "teatro-en-escena", "grupo-con-bolsas"].map((f) => (
+              <li key={f}>
+                <Foto
+                  slug={f}
+                  locale={locale}
+                  aspect="aspect-square"
+                  className="card rounded-[--radius-card]"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
