@@ -15,10 +15,22 @@ import { useEffect, useRef, useState } from "react";
  * 2. **Siempre hay un botón para pararlo**, visible y alcanzable con
  *    teclado. WCAG 2.2.2 lo exige para cualquier cosa que se mueva más de
  *    cinco segundos, y aquí además es de sentido común.
- * 3. **El texto nunca va directo sobre el video.** Va sobre una capa oscura
- *    que garantiza el contraste pase lo que pase en la imagen, un video
- *    cambia de brillo cuadro a cuadro y el contraste no se puede medir
- *    sobre algo que se mueve.
+ * 3. **Encima del video no va ni una letra.** Antes iba: el título de la
+ *    portada se apoyaba sobre el video, y para que se leyera había que
+ *    taparlo con una capa oscura, porque un video cambia de brillo cuadro a
+ *    cuadro y el contraste no se puede medir sobre algo que se mueve.
+ *
+ *    Ahora el video vive en su propio panel, al lado del texto y no debajo.
+ *    Con eso se arreglan tres cosas de una: el contraste deja de ser un
+ *    problema que hay que administrar, el video se ve entero en vez de
+ *    oscurecido al 80%, y la portada deja de ser un rectángulo negro de
+ *    pantalla completa.
+ *
+ *    (De paso: la capa vieja estaba declarada como `bg-gradient-to-r`, que es
+ *    el nombre de Tailwind 3. En la 4 se llama `bg-linear-to-r`, así que esa
+ *    clase no existía y no se generaba nada. O sea que la capa que
+ *    garantizaba el contraste no estaba puesta, y el texto blanco venía
+ *    apoyado directamente sobre el video.)
  * 4. **Sin sonido y sin depender del video.** Si no carga, si el navegador
  *    lo bloquea o si todavía no existe, queda el fondo pintado y la página
  *    se ve igual de bien.
@@ -67,11 +79,9 @@ export default function HeroVideo({
   return (
     <>
       {/* Fondo pintado. Existe siempre, haya video o no: si el video no
-          carga, si el navegador lo bloquea o si todavía no existe, la
-          portada se ve igual de viva. */}
-      <div aria-hidden="true" className="absolute inset-0 bg-ink">
-        <div className="hero-blobs absolute inset-0" />
-      </div>
+          carga, si el navegador lo bloquea o si todavía no existe, el panel
+          se ve igual de vivo. */}
+      <div aria-hidden="true" className="hero-blobs absolute inset-0" />
 
       {src && (
         <video
@@ -89,28 +99,16 @@ export default function HeroVideo({
         />
       )}
 
-      {/* La capa que garantiza el contraste del texto. Más oscura a la
-          izquierda, que es donde vive el título.
-
-          Con video hace falta más capa, porque un video cambia de brillo
-          cuadro a cuadro y el contraste no se puede medir sobre algo que se
-          mueve. Sin video, el fondo pintado ya es nuestro y se conoce su
-          luminancia, así que la capa puede ser mucho más liviana y dejar
-          ver el color. */}
-      <div
-        aria-hidden="true"
-        className={
-          src
-            ? "absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/80 to-ink/60"
-            : "absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/60 to-ink/35"
-        }
-      />
-
       {src && (
         <button
           type="button"
           onClick={toggle}
-          className="tap absolute bottom-5 right-5 z-20 inline-flex items-center gap-2 rounded-full border border-white/35 bg-ink/80 px-4 py-2 text-sm font-semibold text-paper backdrop-blur transition-colors hover:bg-ink"
+          /* Sigue siendo oscuro y opaco, y ahora que el respaldo del panel es
+             claro eso importa más, no menos: el botón se apoya sobre el video,
+             que cambia de brillo cuadro a cuadro, así que tiene que traer su
+             propio fondo entero. `bg-ink/80` dejaba pasar el video por detrás
+             de la letra blanca. */
+          className="tap absolute bottom-4 right-4 z-20 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper shadow-lg transition-transform hover:scale-[1.04]"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" fill="currentColor">
             {playing ? (

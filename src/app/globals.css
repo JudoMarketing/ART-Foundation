@@ -322,23 +322,32 @@ a.link:hover {
    para quien pidió que no se moviera.
    ========================================================================== */
 
-/* — Fondo de la portada, detrás del video ————————————————————————
-   Eran cuatro manchas de pintura, una de cada color de la marca, respirando
-   en bucle. Cuatro colores saturados moviéndose es el salvapantallas de una
-   computadora de los noventa, y era lo primero que veía cualquiera que
-   entrara con la conexión lenta.
+/* — Fondo del panel del video ————————————————————————————————
+   Esto es lo que se ve mientras el video baja, y lo que se queda si el video
+   no llega nunca: conexión lenta, navegador que bloquea la reproducción, o
+   simplemente que todavía no hay archivo.
 
-   Ahora son dos manchas del mismo tono, muy oscuras, sobre tinta. Cumple el
-   trabajo que de verdad tenía que cumplir, que el video no aparezca sobre un
-   rectángulo negro muerto, sin pretender ser el espectáculo.
+   Pasó por dos versiones malas antes de esta.
 
-   Sigue respirando, más despacio y con mucho menos recorrido: a esta
-   intensidad no se percibe como movimiento sino como profundidad. */
+   La primera eran cuatro manchas de pintura, una de cada color de la marca,
+   respirando en bucle. Cuatro colores saturados moviéndose es el
+   salvapantallas de una computadora de los noventa.
+
+   La segunda las bajó a dos manchas oscuras sobre tinta. Se veía sobria y era
+   peor de otra manera: dejaba un rectángulo casi negro al lado de una portada
+   rosa, y como el respaldo tarda lo mismo que el video, ese rectángulo negro
+   es lo primero que ve quien entra desde un teléfono.
+
+   Ahora es un lavado de los dos tintes claros de la casa. Si el video no
+   aparece, lo que queda no parece un error: parece que el panel es así.
+
+   Sigue respirando, muy despacio y con muy poco recorrido: a esta intensidad
+   no se percibe como movimiento sino como profundidad. */
 .hero-blobs {
   background:
-    radial-gradient(48rem 38rem at 18% 22%, color-mix(in oklab, var(--color-brand) 26%, transparent), transparent 68%),
-    radial-gradient(44rem 36rem at 82% 78%, color-mix(in oklab, var(--color-sky) 20%, transparent), transparent 68%),
-    var(--color-ink);
+    radial-gradient(40rem 34rem at 22% 18%, color-mix(in oklab, var(--color-brand) 22%, transparent), transparent 66%),
+    radial-gradient(38rem 32rem at 78% 82%, color-mix(in oklab, var(--color-sky) 26%, transparent), transparent 66%),
+    var(--color-brand-soft);
 }
 
 @media (prefers-reduced-motion: no-preference) {

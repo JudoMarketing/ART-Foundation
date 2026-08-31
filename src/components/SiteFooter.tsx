@@ -186,12 +186,19 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
           { texto: { en: "Accessibility", es: "Accesibilidad" }, href: localePath(locale, "/accessibility") },
           { texto: { en: "Terms", es: "Términos" }, href: localePath(locale, "/terms") },
         ]}
+        /* El pie de Judo viene oscuro de fábrica y acepta tema. Acá va claro,
+           en el rosa de la fundación, por la misma razón que el resto del
+           sitio: una franja negra de doscientos píxeles al final de una
+           página luminosa se lee como si el sitio se hubiera terminado y
+           empezara otra cosa. El acento en magenta oscuro (#b3006b) y no en
+           el rosa claro que llevaba antes: sobre un fondo claro, aquel daba
+           2.4:1 y el enlace desaparecía al pasarle el cursor por encima. */
         tema={{
-          fondo: "#161922",
-          texto: "#ffffff",
-          tenue: "rgba(255,255,255,0.72)",
-          acento: "#ff8ecd",
-          borde: "rgba(255,255,255,0.14)",
+          fondo: "#fce2f2",
+          texto: "#161922",
+          tenue: "#4b5163",
+          acento: "#b3006b",
+          borde: "rgba(22,25,34,0.12)",
         }}
       />
     </footer>

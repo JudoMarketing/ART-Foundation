@@ -53,13 +53,11 @@ export default async function ContactPage({
             href={ORG.phoneHref}
             className="btn tap inline-flex flex-col rounded-[--radius-card] bg-ink px-8 py-5 text-paper transition-transform hover:scale-[1.02]"
           >
-            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-paper/70">
-              {c.callTitle}
-            </span>
-            <span className="mt-1 font-display text-2xl font-bold sm:text-3xl">
+            <span className="rotulo text-paper/80">{c.callTitle}</span>
+            <span className="mt-1 font-display text-2xl sm:text-3xl">
               {ORG.phone}
             </span>
-            <span className="text-sm text-paper/70">
+            <span className="text-sm text-paper/80">
               {c.extLabel} {ORG.phoneExt}
             </span>
           </a>
@@ -68,10 +66,8 @@ export default async function ContactPage({
             href={`mailto:${ORG.email}`}
             className="btn tap inline-flex flex-col rounded-[--radius-card] bg-paper px-8 py-5 text-ink transition-transform hover:scale-[1.02]"
           >
-            <span className="text-sm font-semibold uppercase tracking-[0.14em] text-ink-soft">
-              {c.writeTitle}
-            </span>
-            <span className="mt-1 break-all font-display text-xl font-bold sm:text-2xl">
+            <span className="rotulo text-ink-soft">{c.writeTitle}</span>
+            <span className="mt-1 break-all font-display text-xl sm:text-2xl">
               {ORG.email}
             </span>
           </a>
@@ -138,23 +134,23 @@ export default async function ContactPage({
       </section>
 
       {/* El horario, con el icono de cada clase. */}
-      <section className="bg-ink">
+      <section className="bg-sky-soft">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <h2 className="text-4xl font-bold text-paper sm:text-5xl">{c.hoursTitle}</h2>
+          <h2 className="text-4xl font-bold text-ink sm:text-5xl">{c.hoursTitle}</h2>
           <ul className="mt-10 grid gap-4 sm:grid-cols-3">
             {CLASSES.map((k) => {
               const Icon = CLASS_ICONS[k.id];
               return (
                 <li
                   key={k.id}
-                  className="icon-play flex items-center gap-4 rounded-[--radius-card] bg-paper/10 px-6 py-5 text-paper ring-1 ring-inset ring-white/25"
+                  className="icon-play flex items-center gap-4 rounded-[--radius-card] card bg-paper px-6 py-5"
                 >
-                  <span aria-hidden="true" className="text-paper">
+                  <span aria-hidden="true" className="text-ink">
                     <Icon className="h-8 w-8" />
                   </span>
                   <span>
                     <span className="block text-lg font-bold">{k[locale].name}</span>
-                    <span className="text-paper/80">
+                    <span className="text-ink-soft">
                       <time>{hour(k.start, locale)}</time>
                       <span aria-hidden="true"> – </span>
                       <time>{hour(k.end, locale)}</time>

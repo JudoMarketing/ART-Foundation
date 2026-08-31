@@ -102,67 +102,90 @@ export default async function HomePage({
   return (
     <>
       {/* ══ Portada ═══════════════════════════════════════════════════════
-          Video de fondo, capa oscura encima y el texto sobre la capa. Sin
-          carrusel: el sitio actual usa Revolution Slider, y un carrusel que
-          cambia solo se lleva el texto antes de que alguien lo termine de
-          leer.
+          El video al costado, no debajo del texto.
 
-          La dirección del video sale de la variable de entorno, y si no está
-          puesta cae en el archivo del repositorio. Antes solo miraba la
-          variable: como está vacía, la etiqueta <video> ni se dibujaba y el
-          video no se reproducía nunca. */}
-      <section className="relative isolate overflow-hidden">
-        <HeroVideo
-          src={process.env.NEXT_PUBLIC_HERO_VIDEO_URL || "/video/hero.mp4"}
-          labelPlay={c.hero.playVideo}
-          labelPause={c.hero.pauseVideo}
-        />
+          La primera versión lo ponía de fondo a pantalla completa, con una
+          capa oscura encima y el título en blanco sobre la capa. Eso trae dos
+          problemas y los trae siempre:
 
-        <div className="relative z-10 mx-auto max-w-6xl px-4 py-28 sm:px-6 md:py-40">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-paper/85">
-            {c.hero.eyebrow}
-          </p>
-          <h1 className="mt-5 max-w-3xl text-5xl font-bold leading-[1.02] text-paper sm:text-7xl lg:text-8xl">
-            {c.hero.title}
-          </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-relaxed text-paper/90 sm:text-xl">
-            {c.hero.lead}
-          </p>
+          1. La portada entera queda negra. En una fundación de arte para
+             personas con discapacidad, cuyo sitio de hoy es rosa y celeste,
+             un rectángulo negro de pantalla completa se siente duro y ajeno.
+          2. El contraste del título pasa a depender de una capa que hay que
+             calibrar, porque un video cambia de brillo cuadro a cuadro y no
+             se puede medir contraste sobre algo que se mueve. Y esa capa
+             estaba rota: se llamaba `bg-gradient-to-r`, que es el nombre de
+             Tailwind 3, así que no se generaba nada y el texto blanco venía
+             apoyado directo sobre el video.
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            {/* Baja a las clases, no salta al formulario. Quien todavía no
-                eligió qué clase quiere no tiene nada que hacer en un
-                formulario de inscripción: primero mira, arma su sábado, ve
-                el precio, y recién ahí se inscribe. */}
-            <a
-              href="#clases"
-              className="btn tap inline-flex items-center rounded-full bg-paper px-8 py-4 text-base font-bold text-ink transition-transform hover:scale-[1.03]"
-            >
-              {c.hero.primary}
-            </a>
-            <Link
-              href={localePath(locale, "/donate")}
-              className="btn tap inline-flex items-center rounded-full bg-brand-solid px-8 py-4 text-base font-bold text-paper transition-transform hover:scale-[1.03]"
-            >
-              {c.hero.secondary}
-            </Link>
+          Con el video en su propio panel, encima del texto no hay nada. El
+          contraste deja de ser un problema que administrar, el video se ve
+          entero en vez de oscurecido, y el fondo puede ser del color de la
+          casa.
+
+          Sin carrusel: el sitio actual usa Revolution Slider, y un carrusel
+          que cambia solo se lleva el texto antes de que alguien lo termine de
+          leer. */}
+      <section className="relative isolate overflow-hidden bg-brand-soft">
+        <div aria-hidden="true" className="doodles text-paper" />
+
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-28">
+          <div>
+            <p className="rotulo text-ink-soft">{c.hero.eyebrow}</p>
+            <h1 className="mt-5 text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-7xl">
+              {c.hero.title}
+            </h1>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl">
+              {c.hero.lead}
+            </p>
+
+            <div className="mt-10 flex flex-wrap gap-4">
+              {/* Baja a las clases, no salta al formulario. Quien todavía no
+                  eligió qué clase quiere no tiene nada que hacer en un
+                  formulario de inscripción: primero mira, arma su sábado, ve
+                  el precio, y recién ahí se inscribe. */}
+              <a
+                href="#clases"
+                className="btn tap inline-flex items-center rounded-full bg-ink px-8 py-4 text-base font-bold text-paper transition-transform hover:scale-[1.03]"
+              >
+                {c.hero.primary}
+              </a>
+              <Link
+                href={localePath(locale, "/donate")}
+                className="btn tap inline-flex items-center rounded-full bg-brand-solid px-8 py-4 text-base font-bold text-paper transition-transform hover:scale-[1.03]"
+              >
+                {c.hero.secondary}
+              </Link>
+            </div>
+
+            {/* Las tres disciplinas, en fila. Es lo primero que dice de qué
+                va esto, y se lee antes que cualquier párrafo. */}
+            <ul className="mt-14 flex flex-wrap gap-x-9 gap-y-5">
+              {c.hero.disciplines.map((d, i) => {
+                const Icon = [IconPalette, CLASS_ICONS.theatre, CLASS_ICONS.guitar][i];
+                return (
+                  <li key={d} className="flex items-center gap-2.5 text-ink">
+                    <span aria-hidden="true" className="text-ink-soft">
+                      <Icon className="h-8 w-8" />
+                    </span>
+                    <span className="text-base font-semibold">{d}</span>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
 
-          {/* Las cuatro disciplinas, en fila. Es lo primero que dice de qué
-              va esto, y se lee antes que cualquier párrafo. */}
-          <ul className="mt-16 flex flex-wrap gap-x-10 gap-y-6">
-            {c.hero.disciplines.map((d, i) => {
-              const Icon = [IconPalette, CLASS_ICONS.theatre, CLASS_ICONS.guitar][i];
-              return (
-                <li key={d} className="icon-play flex items-center gap-3 text-paper">
-                  <span className="text-paper/70">
-                    <Icon className="h-11 w-11" />
-                  </span>
-                  <span className="text-base font-semibold">{d}</span>
-                </li>
-              );
-            })}
-          </ul>
+          {/* El panel del video. `aspect-4/5` en pantalla chica y `4/3` en
+              grande: vertical acompaña a una columna angosta, apaisado a una
+              ancha, y en los dos casos la altura sale de la proporción y no
+              de un número fijo, así que nunca hay una franja vacía debajo. */}
+          <div className="relative aspect-4/5 overflow-hidden rounded-[--radius-card] shadow-lg sm:aspect-video lg:aspect-4/5">
+            <HeroVideo
+              src={process.env.NEXT_PUBLIC_HERO_VIDEO_URL || "/video/hero.mp4"}
+              labelPlay={c.hero.playVideo}
+              labelPause={c.hero.pauseVideo}
+            />
+          </div>
         </div>
       </section>
 
@@ -214,12 +237,12 @@ export default async function HomePage({
           las otras bajan a mitad de precio y la cuenta de abajo se arma
           sola. Ver el descuento pasar delante de los ojos es lo que hace que
           una familia se lleve dos clases en vez de una. */}
-      <section id="clases" className="relative scroll-mt-20 bg-ink">
+      <section id="clases" className="relative scroll-mt-20 bg-sky-soft">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-          <h2 className="max-w-3xl text-4xl font-bold text-paper sm:text-5xl">
+          <h2 className="max-w-3xl text-4xl font-bold text-ink sm:text-5xl">
             {c.classes.title}
           </h2>
-          <p className="mt-5 max-w-2xl text-lg text-paper">
+          <p className="mt-5 max-w-2xl text-lg text-ink">
             {c.classes.lead}
           </p>
 
@@ -241,8 +264,8 @@ export default async function HomePage({
             {c.classes.support}
           </p>
 
-          <p className="mt-6 text-paper">
-            <span className="font-bold text-paper">{c.classes.whereLabel}:</span>{" "}
+          <p className="mt-6 text-ink">
+            <span className="font-bold text-ink">{c.classes.whereLabel}:</span>{" "}
             {CLASS_DAY[locale]} · {ORG.classVenue.name}. {ORG.classVenue.street},{" "}
             {ORG.classVenue.city}, {ORG.classVenue.state} {ORG.classVenue.zip}
           </p>
@@ -319,18 +342,18 @@ export default async function HomePage({
           El texto no desaparece: sigue en la página para quien usa lector de
           pantalla. Un dibujo no se lee en voz alta, y una tarjeta que solo
           tiene dibujos es una tarjeta vacía para quien no ve. */}
-      <section className="bg-ink">
+      <section className="bg-brand-soft">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <div className="flex flex-wrap items-end justify-between gap-8">
             <div>
-              <h2 className="max-w-3xl text-4xl font-bold text-paper sm:text-5xl">
+              <h2 className="max-w-3xl text-4xl font-bold text-ink sm:text-5xl">
                 {c.donate.title}
               </h2>
-              <p className="mt-5 max-w-2xl text-lg text-paper/85">
+              <p className="mt-5 max-w-2xl text-lg text-ink-soft">
                 {c.donate.lead}
               </p>
             </div>
-            <span aria-hidden="true" className="text-paper/60">
+            <span aria-hidden="true" className="text-ink-soft">
               <IconHeart className="h-8 w-8" />
             </span>
           </div>
@@ -347,7 +370,7 @@ export default async function HomePage({
               </span>
             ))}
           </div>
-          <p className="mt-3 text-center text-sm font-semibold uppercase tracking-[0.16em] text-paper/60">
+          <p className="mt-3 text-center text-sm font-semibold uppercase tracking-[0.16em] text-ink-soft">
             {c.donate.flowLabel}
           </p>
 
@@ -356,9 +379,9 @@ export default async function HomePage({
               return (
                 <li
                   key={u.title}
-                  className="rounded-[--radius-card] bg-white/5 p-8 text-paper ring-1 ring-inset ring-white/15"
+                  className="rounded-[--radius-card] card bg-paper p-8"
                 >
-                  <h3 className="text-xl text-paper">{u.title}</h3>
+                  <h3 className="text-xl text-ink">{u.title}</h3>
 
                   {/* Los dibujos van en una fila que no se parte. Materiales
                       lleva cuatro y los otros tres: si se dejan sueltos, los
@@ -366,7 +389,7 @@ export default async function HomePage({
                       lado de las otras dos. */}
                   <div
                     aria-hidden="true"
-                    className="icono-sobrio mt-6 flex items-center justify-start gap-3 text-paper/70"
+                    className="icono-sobrio mt-6 flex items-center justify-start gap-3 text-ink-soft"
                   >
                     {useIcons[i].map((Icon, j) => (
                       <Icon key={j} className="h-9 w-9 shrink-0 drop-shadow-sm" />
@@ -381,15 +404,15 @@ export default async function HomePage({
             })}
           </ul>
 
-          <p className="mt-8 rounded-2xl bg-paper/10 px-6 py-5 text-paper ring-1 ring-inset ring-white/25">
+          <p className="mt-8 rounded-2xl card bg-paper px-6 py-5">
             {c.donate.receipt}
           </p>
 
           {/* Seguirnos deja de ser una frase y pasa a ser tres botones. Lo
               que se pide con un verbo se hace con un botón. */}
-          <div className="mt-8 rounded-2xl bg-paper/10 p-6 ring-1 ring-inset ring-white/25">
-            <p className="text-lg font-bold text-paper">{c.donate.followTitle}</p>
-            <p className="mt-1 text-paper/80">{c.donate.follow}</p>
+          <div className="mt-8 rounded-2xl card bg-paper p-6">
+            <p className="text-lg font-bold text-ink">{c.donate.followTitle}</p>
+            <p className="mt-1 text-ink-soft">{c.donate.follow}</p>
 
             <div className="mt-5 flex flex-wrap gap-3">
               <a
@@ -412,7 +435,7 @@ export default async function HomePage({
               </a>
               <Link
                 href={localePath(locale, "/blog")}
-                className="btn tap inline-flex items-center gap-2.5 rounded-full border-2 border-paper/70 px-6 py-3 text-base font-bold text-paper transition-transform hover:scale-[1.03]"
+                className="btn tap inline-flex items-center gap-2.5 rounded-full border-2 border-paper/70 px-6 py-3 text-base font-bold text-ink transition-transform hover:scale-[1.03]"
               >
                 <IconBlog className="h-5 w-5" />
                 {c.nav.blog}

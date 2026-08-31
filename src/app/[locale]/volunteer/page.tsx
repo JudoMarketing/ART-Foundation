@@ -82,14 +82,14 @@ export default async function VolunteerPage({
           letra chica: enterarse después de que te estaban midiendo es otra
           cosa. Y se cuenta a favor del voluntario, que es lo que de verdad
           es, sin ese registro no hay carta al final. */}
-      <section className="bg-ink">
+      <section className="bg-sky-soft">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto]">
             <div>
-              <h2 className="text-4xl font-bold text-paper sm:text-5xl">
+              <h2 className="text-4xl font-bold text-ink sm:text-5xl">
                 {c.trackTitle}
               </h2>
-              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-paper/85">
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ink-soft">
                 {c.trackBody}
               </p>
             </div>
@@ -118,7 +118,7 @@ export default async function VolunteerPage({
       </section>
 
       {/* Pasantías y el cierre. */}
-      <section className="relative bg-ink">
+      <section className="relative bg-brand-soft">
         <div className="mx-auto grid max-w-6xl gap-6 px-4 py-24 sm:px-6 lg:grid-cols-2">
           <article className="card rounded-[--radius-card] bg-paper p-10">
             <span aria-hidden="true" className="block">

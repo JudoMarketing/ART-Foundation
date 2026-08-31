@@ -110,27 +110,27 @@ export default async function DonatePage({
       {/* A dónde va: los mismos tres destinos de la portada, con sus
           dibujos. Se repite a propósito, quien llega directo a esta página
           desde Google no vio la portada. */}
-      <section className="bg-ink">
+      <section className="bg-sky-soft">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-          <h2 className="text-4xl font-bold text-paper sm:text-5xl">{c.usesTitle}</h2>
+          <h2 className="text-4xl font-bold text-ink sm:text-5xl">{c.usesTitle}</h2>
 
           <ul className="mt-12 grid gap-6 md:grid-cols-3">
             {home.donate.uses.map((u, i) => {
               return (
                 <li
                   key={u.title}
-                  className="rounded-[--radius-card] bg-white/5 p-8 text-paper ring-1 ring-inset ring-white/15"
+                  className="rounded-[--radius-card] card bg-paper p-8"
                 >
-                  <h3 className="text-xl text-paper">{u.title}</h3>
+                  <h3 className="text-xl text-ink">{u.title}</h3>
                   <div
                     aria-hidden="true"
-                    className="icono-sobrio mt-6 flex items-center justify-start gap-3 text-paper/70"
+                    className="icono-sobrio mt-6 flex items-center justify-start gap-3 text-ink-soft"
                   >
                     {useIcons[i].map((Icon, j) => (
                       <Icon key={j} className="h-8 w-8 shrink-0" />
                     ))}
                   </div>
-                  <p className="mt-5 text-paper/75">{u.body}</p>
+                  <p className="mt-5 text-ink-soft">{u.body}</p>
                 </li>
               );
             })}
@@ -140,7 +140,7 @@ export default async function DonatePage({
 
       {/* Cómo donar hoy, mientras no hay cobro en línea. Decirlo claro es
           mejor que un botón que no lleva a ningún lado. */}
-      <section className="relative bg-ink">
+      <section className="relative bg-brand-soft">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <div className="card rounded-[--radius-card] bg-paper p-10">
             <h2 className="text-3xl font-bold sm:text-4xl">{c.soonTitle}</h2>

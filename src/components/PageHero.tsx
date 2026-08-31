@@ -30,9 +30,9 @@ import Image from "next/image";
  * distinta en cada página y es la que vale la pena mirar.
  */
 const TONES = {
-  brand: "bg-ink text-paper",
-  ink: "bg-ink text-paper",
-  sky: "bg-paper-warm text-ink",
+  brand: "bg-brand-soft text-ink",
+  ink: "bg-sky-soft text-ink",
+  sky: "bg-sky-soft text-ink",
   sun: "bg-paper-warm text-ink",
   leaf: "bg-paper-warm text-ink",
   paper: "bg-paper-warm text-ink",
@@ -54,8 +54,8 @@ const TONES = {
  * andando en 15:1.
  */
 const SOFT = {
-  brand: "text-paper/90",
-  ink: "text-paper/90",
+  brand: "text-ink-soft",
+  ink: "text-ink-soft",
   sky: "text-ink-soft",
   sun: "text-ink-soft",
   leaf: "text-ink-soft",
@@ -97,18 +97,18 @@ const SOFT = {
  * (Y de paso: en Tailwind 4 el degradado se llama `bg-linear-to-r`. Con el
  * nombre viejo, `bg-gradient-to-r`, la clase no existe y no se genera nada.) */
 const VELO_SOLIDO = {
-  brand: "bg-ink",
-  ink: "bg-ink",
-  sky: "bg-paper-warm",
+  brand: "bg-brand-soft",
+  ink: "bg-sky-soft",
+  sky: "bg-sky-soft",
   sun: "bg-paper-warm",
   leaf: "bg-paper-warm",
   paper: "bg-paper-warm",
 } as const;
 
 const VELO_DEGRADADO = {
-  brand: "bg-linear-to-r from-ink from-38% via-ink/94 to-ink/30",
-  ink: "bg-linear-to-r from-ink from-38% via-ink/94 to-ink/30",
-  sky: "bg-linear-to-r from-paper-warm from-38% via-paper-warm/94 to-paper-warm/25",
+  brand: "bg-linear-to-r from-brand-soft from-38% via-brand-soft/94 to-brand-soft/25",
+  ink: "bg-linear-to-r from-sky-soft from-38% via-sky-soft/94 to-sky-soft/25",
+  sky: "bg-linear-to-r from-sky-soft from-38% via-sky-soft/94 to-sky-soft/25",
   sun: "bg-linear-to-r from-paper-warm from-38% via-paper-warm/94 to-paper-warm/25",
   leaf: "bg-linear-to-r from-paper-warm from-38% via-paper-warm/94 to-paper-warm/25",
   paper: "bg-linear-to-r from-paper-warm from-38% via-paper-warm/94 to-paper-warm/25",
@@ -117,9 +117,9 @@ const VELO_DEGRADADO = {
 const DOODLE = {
   brand: "text-paper",
   ink: "text-paper",
-  sky: "text-ink",
-  sun: "text-ink",
-  leaf: "text-ink",
+  sky: "text-paper",
+  sun: "text-paper",
+  leaf: "text-paper",
   paper: "text-ink",
 } as const;
 

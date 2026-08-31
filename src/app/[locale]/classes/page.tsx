@@ -71,10 +71,10 @@ export default async function ClassesPage({
           dice lo que de verdad importa: que se encadenan, y que quien deja a
           su hijo a las 9:30 puede quedarse hasta las dos sin volver a
           manejar. */}
-      <section className="bg-ink">
+      <section className="bg-sky-soft">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <h2 className="text-4xl font-bold text-paper sm:text-5xl">{c.dayTitle}</h2>
-          <p className="mt-4 text-lg text-paper/80">{c.dayLead}</p>
+          <h2 className="text-4xl font-bold text-ink sm:text-5xl">{c.dayTitle}</h2>
+          <p className="mt-4 text-lg text-ink-soft">{c.dayLead}</p>
 
           <ol className="mt-12 grid gap-4 md:grid-cols-3">
             {/* Eran tres bloques macizos de magenta, cian y verde, uno al
@@ -90,13 +90,13 @@ export default async function ClassesPage({
               return (
                 <li
                   key={k.id}
-                  className="rounded-[--radius-card] bg-white/5 p-7 text-paper ring-1 ring-inset ring-white/15"
+                  className="rounded-[--radius-card] card bg-paper p-7"
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <span aria-hidden="true" className="icono-sobrio text-paper">
+                    <span aria-hidden="true" className="icono-sobrio text-ink">
                       <Icon className="h-9 w-9" />
                     </span>
-                    <span className="rotulo text-paper/60">{CLASS_DAY[locale]}</span>
+                    <span className="rotulo text-ink-soft">{CLASS_DAY[locale]}</span>
                   </div>
                   {/* ⚠️ El magenta acá vive de que el texto sea GRANDE.
                       #eb008b sobre esta tarjeta da 3.61:1. WCAG pide 4.5:1
@@ -109,8 +109,8 @@ export default async function ClassesPage({
                     <span aria-hidden="true"> – </span>
                     <time>{hour(k.end, locale)}</time>
                   </p>
-                  <h3 className="mt-1 text-2xl text-paper">{k[locale].name}</h3>
-                  <p className="mt-3 text-paper/75">{k[locale].blurb}</p>
+                  <h3 className="mt-1 text-2xl text-ink">{k[locale].name}</h3>
+                  <p className="mt-3 text-ink-soft">{k[locale].blurb}</p>
                 </li>
               );
             })}
@@ -121,10 +121,10 @@ export default async function ClassesPage({
       {/* El mismo mostrador de la portada. A propósito el mismo: quien lo usó
           en la portada ya sabe usarlo acá, y aprender dos veces lo mismo es
           la clase de fricción que hace que alguien se vaya. */}
-      <section id="clases" className="relative scroll-mt-20 bg-ink">
+      <section id="clases" className="relative scroll-mt-20 bg-brand-soft">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-          <h2 className="text-4xl font-bold text-paper sm:text-5xl">{c.pickTitle}</h2>
-          <p className="mt-4 max-w-2xl text-lg text-paper">{home.classes.lead}</p>
+          <h2 className="text-4xl font-bold text-ink sm:text-5xl">{c.pickTitle}</h2>
+          <p className="mt-4 max-w-2xl text-lg text-ink">{home.classes.lead}</p>
 
           <div className="mt-12">
             <ClassPicker

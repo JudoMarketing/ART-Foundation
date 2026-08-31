@@ -118,7 +118,7 @@ export default async function StorePage({
               <h2 className="text-3xl font-bold sm:text-4xl">{c.soldTitle}</h2>
               {/* La cuenta. Es la prueba de que la tienda funciona, y por eso
                   va grande y al lado del título, no escondida abajo. */}
-              <p className="rounded-full bg-[var(--color-was)] px-5 py-2 text-lg font-bold text-paper">
+              <p className="rounded-full bg-[var(--color-was)] px-5 py-2 text-lg font-bold text-ink">
                 {yaVendidas.length === 1
                   ? c.soldOne
                   : c.soldCount.replace("{n}", String(yaVendidas.length))}
@@ -135,7 +135,7 @@ export default async function StorePage({
       )}
 
       {/* Todavía no se cobra. Decirlo, y dar la salida que sí existe. */}
-      <section className="bg-ink">
+      <section className="bg-brand-soft">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <div className="card rounded-[--radius-card] bg-paper p-10">
             <h2 className="text-3xl font-bold sm:text-4xl">{c.soonTitle}</h2>

@@ -47,14 +47,14 @@ export default async function AboutPage({
       {/* Los tres números. Van solos, grandes, sin párrafo alrededor: un año
           y un registro dicen más de una fundación que tres frases sobre su
           compromiso. */}
-      <section className="bg-ink">
+      <section className="bg-brand-soft">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:grid-cols-3 sm:px-6">
           {c.stats.map((s) => (
             <div key={s.label}>
-              <p className="font-display text-5xl font-bold text-paper sm:text-6xl">
+              <p className="font-display text-5xl font-bold text-ink sm:text-6xl">
                 {s.n}
               </p>
-              <p className="mt-2 text-paper/75">{s.label}</p>
+              <p className="mt-2 text-ink-soft">{s.label}</p>
             </div>
           ))}
         </div>
@@ -87,7 +87,7 @@ export default async function AboutPage({
 
       {/* El fundador y el modelo, uno al lado del otro, con obra al costado
           para que la página no sea dos cajas de texto seguidas. */}
-      <section className="relative bg-ink">
+      <section className="relative bg-sky-soft">
         <div className="mx-auto grid max-w-6xl gap-6 px-4 py-24 sm:px-6 lg:grid-cols-2">
           <article className="card rounded-[--radius-card] bg-paper p-10">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-ink-soft">

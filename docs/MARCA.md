@@ -55,19 +55,41 @@ Ninguna de esas decisiones estaba mal por separado. Juntas daban una sola
 lectura, y el sitio también lo miran adultos que están decidiendo dónde poner
 su dinero y padres que deciden dónde dejar a su hijo.
 
+### La corrección de la corrección
+
+La primera pasada arregló el problema y creó otro: sacó el color saturado y
+puso **secciones enteras de tinta casi negra** en su lugar, catorce en total,
+más la portada. El dueño lo devolvió en una frase: *"esos negros están
+terribles"*, y tenía razón otra vez.
+
+El sitio que la fundación tiene hoy es luminoso, rosa y celeste. Ese ambiente
+no era el problema. El problema era la **saturación**, no la claridad: un
+magenta `#eb008b` a sangre grita, un rosa `#fce2f2` a sangre respira. Se puede
+tener un sitio claro y cálido sin que parezca un aula de jardín, y eso es lo
+que hay ahora: los tintes claros de la casa como superficie, y todo lo demás
+de la corrección anterior (tipografía, filetes, esquinas chicas, iconos de un
+tono, contención) intacto.
+
+El negro se quedó donde le corresponde: en la letra y en el botón principal.
+
 **La regla nueva:**
 
-- **Superficies: solo tres, y neutras.** Papel (`#ffffff`), papel cálido
-  (`#f6f3ed`) y tinta (`#161922`). Toda sección es una de esas tres. El ritmo
-  de la página sale de alternarlas y del aire entre ellas.
+- **Superficies: cuatro, y todas claras.** Papel (`#ffffff`), papel cálido
+  (`#f6f3ed`), rosa pálido (`#fce2f2`) y celeste pálido (`#dff5fd`). Toda
+  sección es una de esas cuatro. El ritmo de la página sale de alternarlas y
+  del aire entre ellas.
 - **El magenta aparece en cosas chicas.** Un rótulo, un subrayado, el botón
   principal, la cifra de un monto, el aro de la clase que elegiste. Nunca un
   fondo grande.
-- **El cian, el verde y el naranja salieron del diseño.** Siguen definidos
-  porque están dentro de los vectores, pero ya no visten ninguna superficie.
+- **El cian, el verde y el naranja plenos salieron del diseño.** Siguen
+  definidos porque están dentro de los vectores, y el celeste sobrevive en su
+  versión pálida como superficie. Ninguno viste una sección a saturación
+  completa.
 - **El color grande de la página lo pone la obra de los estudiantes.** Es lo
   mejor que tiene la fundación y antes competía contra un fondo magenta.
 - **Esquinas de 6px, filetes de 1px.** No 20px y 2px de color.
+- **La tinta (`#161922`) es color de LETRA, no de fondo.** Sobrevive en los
+  botones principales y en el texto. Ninguna sección es negra.
 - **Los iconos van en dos tonos del color del texto que tienen al lado**, y no
   pasan de 48px. La regla vive en `.icono-sobrio` y se aplica sola a los
   veintisiete desde `ArtIcons.tsx`.

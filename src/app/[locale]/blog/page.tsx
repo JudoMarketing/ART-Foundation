@@ -41,28 +41,28 @@ export default async function BlogPage({
           Un blog sin artículos que dice "vienen en camino" con tres tarjetas
           fantasma es peor que uno que dice que está vacío: la tarjeta falsa
           promete algo que no está, y quien la toca se va. */}
-      <section className="bg-ink">
+      <section className="bg-sky-soft">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <div className="flex flex-wrap items-start gap-8">
-            <span aria-hidden="true" className="text-paper/70">
+            <span aria-hidden="true" className="text-ink-soft">
               <IconBlog className="h-11 w-11" />
             </span>
             <div className="min-w-[16rem] flex-1">
-              <h2 className="text-3xl font-bold text-paper sm:text-4xl">
+              <h2 className="text-3xl font-bold text-ink sm:text-4xl">
                 {c.emptyTitle}
               </h2>
-              <p className="mt-4 max-w-2xl text-lg text-paper/80">{c.emptyBody}</p>
+              <p className="mt-4 max-w-2xl text-lg text-ink-soft">{c.emptyBody}</p>
             </div>
           </div>
 
-          <h3 className="mt-16 text-sm font-bold uppercase tracking-[0.16em] text-paper/60">
+          <h3 className="mt-16 text-sm font-bold uppercase tracking-[0.16em] text-ink-soft">
             {c.categoriesTitle}
           </h3>
           <ul className="mt-5 flex flex-wrap gap-3">
             {c.categories.map((cat) => (
               <li
                 key={cat}
-                className="rounded-full bg-paper/10 px-5 py-2.5 font-semibold text-paper ring-1 ring-inset ring-white/25"
+                className="rounded-full bg-paper/10 px-5 py-2.5 font-semibold text-ink ring-1 ring-inset ring-white/25"
               >
                 {cat}
               </li>
